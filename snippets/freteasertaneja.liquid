@@ -1,0 +1,923 @@
+{% if product.metafields.custom.drop == 'true' or product.metafields.custom.drop == true %}
+<style>
+  .frete-container {
+    background-color: #ffffff;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    border: 1px solid #f0f0f0;
+    transition: all 0.2s ease;
+  }
+
+  .frete-icon {
+    font-size: 18px;
+    margin-right: 12px;
+    color: #FF7A00;
+  }
+
+  .frete-mensagem {
+    color: #333333;
+    font-weight: 500;
+    font-size: 14px;
+    margin: 0;
+    font-family: inherit;
+  }
+
+  .frete-destaque {
+    font-weight: 600;
+    color: #FF7A00;
+  }
+
+  .frete-cep {
+    margin-top: 4px;
+    font-size: 13px;
+    color: #666;
+    display: flex;
+    align-items: center;
+  }
+
+  .frete-cep-valor {
+    font-weight: 600;
+    color: #333;
+  }
+
+  .frete-alterar-cep {
+    background: none;
+    border: none;
+    color: #FF7A00;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-left: 6px;
+    padding: 0;
+  }
+  
+  /* Indicador de carregamento */
+  .frete-loading {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(255, 122, 0, 0.2);
+    border-radius: 50%;
+    border-top-color: #FF7A00;
+    animation: frete-spin 1s linear infinite;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  
+  @keyframes frete-spin {
+    to { transform: rotate(360deg); }
+  }
+</style>
+
+<div class="frete-container">
+  <span class="frete-icon"> 🚚 </span>
+  <div>
+    <p id="frete-mensagem" class="frete-mensagem">
+      Frete Grátis para <span class="frete-destaque">todo Brasil</span>
+      <span id="frete-loading" class="frete-loading" style="display: none;"></span>
+    </p>
+    <div id="frete-cep-info" class="frete-cep" style="display: none;">
+      CEP: <span id="frete-cep-valor" class="frete-cep-valor"></span>
+      <button id="frete-alterar-cep" class="frete-alterar-cep">Alterar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const freteMsg = document.getElementById("frete-mensagem");
+    const freteCepInfo = document.getElementById("frete-cep-info");
+    const freteCepValor = document.getElementById("frete-cep-valor");
+    const freteAlterarCep = document.getElementById("frete-alterar-cep");
+    const freteLoading = document.getElementById("frete-loading");
+    
+    // Flag para evitar múltiplas requisições simultâneas
+    let isLoading = false;
+    
+    function formatarCep(cep) {
+      if (!cep || typeof cep !== 'string') return '';
+      const cepLimpo = cep.replace(/\D/g, '');
+      if (cepLimpo.length !== 8) return cep;
+      return cepLimpo.substring(0, 5) + '-' + cepLimpo.substring(5);
+    }
+    
+    function mostrarLoading(mostrar) {
+      if (freteLoading) {
+        freteLoading.style.display = mostrar ? 'inline-block' : 'none';
+      }
+      isLoading = mostrar;
+    }
+    
+    function atualizarInformacoesFrete(cidade, estado, cep) {
+      if (cidade && estado) {
+        freteMsg.innerHTML = `Frete Grátis para <span class="frete-destaque">${cidade}/${estado}</span>`;
+      } else if (cidade) {
+        freteMsg.innerHTML = `Frete Grátis para <span class="frete-destaque">${cidade}</span>`;
+      } else {
+        freteMsg.innerHTML = `Frete Grátis para <span class="frete-destaque">todo Brasil</span>`;
+      }
+      
+      // Mostra sempre as informações do CEP quando tiver um CEP disponível
+      if (cep) {
+        freteCepValor.textContent = formatarCep(cep);
+        freteCepInfo.style.display = "flex";
+      } else {
+        freteCepInfo.style.display = "none";
+      }
+      
+      // Esconde o indicador de carregamento
+      mostrarLoading(false);
+    }
+    
+    // Tenta obter informações do CEP a partir do globalCep
+    function obterInformacoesCep() {
+      // Evita múltiplas requisições simultâneas
+      if (isLoading) return Promise.resolve(null);
+      
+      // Não mostramos loading inicialmente 
+      isLoading = true;
+      
+      // Verifica se o globalCep está disponível e inicializado
+      if (window.globalCep && typeof window.globalCep.getInfo === 'function') {
+        const info = window.globalCep.getInfo();
+        
+        // Se temos um CEP e cidade/estado no globalCep
+        if (info && info.cep && info.cidade && info.estado) {
+          return Promise.resolve({
+            cidade: info.cidade,
+            estado: info.estado,
+            cep: info.cep
+          });
+        } 
+        // Se temos só o CEP, mas não cidade/estado
+        else if (info && info.cep) {
+          // Tenta buscar os detalhes do CEP
+          if (window.globalCep.fetchCepDetails) {
+            return window.globalCep.fetchCepDetails(info.cep)
+              .then(detalhes => {
+                if (detalhes && detalhes.cidade && detalhes.estado) {
+                  return {
+                    cidade: detalhes.cidade,
+                    estado: detalhes.estado,
+                    cep: info.cep
+                  };
+                } else {
+                  // Se não conseguiu obter os detalhes, tenta via API direta
+                  return obterCidadePorCep(info.cep);
+                }
+              })
+              .catch(() => {
+                // Se falhar a busca de detalhes, tenta diretamente via API
+                return obterCidadePorCep(info.cep);
+              });
+          } else {
+            // Se não tiver o método fetchCepDetails, tenta diretamente via API
+            return obterCidadePorCep(info.cep);
+          }
+        }
+      }
+      
+      // Se não tem globalCep ou não tem CEP no globalCep, tenta obter do localStorage
+      return new Promise((resolve) => {
+        // Tenta obter do localStorage
+        const savedCep = localStorage.getItem('shopify_customer_cep');
+        const savedCity = localStorage.getItem('shopify_customer_city');
+        const savedState = localStorage.getItem('shopify_customer_state');
+        
+        if (savedCep && savedCity && savedState) {
+          resolve({
+            cidade: savedCity,
+            estado: savedState,
+            cep: savedCep.replace(/\D/g, '')
+          });
+          return;
+        }
+        
+        // Se não tem no localStorage, retorna null
+        resolve(null);
+      });
+    }
+    
+    // Função para obter a cidade e estado a partir de um CEP
+    function obterCidadePorCep(cep) {
+      if (!cep) return Promise.reject(new Error('CEP não fornecido'));
+      
+      const cepLimpo = cep.toString().replace(/\D/g, '');
+      if (cepLimpo.length !== 8) return Promise.reject(new Error('CEP inválido'));
+      
+      // Verifica se temos o resultado em cache
+      const cachedData = sessionStorage.getItem(`cep_data_${cepLimpo}`);
+      if (cachedData) {
+        try {
+          const parsedData = JSON.parse(cachedData);
+          return Promise.resolve({
+            cidade: parsedData.localidade || "sua cidade",
+            estado: parsedData.uf || "",
+            cep: cepLimpo
+          });
+        } catch (e) {
+          console.error('Erro ao ler cache do CEP:', e);
+        }
+      }
+      
+      return fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.erro) {
+            throw new Error('CEP não encontrado');
+          }
+          
+          // Salva no cache
+          sessionStorage.setItem(`cep_data_${cepLimpo}`, JSON.stringify(data));
+          
+          return {
+            cidade: data.localidade || "sua cidade",
+            estado: data.uf || "",
+            cep: cepLimpo
+          };
+        })
+        .catch(() => {
+          throw new Error('Erro ao buscar CEP');
+        });
+    }
+    
+    // Função para obter a cidade pelo IP (fallback último recurso)
+    function obterCidadePorIP() {
+      // Verifica se já temos o resultado em cache
+      const cachedIPData = sessionStorage.getItem('ip_location_data');
+      if (cachedIPData) {
+        try {
+          const parsedData = JSON.parse(cachedIPData);
+          return Promise.resolve({
+            cidade: parsedData.city || "sua cidade",
+            estado: parsedData.region_code || "",
+            cep: parsedData.postal ? parsedData.postal.replace(/\D/g, '') : null
+          });
+        } catch (e) {
+          console.error('Erro ao ler cache de localização por IP:', e);
+        }
+      }
+      
+      return fetch('https://ipapi.co/json/')
+        .then(response => response.json())
+        .then(data => {
+          // Salva no cache
+          sessionStorage.setItem('ip_location_data', JSON.stringify(data));
+          
+          return {
+            cidade: data.city || "sua cidade",
+            estado: data.region_code || "",
+            cep: data.postal ? data.postal.replace(/\D/g, '') : null
+          };
+        })
+        .catch(() => ({
+          cidade: "sua cidade",
+          estado: "",
+          cep: null
+        }));
+    }
+    
+    // Inicialização - tenta obter as informações e atualiza a interface
+    obterInformacoesCep()
+      .then(info => {
+        if (info) {
+          atualizarInformacoesFrete(info.cidade, info.estado, info.cep);
+        } else {
+          atualizarInformacoesFrete(null, null, null);
+          
+          // Se não encontramos o CEP, mas o globalCep tem um método para obter, tentamos utilizar
+          if (window.globalCep && typeof window.globalCep.getCep === 'function') {
+            const cep = window.globalCep.getCep();
+            if (cep && cep.length === 8) {
+              // Busca informações do CEP
+              obterCidadePorCep(cep)
+                .then(resultado => {
+                  atualizarInformacoesFrete(resultado.cidade, resultado.estado, cep);
+                  
+                  // Salva no localStorage e no globalCep
+                  localStorage.setItem('shopify_customer_city', resultado.cidade);
+                  localStorage.setItem('shopify_customer_state', resultado.estado);
+                  localStorage.setItem('shopify_customer_cep', formatarCep(cep));
+                  
+                  // Atualiza o globalCep com todas as informações
+                  if (window.globalCep && typeof window.globalCep.setCep === 'function') {
+                    window.globalCep.setCep(cep, { silent: true });
+                  }
+                })
+                .catch(() => {
+                  // Se falhar, pelo menos tenta mostrar o CEP
+                  atualizarInformacoesFrete(null, null, cep);
+                });
+            }
+          }
+        }
+      })
+      .catch(() => {
+        atualizarInformacoesFrete(null, null, null);
+      });
+    
+    // Ouvir eventos de atualização do CEP global
+    document.addEventListener('cep_updated', function(e) {
+      if (e.detail) {
+        const novoCep = e.detail.cep;
+        const novaCidade = e.detail.city;
+        const novoEstado = e.detail.state;
+        
+        if (novaCidade && novoEstado && novoCep) {
+          // Se já temos todas as informações no evento
+          atualizarInformacoesFrete(novaCidade, novoEstado, novoCep);
+          
+          // Salva no localStorage para garantir sincronização
+          localStorage.setItem('shopify_customer_city', novaCidade);
+          localStorage.setItem('shopify_customer_state', novoEstado);
+          localStorage.setItem('shopify_customer_cep', formatarCep(novoCep));
+        } else if (novoCep) {
+          // Se temos apenas o CEP, tenta obter cidade e estado
+          mostrarLoading(true);
+          
+          obterCidadePorCep(novoCep)
+            .then(resultado => {
+              atualizarInformacoesFrete(resultado.cidade, resultado.estado, novoCep);
+            })
+            .catch(() => {
+              // Se falhar, tenta obter do globalCep
+              if (window.globalCep && typeof window.globalCep.getInfo === 'function') {
+                const info = window.globalCep.getInfo();
+                if (info && info.cidade && info.estado) {
+                  atualizarInformacoesFrete(info.cidade, info.estado, novoCep);
+                } else {
+                  // Se não tiver informações no globalCep, usa o IP
+                  obterCidadePorIP()
+                    .then(resultado => {
+                      atualizarInformacoesFrete(resultado.cidade, resultado.estado, novoCep);
+                    })
+                    .catch(() => {
+                      // Fallback final
+                      atualizarInformacoesFrete(null, null, novoCep);
+                    });
+                }
+              } else {
+                // Se não tiver globalCep, tenta pelo IP
+                obterCidadePorIP()
+                  .then(resultado => {
+                    atualizarInformacoesFrete(resultado.cidade, resultado.estado, novoCep);
+                  })
+                  .catch(() => {
+                    // Fallback final
+                    atualizarInformacoesFrete(null, null, novoCep);
+                  });
+              }
+            });
+        } else if (novaCidade && novoEstado) {
+          // Se temos cidade e estado mas não CEP
+          atualizarInformacoesFrete(novaCidade, novoEstado, null);
+        }
+      }
+    });
+    
+    // Botão para alterar CEP
+    if (freteAlterarCep) {
+      freteAlterarCep.addEventListener('click', function() {
+        // Tenta usar o método openModal do globalCep
+        if (window.globalCep && typeof window.globalCep.openModal === 'function') {
+          window.globalCep.openModal({ silent: true });
+        } else {
+          // Fallback para prompt se o globalCep não estiver disponível
+          const novoCep = prompt("Digite seu CEP (somente números):");
+          if (novoCep && novoCep.replace(/\D/g, '').length === 8) {
+            const cepLimpo = novoCep.replace(/\D/g, '');
+            
+            // Mostra o indicador de carregamento
+            mostrarLoading(true);
+            
+            // Salva o CEP no globalCep se disponível
+            if (window.globalCep && typeof window.globalCep.setCep === 'function') {
+              window.globalCep.setCep(cepLimpo, { silent: true });
+            }
+            
+            // Tenta obter a cidade para o novo CEP
+            obterCidadePorCep(cepLimpo)
+              .then(resultado => {
+                atualizarInformacoesFrete(resultado.cidade, resultado.estado, cepLimpo);
+              })
+              .catch(() => {
+                // Se falhar, usa o IP
+                obterCidadePorIP()
+                  .then(resultado => {
+                    atualizarInformacoesFrete(resultado.cidade, resultado.estado, cepLimpo);
+                  })
+                  .catch(() => {
+                    // Fallback final
+                    atualizarInformacoesFrete(null, null, cepLimpo);
+                  });
+              });
+          }
+        }
+      });
+    }
+  });
+</script>
+
+
+{% else %}
+  <div class="freight-calculator">
+    <div class="input-container">
+      <input type="text" id="cep-input" class="input" placeholder="Digite seu CEP" maxlength="9" />
+      <button id="calculate-freight-btn" class="freight-button">Calcular frete</button>
+    </div>
+    
+    <div id="freight-results" class="results">
+      <div class="loading-spinner" style="display: none;"></div>
+      <div class="results-grid"></div>
+    </div>
+  </div>
+
+  <script>
+    window.productData = {
+      height: {{ product.metafields.custom.altura | default: 10 }},
+      length: {{ product.metafields.custom.comprimento | default: 20 }},
+      width: {{ product.metafields.custom.largura | default: 15 }},
+      weight: {{ product.metafields.custom.peso | default: 1.0 }},
+      price: {{ product.price | divided_by: 100.0 }},
+      sellercep: {{ product.metafields.custom.sellercep | default: 35500006 }},
+    };
+  </script>
+
+  <style>
+    .freight-calculator {
+      margin: 15px 0;
+      font-family: inherit;
+    }
+
+    .input-container {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .input {
+      flex: 1;
+      padding: 10px 12px;
+      font-size: 14px;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      background-color: #ffffff;
+    }
+
+    .input:focus {
+      border-color: #FF7A00;
+      box-shadow: 0 0 0 1px rgba(255, 122, 0, 0.2);
+      outline: none;
+    }
+
+    .freight-button {
+      padding: 10px 15px;
+      font-size: 14px;
+      background-color: #FF7A00;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .freight-button:hover {
+      background-color: #E86E00;
+    }
+    
+    .results {
+      margin-top: 12px;
+      display: none;
+    }
+
+    .results-grid {
+      display: grid;
+      gap: 8px;
+    }
+
+    .shipping-option {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      background: #ffffff;
+      border-radius: 6px;
+      border: 1px solid #e0e0e0;
+    }
+
+    .shipping-icon {
+      width: 30px;
+      height: 30px;
+      margin-right: 12px;
+      background: #FFF5EB;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .option-details {
+      flex: 1;
+    }
+
+    .shipping-method {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 2px;
+      font-size: 14px;
+    }
+
+    .shipping-info {
+      display: flex;
+      gap: 10px;
+      color: #666;
+      font-size: 13px;
+    }
+
+    .shipping-price {
+      font-size: 14px;
+      font-weight: 700;
+      color: #FF7A00;
+      margin-left: auto;
+    }
+
+    .recommended {
+      border-color: #FF7A00;
+      background: #FFF9F5;
+    }
+
+    .loading-spinner {
+      width: 24px;
+      height: 24px;
+      border: 2px solid #f3f3f3;
+      border-top: 2px solid #FF7A00;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 10px auto;
+    }
+
+    .shipping-error {
+      padding: 12px;
+      background: #FFF5EB;
+      border: 1px solid #FFE0C2;
+      border-radius: 6px;
+      color: #E86E00;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .cep-info-highlight {
+      font-weight: 500;
+      color: #333;
+      font-size: 13px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cep-highlight {
+      color: #FF7A00;
+      font-weight: 600;
+    }
+    
+    .cep-change-button {
+      background: none;
+      border: none;
+      color: #FF7A00;
+      font-size: 13px;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 500px) {
+      .input-container {
+        flex-direction: column;
+      }
+
+      .input, .freight-button {
+        width: 100%;
+      }
+      
+      .location-button {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        background: transparent;
+        padding: 6px;
+      }
+
+      .shipping-info {
+        flex-direction: column;
+        gap: 3px;
+      }
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const button = document.getElementById('calculate-freight-btn');
+      const resultsContainer = document.querySelector('.results-grid');
+      const loadingSpinner = document.querySelector('.loading-spinner');
+      const quantityInput = document.querySelector('[name="quantity"]');
+      const cepInput = document.getElementById('cep-input');
+      const resultsElement = document.getElementById('freight-results');
+      
+      let lastCalculatedCep = null;
+      let isCalculating = false;
+      let calculationTimeout = null;
+
+      function formatCep(cep) {
+        cep = cep.replace(/\D/g, '');
+        if (cep.length > 5) {
+          cep = cep.substring(0, 5) + '-' + cep.substring(5);
+        }
+        return cep;
+      }
+      
+      if (cepInput) {
+        cepInput.addEventListener('input', function(e) {
+          let value = e.target.value.replace(/\D/g, '');
+          if (value.length > 5) {
+            value = value.substring(0, 5) + '-' + value.substring(5);
+          }
+          e.target.value = value;
+        });
+      }
+      
+      // Inicialização: verifica se já existe um CEP salvo e executa o cálculo automaticamente
+      function initFreightCalculator() {
+        // Tenta obter o CEP do globalCep
+        let savedCep = '';
+        
+        if (window.globalCep && typeof window.globalCep.getCep === 'function') {
+          savedCep = window.globalCep.getCep();
+        } else {
+          // Fallback para localStorage
+          const storedCep = localStorage.getItem('shopify_customer_cep');
+          if (storedCep) {
+            savedCep = storedCep.replace(/\D/g, '');
+          }
+        }
+        
+        // Se temos um CEP, preenche o campo e calcula
+        if (savedCep && savedCep.length === 8) {
+          cepInput.value = formatCep(savedCep);
+          // Calcular o frete automaticamente
+          calculateFreight(savedCep);
+          return true;
+        }
+        
+        // Verificamos se há CEP nos atributos do carrinho como última opção
+        {% if cart.attributes.customer_cep %}
+          const cartCep = "{{ cart.attributes.customer_cep }}".replace(/\D/g, '');
+          if (cartCep && cartCep.length === 8) {
+            cepInput.value = formatCep(cartCep);
+            calculateFreight(cartCep);
+            
+            // Atualiza o localStorage e o globalCep para manter sincronizado
+            localStorage.setItem('shopify_customer_cep', formatCep(cartCep));
+            if (window.globalCep && typeof window.globalCep.setCep === 'function') {
+              window.globalCep.setCep(cartCep, { silent: true });
+            }
+            return true;
+          }
+        {% endif %}
+        
+        return false;
+      }
+      
+      // Executa a inicialização após um pequeno delay para garantir que globalCep esteja pronto
+      setTimeout(initFreightCalculator, 300);
+      
+      async function calculateFreight(cepValue) {
+        if (!cepValue || cepValue.length !== 8) {
+          showError('CEP inválido. Digite 8 números.');
+          return;
+        }
+        
+        if (cepValue === lastCalculatedCep && resultsElement.style.display === 'block') {
+          return;
+        }
+        
+        lastCalculatedCep = cepValue;
+        const quantity = parseInt(quantityInput?.value) || 1;
+
+        toggleLoading(true);
+
+        try {
+          const requestData = {
+            SellerCEP: parseFloat(window.productData.sellercep) || 35500006,
+            RecipientCEP: cepValue,
+            ShipmentInvoiceValue: parseFloat(window.productData.price),
+            ShippingItemArray: [{
+              Height: parseFloat(window.productData.height) || 10,
+              Length: parseFloat(window.productData.length) || 20,
+              Quantity: quantity,
+              Weight: parseFloat(window.productData.weight) || 1,
+              Width: parseFloat(window.productData.width) || 15
+            }]
+          };
+
+          const response = await fetch('https://serverfrnt.vercel.app/api/frenet-quote', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(requestData)
+          });
+
+          const data = await response.json();
+          
+          if (response.ok && data.ShippingSevicesArray?.length > 0) {
+            const validServices = data.ShippingSevicesArray.filter(service => {
+              const price = Number(service.ShippingPrice);
+              return !isNaN(price) && price >= 0;
+            });
+
+            if (validServices.length > 0) {
+              displayResults(validServices, cepValue, data.City);
+              saveCepGlobally(cepValue);
+            } else {
+              showError('Nenhuma opção de frete disponível para este CEP.');
+            }
+          } else {
+            showError('Não foi possível calcular o frete para este CEP.');
+          }
+
+        } catch (error) {
+          console.error('Erro ao calcular o frete:', error);
+          showError('Erro ao calcular o frete. Tente novamente.');
+        } finally {
+          toggleLoading(false);
+        }
+      }
+      
+      function saveCepGlobally(cep) {
+        if (!cep || cep.length !== 8) return;
+        
+        // Formata o CEP (00000-000)
+        const formattedCep = formatCep(cep);
+        
+        // Atualiza o CEP global
+        if (window.globalCep && typeof window.globalCep.setCep === 'function') {
+          // Passa a opção silent: true para evitar popups
+          window.globalCep.setCep(cep, { silent: true });
+        } else {
+          // Fallback se o objeto globalCep não estiver disponível
+          localStorage.setItem('shopify_customer_cep', formattedCep);
+          
+          // Dispara o evento manualmente se o globalCep não está disponível
+          document.dispatchEvent(new CustomEvent('cep_updated', { 
+            detail: { cep: cep }
+          }));
+        }
+      }
+      
+      button.addEventListener('click', function () {
+        const cepValue = cepInput.value.replace(/\D/g, '');
+        calculateFreight(cepValue);
+      });
+      
+      cepInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          button.click();
+        }
+      });
+
+      function displayResults(services, cep, city) {
+        resultsContainer.innerHTML = '';
+        
+        const formattedCep = cep.replace(/(\d{5})(\d{3})/, '$1-$2');
+        
+        const cepInfoDiv = document.createElement('div');
+        cepInfoDiv.className = 'cep-info-highlight';
+        cepInfoDiv.innerHTML = `
+          <span class="cep-highlight">${formattedCep} - ${city || 'Cidade não identificada'}</span>
+          <button class="cep-change-button">Alterar</button>
+        `;
+        resultsContainer.appendChild(cepInfoDiv);
+        
+        const changeButton = cepInfoDiv.querySelector('.cep-change-button');
+        changeButton.addEventListener('click', function() {
+          if (window.globalCep && typeof window.globalCep.openModal === 'function') {
+            // Passa a opção silent: true para abrir o modal sem mostrar popups
+            window.globalCep.openModal({ silent: true });
+          } else {
+            cepInput.focus();
+            cepInput.select();
+          }
+        });
+
+        services.sort((a, b) => Number(a.ShippingPrice) - Number(b.ShippingPrice));
+
+        services.forEach((service, index) => {
+          const option = document.createElement('div');
+          option.className = 'shipping-option';
+          
+          if (index === 0) {
+            option.classList.add('recommended');
+          }
+          
+          const shippingPrice = Number(service.ShippingPrice);
+          const priceDisplay = shippingPrice === 0 ? 'Grátis' : `R$ ${shippingPrice.toFixed(2)}`;
+
+          option.innerHTML = `
+            <div class="shipping-icon">${getCarrierIcon(service.Carrier)}</div>
+            <div class="option-details">
+              <div class="shipping-method">${service.ServiceDescription}</div>
+              <div class="shipping-info">
+                <span>${service.DeliveryTime} dias úteis</span>
+              </div>
+            </div>
+            <div class="shipping-price">${priceDisplay}</div>
+          `;
+
+          resultsContainer.appendChild(option);
+        });
+
+        resultsElement.style.display = 'block';
+      }
+
+      function toggleLoading(show) {
+        loadingSpinner.style.display = show ? 'block' : 'none';
+        
+        // Desabilita o botão de calcular durante o carregamento
+        if (button) {
+          button.disabled = show;
+        }
+      }
+
+      function showError(message) {
+        resultsContainer.innerHTML = `<div class="shipping-error">${message}</div>`;
+        resultsElement.style.display = 'block';
+      }
+
+      function getCarrierIcon(carrier) {
+        const icons = {
+          'Correios': '📮',
+          'Azul': '✈️',
+          'Jadlog': '🚚',
+          'DHL': '📦',
+          'Default': '🚛'
+        };
+        return icons[carrier] || icons.Default;
+      }
+      
+      // Ouvir eventos de atualização do CEP global
+      document.addEventListener('cep_updated', function(e) {
+        if (!e.detail || !e.detail.cep || !cepInput) return;
+        
+        const newCep = e.detail.cep;
+        const formattedCep = formatCep(newCep);
+        
+        // Atualiza o valor do input
+        cepInput.value = formattedCep;
+        
+        // Verifica se já calculamos esse CEP recentemente
+        if (newCep === lastCalculatedCep && resultsElement.style.display === 'block') {
+          return;
+        }
+        
+        // Evita cálculos múltiplos simultâneos
+        if (isCalculating) {
+          clearTimeout(calculationTimeout);
+        }
+        
+        // Aguarda um curto período antes de calcular, para evitar múltiplos cálculos em sequência
+        calculationTimeout = setTimeout(() => {
+          isCalculating = true;
+          
+          calculateFreight(newCep)
+            .finally(() => {
+              setTimeout(() => {
+                isCalculating = false;
+              }, 300);
+            });
+        }, 200);
+      });
+      
+      // Verifica se o globalCep já possui um CEP e atualiza a interface 
+      if (window.globalCep && typeof window.globalCep.getInfo === 'function') {
+        const cepInfo = window.globalCep.getInfo();
+        if (cepInfo && cepInfo.cep) {
+          const cepValue = cepInfo.cep.replace(/\D/g, '');
+          if (cepValue.length === 8) {
+            cepInput.value = formatCep(cepValue);
+          }
+        }
+      }
+    });
+  </script>
+{% endif %}

@@ -1,0 +1,487 @@
+{%- if section.settings.background != settings.background and section.settings.background != 'rgba(0,0,0,0)' -%}
+  {%- assign blends_with_background = false -%}
+{%- else -%}
+  {%- assign blends_with_background = true -%}
+{%- endif -%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background == 'rgba(0,0,0,0)' -%}
+      {%- assign section_background = settings.background -%}
+    {%- else -%}
+      {%- assign section_background = section.settings.background -%}
+    {%- endif -%}
+
+    {%- if section.settings.text_color == 'rgba(0,0,0,0)' -%}
+      {%- assign heading_color = settings.heading_color -%}
+      {%- assign text_color = settings.text_color -%}
+    {%- else -%}
+      {%- assign heading_color = section.settings.text_color -%}
+      {%- assign text_color = section.settings.text_color -%}
+    {%- endif -%}
+
+    --heading-color: {{ heading_color.red }}, {{ heading_color.green }}, {{ heading_color.blue }};
+    --text-color: {{ text_color.red }}, {{ text_color.green }}, {{ text_color.blue }};
+    --prev-next-button-background: {{ settings.background.red }}, {{ settings.background.green }}, {{ settings.background.blue }};
+    --prev-next-button-color: {{ settings.text_color.red }}, {{ settings.text_color.green }}, {{ settings.text_color.blue }};
+
+    --section-background: {{ section_background.red }}, {{ section_background.green }}, {{ section_background.blue }};
+  }
+
+  {%- if section.settings.title == blank and section.settings.subheading == blank and section.settings.content == blank -%}
+    #shopify-section-{{ section.id }} {
+      --vertical-breather: 40px; /* Only on multi-column section, due to its specific usage we reduce spacing when no content */
+    }
+
+    {%- if blends_with_background or section.settings.mobile_item_size == 'small' -%}
+      /* Reduce the margin on small devices to create a slightly better layout */
+      @media screen and (max-width: 999px) {
+        #shopify-section-{{ section.id }} {
+          --vertical-breather: var(--container-gutter);
+        }
+      }
+    {%- endif -%}
+  {%- endif -%}
+
+  {%- for block in section.blocks -%}
+    {%- if block.settings.image_border != 'rgba(0,0,0,0)' -%}
+      #block-{{ section.id }}-{{ block.id }} .multi-column__image-wrapper {
+        border: 1px solid {{ block.settings.image_border }};
+      }
+    {%- endif -%}
+  {%- endfor -%}
+</style>
+
+<section class="section {% unless blends_with_background %}section--flush{% endunless %}">
+  <div class="section__color-wrapper">
+    <div class="container {% unless blends_with_background %}vertical-breather{% endunless %}">
+      {%- if section.settings.title != blank or section.settings.subheading != blank or section.settings.content != blank -%}
+        <header class="section__header {% if section.settings.content != blank %}section__header--tight{% endif %} section__header--{{ section.settings.column_alignment }}">
+          <div class="text-container">
+            {%- if section.settings.subheading != blank -%}
+              <h2 class="heading heading--small">{{ section.settings.subheading }}</h2>
+            {%- endif -%}
+
+            {%- if section.settings.title != blank -%}
+              <h3 class="heading h2">{{ section.settings.title }}</h3>
+            {%- endif -%}
+
+            {%- if section.settings.content != blank -%}
+              {{- section.settings.content -}}
+            {%- endif -%}
+          </div>
+        </header>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <multi-column {% if section.settings.stack_items %}stack{% endif %} {% if section.settings.reveal_on_scroll %}stagger-apparition{% endif %} class="multi-column multi-column--pocket-{{ section.settings.mobile_item_size }} multi-column--{{ section.settings.desktop_item_size }} multi-column--spacing-{{ section.settings.spacing }}">
+          {%- assign align_arrows_on_image = true -%}
+          {%- assign smallest_image_aspect_ratio = 0 -%}
+
+          <div {% unless section.settings.stack_items %}class="scroller"{% endunless %}>
+            <scrollable-content class="multi-column__inner multi-column__inner--{{ section.settings.column_alignment }} {% unless section.settings.stack_items %}multi-column__inner--scroller{% endunless %}">
+              {%- case section.settings.desktop_item_size -%}
+                {%- when 'pico' -%}
+                  {%- assign desktop_items_per_row = 8 -%}
+
+                {%- when 'small' -%}
+                  {%- assign desktop_items_per_row = 7 -%}
+
+                {%- when 'medium' -%}
+                  {%- assign desktop_items_per_row = 5 -%}
+
+                {%- when 'large' -%}
+                  {%- assign desktop_items_per_row = 3 -%}
+              {%- endcase -%}
+
+              {%- if section.settings.stack_items -%}
+                {%- case section.settings.mobile_item_size -%}
+                  {%- when 'small' -%}
+                    {%- assign mobile_calculated_size = 'calc(50vw - 48px)' -%}
+                    {%- assign tablet_calculated_size = 'calc(20vw - 80px)' -%}
+
+                  {%- when 'medium' -%}
+                    {%- assign mobile_calculated_size = 'calc(100vw - 48px)' -%}
+                    {%- assign tablet_calculated_size = 'calc(25vw - 80px)' -%}
+
+                  {%- when 'large' -%}
+                    {%- assign mobile_calculated_size = 'calc(100vw - 48px)' -%}
+                    {%- assign tablet_calculated_size = 'calc(33vw - 80px)' -%}
+                {%- endcase -%}
+              {%- else -%}
+                {%- case section.settings.mobile_item_size -%}
+                  {%- when 'small' -%}
+                    {%- assign mobile_calculated_size = '25vw' -%}
+                    {%- assign tablet_calculated_size = '20vw' -%}
+
+                  {%- when 'medium' -%}
+                    {%- assign mobile_calculated_size = '35vw' -%}
+                    {%- assign tablet_calculated_size = '26vw' -%}
+
+                  {%- when 'large' -%}
+                    {%- assign mobile_calculated_size = '56vw' -%}
+                    {%- assign tablet_calculated_size = '36vw' -%}
+                {%- endcase -%}
+              {%- endif -%}
+
+              {%- case section.settings.spacing -%}
+                {%- when 'tight' -%}
+                  {%- assign desktop_item_gap = 24 -%}
+
+                {%- when 'normal' -%}
+                  {%- assign desktop_item_gap = 40 -%}
+
+                {%- when 'loose' -%}
+                  {%- assign desktop_item_gap = 60 -%}
+              {%- endcase -%}
+
+              {%- assign desktop_items_per_row_minus_one = desktop_items_per_row | minus: 1 -%}
+              {%- assign gap_width = desktop_item_gap | divided_by: desktop_items_per_row | times: desktop_items_per_row_minus_one -%}
+
+              {%- for block in section.blocks -%}
+                {%- capture block_content -%}
+                  {%- if block.settings.image != blank -%}
+                    {%- assign smallest_image_aspect_ratio = smallest_image_aspect_ratio | at_least: block.settings.image.aspect_ratio -%}
+
+                    {%- if block.settings.link_url != blank -%}
+                      <a href="{{ block.settings.link_url }}" class="multi-column__image-wrapper" style="max-width: {{ block.settings.image_width }}%; width: {{ block.settings.image.width }}px">
+                        <img loading="lazy" sizes="(max-width: 740px) {{ mobile_calculated_size }}, (max-width: 999px) {{ tablet_calculated_size }}, {{ 1520.0 | divided_by: desktop_items_per_row | minus: gap_width | ceil }}px" class="multi-column__image" {% render 'image-attributes', image: block.settings.image, sizes: '200,300,400,500,600,700,800,900,1000,1100,1200' %}>
+                      </a>
+                    {%- else -%}
+                      <div class="multi-column__image-wrapper" style="max-width: {{ block.settings.image_width }}%; width: {{ block.settings.image.width }}px">
+                        <img loading="lazy" sizes="(max-width: 740px) {{ mobile_calculated_size }}, (max-width: 999px) {{ tablet_calculated_size }}, {{ 1520.0 | divided_by: desktop_items_per_row | minus: gap_width | ceil }}px" class="multi-column__image" {% render 'image-attributes', image: block.settings.image, sizes: '200,300,400,500,600,700,800,900,1000,1100,1200' %}>
+                      </div>
+                    {%- endif -%}
+                  {%- else -%}
+                    {%- assign align_arrows_on_image = false -%}
+                  {%- endif -%}
+
+                  {%- if block.settings.title != blank or block.settings.content != blank or block.settings.link_text != blank -%}
+                    <div class="multi-column__text-container text--{{ block.settings.text_alignment }} text-container">
+                      {%- if block.settings.title != blank -%}
+                        <p class="heading h5">{{ block.settings.title | escape }}</p>
+                      {%- endif -%}
+
+                      {%- if block.settings.content != blank -%}
+                        {{- block.settings.content -}}
+                      {%- endif -%}
+
+                      {%- if block.settings.link_text != blank -%}
+                        {%- if block.settings.link_style == 'link' -%}
+                          <a href="{{ block.settings.link_url }}" class="multi-column__link heading heading--small link">{{ block.settings.link_text | escape }}</a>
+                        {%- else -%}
+                          <div class="button-wrapper">
+                            <a href="{{ block.settings.link_url }}" class="multi-column__button button button--small button--primary">{{ block.settings.link_text | escape }}</a>
+                          </div>
+                        {%- endif -%}
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                {%- endcapture -%}
+
+                {%- if block_content != blank -%}
+                  <div id="block-{{ section.id }}-{{ block.id }}" class="multi-column__item multi-column__item--align-{{ block.settings.vertical_alignment }} {% if block.settings.link_url != blank %}image-zoom{% endif %}" {% if section.settings.reveal_on_scroll %}reveal{% endif %} {{ block.shopify_attributes }}>
+                    {{- block_content -}}
+                  </div>
+                {%- endif -%}
+              {%- endfor -%}
+            </scrollable-content>
+
+            {%- unless section.settings.stack_items -%}
+              <prev-next-buttons class="multi-column__prev-next {% unless align_arrows_on_image %}multi-column__prev-next--no-image{% endunless %} hidden-pocket" {% if align_arrows_on_image %}style="--smallest-image-aspect-ratio: {{ smallest_image_aspect_ratio }}"{% endif %}>
+                <button class="multi-column__arrow prev-next-button prev-next-button--prev" disabled>
+                  <span class="visually-hidden">{{ 'general.accessibility.previous' | t }}</span>
+                  {%- include 'icon' with 'nav-arrow-left', block: true, direction_aware: true -%}
+                </button>
+
+                <button class="multi-column__arrow prev-next-button prev-next-button--next">
+                  <span class="visually-hidden">{{ 'general.accessibility.next' | t }}</span>
+                  {%- include 'icon' with 'nav-arrow-right', block: true, direction_aware: true -%}
+                </button>
+              </prev-next-buttons>
+            {%- endunless -%}
+          </div>
+        </multi-column>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Multi-coluna",
+  "class": "shopify-section--multi-column",
+  "blocks": [
+    {
+      "name": "Coluna",
+      "type": "item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem",
+          "info": "Recomendado 1200 x 1200px .jpg"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 10,
+          "max": 100,
+          "unit": "%",
+          "step": 1,
+          "label": "Largura da imagem",
+          "default": 100
+        },
+        {
+          "type": "color",
+          "id": "image_border",
+          "label": "Borda da imagem",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Seu conteúdo"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Conteúdo",
+          "default": "<p>Combine texto com uma imagem para focar no seu produto, coleção ou postagem de blog escolhido. Adicione detalhes sobre disponibilidade, estilo ou até mesmo forneça uma revisão.</p>"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Texto do link"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link"
+        },
+        {
+          "type": "select",
+          "id": "link_style",
+          "label": "Estilo do link",
+          "options": [
+            {
+              "value": "link",
+              "label": "Link"
+            },
+            {
+              "value": "button",
+              "label": "Botão"
+            }
+          ],
+          "default": "link"
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Alinhamento do texto",
+          "options": [
+            {
+              "value": "left",
+              "label": "Esquerda"
+            },
+            {
+              "value": "center",
+              "label": "Centro"
+            },
+            {
+              "value": "right",
+              "label": "Direita"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "select",
+          "id": "vertical_alignment",
+          "label": "Alinhamento vertical",
+          "options": [
+            {
+              "value": "start",
+              "label": "Superior"
+            },
+            {
+              "value": "center",
+              "label": "Centro"
+            },
+            {
+              "value": "end",
+              "label": "Inferior"
+            }
+          ],
+          "default": "start"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "reveal_on_scroll",
+      "label": "Revelar ao rolar",
+      "info": "Mostrar animação quando a seção se torna visível.",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "stack_items",
+      "label": "Empilhar itens",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subtítulo",
+      "default": "Subtítulo"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Multi-coluna"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Conteúdo"
+    },
+    {
+      "type": "select",
+      "id": "column_alignment",
+      "label": "Alinhamento da coluna/cabeçalho",
+      "options": [
+        {
+          "value": "left",
+          "label": "Esquerda"
+        },
+        {
+          "value": "center",
+          "label": "Centro"
+        },
+        {
+          "value": "right",
+          "label": "Direita"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "mobile_item_size",
+      "label": "Tamanho da coluna em dispositivos móveis/tablets",
+      "options": [
+        {
+          "value": "small",
+          "label": "Pequeno"
+        },
+        {
+          "value": "medium",
+          "label": "Médio"
+        },
+        {
+          "value": "large",
+          "label": "Grande"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "desktop_item_size",
+      "label": "Tamanho da coluna em desktops",
+      "options": [
+        {
+          "value": "pico",
+          "label": "X-Small"
+        },
+        {
+          "value": "small",
+          "label": "Pequeno"
+        },
+        {
+          "value": "medium",
+          "label": "Médio"
+        },
+        {
+          "value": "large",
+          "label": "Grande"
+        }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "select",
+      "id": "spacing",
+      "label": "Espaçamento",
+      "options": [
+        {
+          "value": "tight",
+          "label": "Pequeno"
+        },
+        {
+          "value": "normal",
+          "label": "Médio"
+        },
+        {
+          "value": "loose",
+          "label": "Grande"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "header",
+      "content": "Cores"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Fundo",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Cor do texto",
+      "default": "rgba(0,0,0,0)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Multi-coluna",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "title": "Coluna 1"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "title": "Coluna 2"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "title": "Coluna 3"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "title": "Coluna 4"
+          }
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}

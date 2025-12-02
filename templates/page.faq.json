@@ -1,0 +1,98 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "show_title": false,
+        "page_width": "medium"
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "2b9ab0d8-8d83-424c-b6a8-fd9f330efb62": {
+          "type": "category",
+          "settings": {
+            "title": "Prazos de entrega"
+          }
+        },
+        "969aaa56-b31f-4149-a4b0-bdded024ccf2": {
+          "type": "question",
+          "settings": {
+            "title": "Qual é o prazo de entrega para envios nacionais?",
+            "answer": "<p>O prazo é de 2 a 5 dias</p>"
+          }
+        },
+        "c009a606-962b-4b98-b29c-d2029587fdb9": {
+          "type": "category",
+          "settings": {
+            "title": "Devoluções"
+          }
+        },
+        "b058ec9c-834e-40dc-a1f1-e35fb4434d32": {
+          "type": "question",
+          "settings": {
+            "title": "Como funciona o prazo de reembolso?",
+            "answer": "<p>O prazo de reembolso é de 7 dias</p>"
+          }
+        },
+        "190bf207-2ad9-435f-acc4-5babab153539": {
+          "type": "category",
+          "settings": {
+            "title": "Categoria"
+          }
+        },
+        "4930e114-7f58-4443-8a57-343c8d37989b": {
+          "type": "question",
+          "settings": {
+            "title": "Sobre a sua loja",
+            "answer": "<p>Escreva conteúdo para ajudar seus clientes a entender melhor seus produtos ou políticas.</p>"
+          }
+        },
+        "1f83123d-66e3-4ccc-b34d-361fae018c63": {
+          "type": "category",
+          "settings": {
+            "title": "Categoria"
+          }
+        },
+        "062926ef-650e-4576-8e04-b499eb06af44": {
+          "type": "question",
+          "settings": {
+            "title": "Sobre a sua loja",
+            "answer": "<p>Escreva conteúdo para ajudar seus clientes a entender melhor seus produtos ou políticas.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "2b9ab0d8-8d83-424c-b6a8-fd9f330efb62",
+        "969aaa56-b31f-4149-a4b0-bdded024ccf2",
+        "c009a606-962b-4b98-b29c-d2029587fdb9",
+        "b058ec9c-834e-40dc-a1f1-e35fb4434d32",
+        "190bf207-2ad9-435f-acc4-5babab153539",
+        "4930e114-7f58-4443-8a57-343c8d37989b",
+        "1f83123d-66e3-4ccc-b34d-361fae018c63",
+        "062926ef-650e-4576-8e04-b499eb06af44"
+      ],
+      "settings": {
+        "show_navigation": true,
+        "title": "Veja as perguntas mais frequentes",
+        "content": "<p>Veja as perguntas mais frequentes</p>",
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "faq"
+  ]
+}

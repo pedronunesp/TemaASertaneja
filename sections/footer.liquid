@@ -1,0 +1,888 @@
+<style>
+    #shopify-section-{{ section.id }} 
+  .footer {
+    {%- assign border_color = settings.footer_background | color_mix: settings.footer_text_color, 85 -%}
+    --background: {{ settings.footer_background.red }}, {{ settings.footer_background.green }}, {{ settings.footer_background.blue }};
+    --heading-color: {{ settings.footer_text_color.red }}, {{ settings.footer_text_color.green }}, {{ settings.footer_text_color.blue }};
+    --text-color: {{ settings.footer_text_color.red }}, {{ settings.footer_text_color.green }}, {{ settings.footer_text_color.blue }};
+    --border-color: {{ border_color.red }}, {{ border_color.green }}, {{ border_color.blue }};    
+    }
+</style>
+
+
+ <footer class="footer {% if settings.footer_background == settings.background %}footer--bordered{% endif %}">
+    <div class="container">
+       <div class="footer__inner">
+          <div class="footer__item-list">
+             {%- for block in section.blocks -%}
+             {%- capture block_content -%}
+             {%- case block.type -%}
+             {%- when 'image' -%}
+             {%- if block.settings.image != blank -%}
+             <img style="width: {{ block.settings.image_width }}px" loading="lazy" sizes="{{ block.settings.image_width }}px" class="footer__image" {% render 'image-attributes', image: block.settings.image, sizes: '100, 200, 300, 400, 500, 600' %}>
+             {%- endif -%}
+             {%- when 'text' -%}
+             {%- if block.settings.title != blank -%}
+             <p class="footer__item-title heading heading--small">{{ block.settings.title | escape }}</p>
+             {%- endif -%}
+             {%- if block.settings.content != blank -%}
+             <div class="footer__item-content">
+                {{- block.settings.content -}}
+             </div>
+             {%- endif -%}
+             {%- when 'links' -%}
+             {%- assign menu = block.settings.menu -%}
+             {%- if menu != blank -%}
+             <p class="footer__item-title heading heading--small">{{ menu.title }}</p>
+             <div class="footer__item-content">
+                <ul class="linklist list--unstyled" role="list">
+                   {%- for link in menu.links -%}
+                   <li class="linklist__item">
+                      <a href="{{ link.url }}" class="link--faded">{{ link.title }}</a>
+                   </li>
+                   {%- endfor -%}
+                </ul>
+             </div>
+             {%- endif -%}
+             {%- when 'social_media' -%}
+             {%- if block.settings.title != blank -%}
+             <p class="footer__item-title heading heading--small">{{ block.settings.title | escape }}</p>
+             {%- endif -%}
+             <div class="footer__item-content">
+                {%- if block.settings.content != blank -%}
+                {{- block.settings.content -}}
+                {%- endif -%}
+                {%- render 'social-media' -%}
+             </div>
+             {%- when 'Atendimento-Vision' -%}
+             <style>
+                .btn-whatsapp {
+                background: var(--color-primary-whatsapp);
+                border-radius: 5px;
+                padding: 6px 61px 10px;
+                float: left;
+                color: var(--color-secundary-whatsapp);
+                text-decoration: none;
+                font-weight: 400;
+                position: relative;
+                text-shadow: 0 1px 0 rgba(0, 0, 0, .3);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3);
+                line-height: 14px;
+                }
+                .btn-whatsapp:hover {
+                background: var(--color-terciary-whatsapp);
+                }
+                .d--block {
+                display: block;
+                font-size: 16px
+                }
+                .icon-whats {
+                position: absolute;
+                left: 6.5%;
+                font-size: 35px
+                }
+                .title-btn {
+                font-size: 13px;
+                line-height: 1.6
+                }
+                .footer__item.footer__item--Atendimento-Vision {
+                grid-column: span 2;
+                }
+                .footer__item.footer__item--links.is-first {
+                grid-column: span 2;
+                }
+                ul.footer--links {
+                line-height: 1.3;
+                }
+             </style>
+             <div style="min-with:300px" >
+                <span class="footer__item-title heading heading--small" >{{ block.settings.atendimento_vision }}</span>
+                <ul class="footer--links" style="margin-block-start: 0px !important; padding-inline-start: 0px !important;">
+                   <p><i class="far fa-clock"></i> Atendimento: {{ block.settings.horario_loja }}</p>
+                   {% if block.settings.contato_loja != blank %}
+                   <p><i class="fab fa-whatsapp"></i> Contato: <span class="highlight-white"> {{ block.settings.contato_loja }} </span> </p>
+                   {% endif %} {% comment %} Deixar como contato por causa do merchant. Se deixar como whatsapp as vezes não pega {% endcomment %}
+                   {% if block.settings.email_loja != blank %}
+                   <p><i class="far fa-envelope"></i> Email: <span class="highlight-white">{{ block.settings.email_loja }}</span></p>
+                   {% endif %}
+                </ul>
+                {% if block.settings.botaowhats_rodape == true %}
+                <a href="https://api.whatsapp.com/send?phone=55{{ block.settings.num_whats }}" class="btn-whatsapp"><i class="fab fa-whatsapp icon-whats"></i>  <span class="title-btn"> Atendimento </span> <span class="d--block">via Whatsapp</span> </a>
+                {% endif %}
+             </div>
+             {%- when 'Pagamento-Seguranca' -%}
+             <style>
+                .selos-wrap {
+                display: flex;
+                float: left;
+                margin-top: -15px;
+                }
+                .payment-box {
+                margin-top: -5px;
+                margin-bottom: .5rem;
+                display:block;
+                }
+                @media screen and (min-width: 740px) {
+                .payment-box {
+                display: -webkit-box !important;
+                flex-wrap: wrap;
+                }
+                }
+                .separator-footer {
+                width: 100%;
+                height: 1px;
+                background: #e1e1e1;
+                float: left;
+                margin: 15px auto;
+                clear: both
+                }
+                .footer__item.footer__item--Pagamento-Seguranca {
+                grid-column: span 2;
+                }
+                .payment-icon {
+                width: 55px;
+                height: 38px;
+                border-radius: 6px;
+                margin-top: .3rem;
+                margin-right: 9px;
+                line-height: 40px;
+                font-size: 32px;
+                flex-grow: 1
+                }
+                .payment-icon img {
+                margin-top: 0;
+                min-width: 27px !important;
+                min-height: 30px !important
+                }
+                .no-margin-la {
+                margin-left: 0
+                }
+                .margin--1a {
+                margin-right: 5px !important;
+                }
+                .selo {
+                width: 100%;
+                height: 55px;
+                margin-top: .7rem;
+                margin-right: 20px
+                }
+                .selo img {
+                display: block;
+                margin: 0 auto
+                } 
+             </style>
+             <div class="footer__item-title heading heading--small">
+                <span class="footer__item-title heading heading--small" >Formas de Pagamento</span>
+                <div class="payment-box">
+                   {% if settings.bandeiras1_foot %}
+                   {% if settings.show_visa_fv %}
+                   <div class="payment-icon margin-la"><img src="{{ 'Visa.svg' | asset_url }}" width="50" height="25" class="fluid-i lazyload" alt="Visa" /></div>
+                   {% endif %}
+                   {% if settings.show_diners_fv %} 
+                   <div class="payment-icon margin--1a"><img src="{{ 'Diners.svg' | asset_url }}" width="50" height="25" class="fluid-i lazyload" alt="Dinners" /></div>
+                   {% endif %}
+                   {% if settings.show_master_fv %} 
+                   <div class="payment-icon margin--1a"><img src="{{ 'mastercard.svg' | asset_url }}" width="50" height="25" class="fluid-i lazyload" alt="MasterCard" /></div>
+                   {% endif %}
+                   {% if settings.show_hiper_fv %}
+                   <div class="payment-icon margin--1a"><img src="{{ 'hipercard.svg' | asset_url }}"  width="50" height="25" class="fluid-i lazyload" alt="Hipercard" /></div>
+                   {% endif %}
+                   {% if settings.show_Aura_fv %}
+                   <div class="payment-icon margin--1a"><img src="{{ 'Aura.svg' | asset_url }}"  width="50" height="25" class="fluid-i lazyload" alt="Auracard" /></div>
+                   {% endif %}
+                   {% if settings.show_elo_fv %}
+                   <div class="payment-icon margin-la"><img src="{{ 'Elo.svg' | asset_url }}"  width="50" height="25" class="fluid-i lazyload" alt="Elo" /></div>
+                   {% endif %}
+                   {% if settings.show_amex_fv %} 
+                   <div class="payment-icon margin--1a"><img src="{{ 'Amex.svg' | asset_url }}"  width="50" height="25" class="fluid-i lazyload" alt="American Express" /></div>
+                   {% endif %}
+                   {% if settings.show_discover_fv %}
+                   <div class="payment-icon margin--1a"><img src="{{ 'Discover.svg' | asset_url }}"  width="50" height="25" class="fluid-i lazyload" alt="Discovercard" /></div>
+                   {% endif %}
+                   {% if settings.show_boleto_fv %}
+                   <div class="payment-icon margin--1a"><img src="{{ 'Boleto.svg' | asset_url }}"  width="50" height="25" class="fluid-i lazyload" alt="Boleto" /></div>
+                   {% endif %}
+                   {% if settings.show_pix_fv %}
+                   <div class="payment-icon margin--1a"><img src="{{ 'Pix.svg' | asset_url }}"  style="margin-top= 2px !important" width="50" height="25" class="fluid-i lazyload" alt="Pix" /></div>
+                   {% endif %}
+                   {% else %}
+                   {% if settings.bandeiras2_foot %}
+                   {% if settings.show_visa_fv %}
+                   <div class="payment-icon margin-la"><img src="{{ 'Visa2.svg' | asset_url }}" width="50" height="25" class="fluid-i lazyload" alt="Visa" /></div>
+                   {% endif %}
+                   {% if settings.show_diners_fv %} 
+                   <div class="payment-icon margin--1a"><img src="{{ 'Diners.svg' | asset_url }}" width="46" height="25" class="fluid-i lazyload" alt="Dinners" /></div>
+                   {% endif %}
+                   {% if settings.show_master_fv %} 
+                   <div class="payment-icon margin--1a"><img src="{{ 'Master2.svg' | asset_url }}" width="50" height="25" class="fluid-i lazyload" alt="MasterCard" /></div>
+                   {% endif %}
+                   {% if settings.show_hiper_fv %}
+                   <div class="payment-icon margin--1a"><img src="{{ 'Hipercard2.svg' | asset_url }}"  width="50" height="25" class="fluid-i lazyload" alt="Hipercard" /></div>
+                   {% endif %}
+                   {% if settings.show_Aura_fv %}
+                   <div class="payment-icon margin--1a"><img src="{{ 'Aura.svg' | asset_url }}"  width="46" height="25" class="fluid-i lazyload" alt="Auracard" /></div>
+                   {% endif %}
+                   {% if settings.show_elo_fv %}
+                   <div class="payment-icon margin-la"><img src="{{ 'Elo2.svg' | asset_url }}"  width="50" height="25" class="fluid-i lazyload" alt="Elo" /></div>
+                   {% endif %}
+                   {% if settings.show_amex_fv %} 
+                   <div class="payment-icon margin--1a"><img src="{{ 'Amex2.svg' | asset_url }}"  width="50" height="25" class="fluid-i lazyload" alt="American Express" /></div>
+                   {% endif %}
+                   {% if settings.show_discover_fv %}
+                   <div class="payment-icon margin--1a"><img src="{{ 'Discover.svg' | asset_url }}"  width="46" height="25" class="fluid-i lazyload" alt="Discovercard" /></div>
+                   {% endif %}
+                   {% if settings.show_boleto_fv %}
+                   <div class="payment-icon margin--1a"><img src="{{ 'Boleto2.svg' | asset_url }}"  width="48" height="25" class="fluid-i lazyload" alt="Boleto" /></div>
+                   {% endif %}
+                   {% if settings.show_pix_fv %}
+                   <div class="payment-icon margin--1a"><img src="{{ 'Pix2.svg' | asset_url }}"  style="margin-top= 2px !important" width="50" height="25" class="fluid-i lazyload" alt="Pix" /></div>
+                   {% endif %}
+                   {% endif %}
+                   {% endif %}
+                </div>
+                {% if settings.show_lojaverificada %}
+                <div class="separator-footer"></div>
+                <div class="footer__collapsible-content">
+                   <div class="footer__item-title heading heading--small" style="display: inline-block !important;">Loja Verificada</div>
+                   <div class="selos-wrap">
+                      <a href="https://transparencyreport.google.com/safe-browsing/search?url={{ canonical_url }}">
+                         <div class="selo" style="margin-left:-5px !important"><img src="{{ 'google-site-seguro-pt.svg' | asset_url }}" class="lazyload" width="110" height="40" alt="Selo do Google"></div>
+                      </a>
+                      {% if settings.reclameaqui == true %}      
+                      <a href="{{ settings.link_reclameaqui }}">
+                         <div class="selo"><img src="{{ 'Reclameaqui.svg' | asset_url }}" class="lazyload"  width="90"  height="35" alt="Selo do Reclame Aqui"> </div>
+                      </a>
+                      {% else %}
+                      {% if settings.norton == true %} 
+                      <a href="https:\/\/safeweb.norton.com\/report\/show?url={{ canonical_url }}">
+                         <div class="selo"><img src="{{ 'nortonlogo.svg' | asset_url }}" class="lazyload"  width="90"  height="35" alt="Selo do Norton"> </div>
+                      </a>
+                      {% else %}
+                      {% if settings.selo2 != blank %}
+                      <a href="{{ settings.linkselo }}">
+                         <div class="selo"><img src="{{ settings.selo2 | img_url: image_size }}" class="lazyload"  width="90"  height="35" alt="Selo de segurança"> </div>
+                      </a>
+                      {% endif %}
+                      {% endif %}
+                      {% endif %}
+                      <a href="https://www.sslshopper.com/ssl-checker.html#hostname={{ canonical_url }}">
+                         <div class="selo"><img src="{{ 'SSL.svg' | asset_url }}" class="lazyload" width="80" height="35" alt="SLL Seguro"> </div>
+                      </a>
+                   </div>
+                </div>
+                {% endif %}
+             </div>
+             {%- when 'newsletter' -%}
+             {%- if block.settings.title != blank -%}
+             <p class="footer__item-title heading heading--small">{{ block.settings.title | escape }}</p>
+             {%- endif -%}
+             <div class="footer__item-content">
+                {%- if block.settings.content != blank -%}
+                {{- block.settings.content -}}
+                {%- endif -%}
+                {%- form 'customer', id: 'footer-newsletter', class: 'footer__newsletter-form form' -%}
+                {%- if form.posted_successfully? -%}
+                <div class="form__banner banner banner--success">
+                   <span class="banner__ribbon">{% render 'icon' with 'form-success' %}</span>
+                   <p class="banner__content">{{ 'footer.newsletter.success' | t }}</p>
+                </div>
+                {%- else -%}
+                {%- if form.errors -%}
+                <div class="form__banner banner banner--error">
+                   <span class="banner__ribbon">{% render 'icon' with 'form-error' %}</span>
+                   <p class="banner__content">{{ form.errors.translated_fields['email'] }} {{ form.errors.messages['email'] }}</p>
+                </div>
+                {%- endif -%}
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <div class="input">
+                   <input type="email" id="footer[contact][email]" name="contact[email]" class="input__field input__field--text">
+                   <label for="footer[contact][email]" class="input__label">{{ 'footer.newsletter.email' | t }}</label>
+                   <button type="submit" class="input__submit-icon tap-area" title="{{ 'footer.newsletter.submit' | t }}">{% render 'icon' with 'nav-arrow-right', direction_aware: true %}</button>
+                </div>
+                {%- endif -%}
+                {%- endform -%}
+             </div>
+             {%- endcase -%}
+             {%- endcapture -%}
+             {%- if block_content != blank -%}
+             <div class="footer__item footer__item--{{ block.type | replace: '_', '-' }} {% if forloop.first %}is-first{% endif %}" {{ block.shopify_attributes }}>
+             {{- block_content -}}
+          </div>
+          {%- endif -%}
+          {%- endfor -%}
+       </div>
+       <div class="footer__aside">
+          {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
+          {%- assign country_selector = true -%}
+          {%- endif -%}
+          {%- if section.settings.show_locale_selector and localization.available_languages.size > 1 -%}
+          {%- assign locale_selector = true -%}
+          {%- endif -%}
+          {%- if country_selector or locale_selector -%}
+          {%- form 'localization', id: 'localization_form_footer', class: 'footer__cross-border' -%}
+          {%- if country_selector -%}
+          <div class="popover-container">
+             <input type="hidden" name="country_code" value="{{ localization.country.iso_code }}">
+             <span class="visually-hidden">{{ 'footer.general.country' | t }}</span>
+             <button type="button" is="toggle-button" class="select select--small {% if locale_selector and settings.button_border_radius > 0 %}select--collapse-end{% endif %} text--xsmall" aria-expanded="false" aria-controls="footer-currency-selector">
+             {{- localization.country.name }} ({{ localization.country.currency.iso_code }} {% if localization.country.currency.symbol %}{{ localization.country.currency.symbol }}{%- endif -%})
+             {%- render 'icon' with 'chevron', width: 9, height: 6, inline: true -%}
+             </button>
+             <popover-content id="footer-currency-selector" class="popover popover--top popover--left popover--small">
+                <span class="popover__overlay"></span>
+                <header class="popover__header">
+                   <span class="popover__title heading h6">{{- 'footer.general.country' | t -}}</span>
+                   <button type="button" class="popover__close-button tap-area tap-area--large" data-action="close" title="{{ 'general.accessibility.close' | t | escape }}">
+                   {%- render 'icon' with 'close' -%}
+                   </button>
+                </header>
+                <div class="popover__content popover__content--restrict">
+                   <div class="popover__choice-list">
+                      {%- for country in localization.available_countries -%}
+                      <button type="submit" name="country_code" value="{{ country.iso_code }}" class="popover__choice-item">
+                      <span class="popover__choice-label" {% if country.iso_code == localization.country.iso_code %}aria-current="true"{% endif %}>
+                      {{- country.name }} ({{ country.currency.iso_code }} {% if country.currency.symbol %}{{ country.currency.symbol }}{%- endif -%})
+                      </span>
+                      </button>
+                      {%- endfor -%}
+                   </div>
+                </div>
+             </popover-content>
+          </div>
+          {%- endif -%}
+          {%- if locale_selector -%}
+          <div class="popover-container">
+             <input type="hidden" name="locale_code" value="{{ localization.language.iso_code }}">
+             <span class="visually-hidden">{{ 'footer.general.language' | t }}</span>
+             <button type="button" is="toggle-button" class="select select--small {% if country_selector and settings.button_border_radius > 0 %}select--collapse-start{% endif %} text--xsmall" aria-expanded="false" aria-controls="footer-locale-selector">
+             {{- localization.language.endonym_name | capitalize -}}
+             {%- render 'icon' with 'chevron', width: 9, height: 6, inline: true -%}
+             </button>
+             <popover-content id="footer-locale-selector" class="popover popover--top popover--small">
+                <span class="popover__overlay"></span>
+                <header class="popover__header">
+                   <span class="popover__title heading h6">{{- 'footer.general.language' | t -}}</span>
+                   <button type="button" class="popover__close-button tap-area tap-area--large" data-action="close" title="{{ 'general.accessibility.close' | t | escape }}">
+                   {%- render 'icon' with 'close' -%}
+                   </button>
+                </header>
+                <div class="popover__content">
+                   <div class="popover__choice-list">
+                      {%- for language in localization.available_languages -%}
+                      <button type="submit" name="locale_code" value="{{ language.iso_code }}" class="popover__choice-item">
+                      <span class="popover__choice-label" {% if language.iso_code == localization.language.iso_code %}aria-current="true"{% endif %}>
+                      {{- language.endonym_name | capitalize -}}
+                      </span>
+                      </button>
+                      {%- endfor -%}
+                   </div>
+                </div>
+             </popover-content>
+          </div>
+          {%- endif -%}
+          {%- endform -%}
+          {%- endif -%}
+       </div>
+    </div>
+    </div>
+ </footer>
+
+
+
+
+{%- if section.settings.roda-padrao-b -%}
+       <div class="selos-footer" style="background:var(--footer-backg)">
+          <style>
+
+            .selos-wrap {
+                display: flex;
+                float: left;
+                margin-top: -15px;
+                }
+            .selo {
+                width: 100%;
+                height: 55px;
+                margin-top: .7rem;
+                margin-right: 20px
+                }
+                .selo img {
+                display: block;
+                margin: 0 auto
+                } 
+             @media screen and (min-width: 601px) {
+             img.selito {
+             width: var( --selito-lar) !important;
+             }
+             }
+             @media screen and (max-width: 600px) {
+             .selo-pgmt {
+             white-space: nowrap;
+             width: 100%;
+             } 
+             img.selito { 
+             display: inline-block;
+             width: var( --selito-larm) !important;
+             margin-right: 0px;
+             margin-bottom: 8px;
+             }
+             }
+             .payment-icon.margin-l {
+             display: contents;
+             }
+             .selitosrodape {
+              text-align: center;
+              padding-left: var(--container-gutter);
+              padding-right: var(--container-gutter);
+                 }
+              .vision-space {
+              margin-bottom: 13px;
+             }
+          </style>
+          <div class="vision-space">
+          <div class="selo-pgmt" style="margin-bottom:5px !important">
+             Formas de Pagamento</div>
+             <div class="selitosrodape"> 
+                {% if settings.bandeiras1_foot %} 
+                {% if settings.show_visa_fv %}<img src="{{ 'Visa.svg' | asset_url }}" class="selito" width="50" height="25"  alt="Visa" />{% endif %}
+                {% if settings.show_diners_fv %} <img src="{{ 'Diners.svg' | asset_url }}" class="selito" width="50" height="25"  alt="Dinners" />{% endif %}
+                {% if settings.show_master_fv %} <img src="{{ 'mastercard.svg' | asset_url }}" class="selito" width="50" height="25" alt="MasterCard" />{% endif %}
+                {% if settings.show_hiper_fv %}<img src="{{ 'hipercard.svg' | asset_url }}"  class="selito" width="50" height="25"  alt="Hipercard" />{% endif %}
+                {% if settings.show_elo_fv %}<img src="{{ 'Elo.svg' | asset_url }}"  class="selito" width="50" height="25" alt="Elo" />{% endif %}
+                {% if settings.show_amex_fv %} <img src="{{ 'Amex.svg' | asset_url }}"  class="selito" width="50" height="25"  alt="American Express" />{% endif %}
+                {% if settings.show_discover_fv %}<img src="{{ 'Discover.svg' | asset_url }}"  class="selito" width="50" height="25"  alt="Discovercard" />{% endif %}
+                {% if settings.show_boleto_fv %}<img src="{{ 'Boleto.svg' | asset_url }}"  class="selito" width="50" height="25"  alt="Boleto" />{% endif %}
+                {% if settings.show_pix_fv %}<img src="{{ 'Pix.svg' | asset_url }}"  class="selito" style="margin-top= 2px !important" width="50" height="25" alt="Pix" />{% endif %}
+                {%- endif -%}
+                {% if settings.bandeiras2_foot %} 
+                {% if settings.show_visa_fv %}<img src="{{ 'Visa2.svg' | asset_url }}" class="selito" width="50" height="25"  alt="Visa" />{% endif %}
+                {% if settings.show_master_fv %} <img src="{{ 'Master2.svg' | asset_url }}" class="selito" width="50" height="25" alt="MasterCard" />{% endif %}
+                {% if settings.show_hiper_fv %}<img src="{{ 'Hipercard2.svg' | asset_url }}"  class="selito" width="50" height="25"  alt="Hipercard" />{% endif %}
+                {% if settings.show_elo_fv %}<img src="{{ 'Elo2.svg' | asset_url }}"  class="selito" width="50" height="25" alt="Elo" />{% endif %}
+                {% if settings.show_amex_fv %} <img src="{{ 'Amex2.svg' | asset_url }}"  class="selito" width="50" height="25"  alt="American Express" />{% endif %}
+                {% if settings.show_boleto_fv %}<img src="{{ 'Boleto2.svg' | asset_url }}"  class="selito" width="50" height="25"  alt="Boleto" />{% endif %}
+                {% if settings.show_pix_fv %}<img src="{{ 'Pix2.svg' | asset_url }}"  class="selito" style="margin-top= 2px !important" width="50" height="25" alt="Pix" />{% endif %}
+                {%- endif -%}
+             </div>
+          </div>
+          <br>
+          {%- if section.settings.forma_envio -%}            
+          <div class="selo-envio">Formas de Envio<br>
+             <img src="{{ 'formasdeenvio.svg' | asset_url }}" loading="lazy" alt="formas de envio" style="max-width:260px;height: 30px;">
+          </div>
+          <br>
+          {% endif %}
+          {%- if section.settings.seg_qua -%}
+          <div class="selo-seg">Segurança e Qualidade<br>      
+             <div class="selos-wrap" style="margin-top:-7px !important;">
+                      <a href="https://transparencyreport.google.com/safe-browsing/search?url={{ canonical_url }}">
+                         <div class="selo" style="margin-left:-5px !important"><img src="{{ 'google-site-seguro-pt.svg' | asset_url }}" class="lazyload" width="100" height="40" alt="Selo do Google"></div>
+                      </a>
+                      {% if settings.reclameaqui == true %}      
+                      <a href="{{ settings.link_reclameaqui }}">
+                         <div class="selo"><img src="{{ 'Reclameaqui.svg' | asset_url }}" class="lazyload"  width="80"  height="35" alt="Selo do Reclame Aqui"> </div>
+                      </a>
+                      {% else %}
+                      {% if settings.norton == true %} 
+                      <a href="https:\/\/safeweb.norton.com\/report\/show?url={{ canonical_url }}">
+                         <div class="selo"><img src="{{ 'nortonlogo.svg' | asset_url }}" class="lazyload"  width="80"  height="35" alt="Selo do Norton"> </div>
+                      </a>
+                      {% else %}
+                      {% if settings.selo2 != blank %}
+                      <a href="{{ settings.linkselo }}">
+                         <div class="selo"><img src="{{ settings.selo2 | img_url: image_size }}" class="lazyload"  width="80"  height="35" alt="Selo de segurança"> </div>
+                      </a>
+                      {% endif %}
+                      {% endif %}
+                      {% endif %}
+                      <a href="https://www.sslshopper.com/ssl-checker.html#hostname={{ canonical_url }}">
+                         <div class="selo"><img src="{{ 'SSL.svg' | asset_url }}" class="lazyload" width="70" height="35" alt="SLL Seguro"> </div>
+                      </a>
+                   </div>  </div>
+          {% endif %}
+       </div>
+       {%- endif -%}
+
+ 
+ <div class="bar-copy">
+    <p style="font-size: 14px;">© 2023 {{ section.settings.Nome_loja }} | Todos os direitos reservados.</p>
+    <br >
+    <p style="margin-top:-31px;font-size: 14px;">{%- if section.settings.endereco_loja != blank -%}{{ section.settings.endereco_loja }} {%- endif -%} {%- if section.settings.CNPJ_loja != blank -%} |{%- if section.settings.quebra_CNPJ -%}<br>
+    <p style="margin-top:-7px;">&nbspCNPJ: {{ section.settings.CNPJ_loja }}</p>
+    {%- else -%}&nbspCNPJ: {{ section.settings.CNPJ_loja }}{%- endif -%}{%- endif -%}</p>
+ </div>
+ {%- if section.settings.show_cookie_bar -%}
+ <div style="padding-left:15px; padding-right:15px">
+    <div id="politica-cookies" class="politica-cookies">
+       <p>{{ section.settings.cookie_bar_content }}</p>
+       <button id="aceitar-cookies" class="botao-aceitar">{{ section.settings.cookie_aceitar }}</button>
+       <button id="recusar-cookies" class="botao-recusar">{{ section.settings.cookie_recusar }}</button>
+    </div>
+ </div>
+ <style>
+    .politica-cookies {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--cookie-fundogeral);
+    color: var(--cookie-fontegeral);
+    padding: 10px;
+    text-align: center;
+    display: none;
+    font-size: var(--cookie-fonte);
+    z-index:999;
+    }
+    .botao-aceitar,
+    .botao-recusar {
+    font-weight: 600;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin: 0 5px;
+    border-radius:7px;
+    width: 150px;
+    }
+    @media screen and (max-width: 741px) {
+    .botao-aceitar,
+    .botao-recusar {
+    width: 40% !important;
+    }
+    }
+    .botao-aceitar {
+    background-color: var(--cookie-aceitarfundo);
+    color: var(--cookie-aceitarfonte);
+    }
+    .botao-recusar {
+    background-color: var(--cookie-recusarfundo);
+    color: var(--cookie-recusarfonte);
+    }
+    .politica-cookies p {
+    margin: 0;
+    padding: 5px;
+    padding-top: 0;
+    }
+ </style>
+ {%- if section.settings.show_cookie_bar_per -%}
+ <style>
+    .politica-cookies {
+    display: block !important;
+    }
+ </style>
+ {%- endif -%}
+ <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var politicaCookies = document.getElementById("politica-cookies");
+      var aceitarCookies = document.getElementById("aceitar-cookies");
+      var recusarCookies = document.getElementById("recusar-cookies");
+    
+      // Verifica se é a primeira visita do usuário
+      if (!localStorage.getItem("cookiesAceitos")) {
+        politicaCookies.style.display = "block";
+      }
+    
+      // Botão de Aceitar Cookies
+      aceitarCookies.addEventListener("click", function () {
+        localStorage.setItem("cookiesAceitos", "true");
+        politicaCookies.style.display = "none";
+      });
+    
+      // Botão de Recusar Cookies
+      recusarCookies.addEventListener("click", function () {
+        localStorage.setItem("cookiesAceitos", "false");
+        politicaCookies.style.display = "none";
+      });
+    });
+ </script>
+ {%- endif -%}
+ {% schema %}
+ {
+ "name": "Rodapé",
+ "class": "shopify-section--footer",
+ "max_blocks": 5,
+ "settings": [
+ {
+ "type": "checkbox",
+ "id": "roda-padrao-b",
+ "label": "Mostrar rodapé padrão",
+ "info": "Utilize esse recurso para ativar as formas de pagamento, envio e segurança da loja na parte inferior do rodapé e não em blocos",
+ "default": false
+ },
+ {
+ "type": "checkbox",
+ "id": "forma_envio",
+ "label": "Mostrar formas de envio",
+ "default": false
+ },
+ {
+ "type": "checkbox",
+ "id": "seg_qua",
+ "label": "Mostrar selo de Segurança",
+ "default": false
+ },
+ {
+ "type": "text",
+ "id": "Nome_loja",
+ "label": "Nome principal da loja",
+ "default": "LojaTal"
+ },
+ {
+ "type": "text",
+ "id": "CNPJ_loja",
+ "label": "CNPJ da sua empresa",
+ "default": "00.000.000/0001-00"
+ },
+ {
+ "type": "text",
+ "id": "endereco_loja",
+ "label": "Endereço da empresa",
+ "default": "Rua 0, 232, Centro, São Paulo - SP, CEP: 010010-010"
+ },
+ {
+ "type": "checkbox",
+ "id": "quebra_CNPJ",
+ "label": "Quebra de Linha CNPJ",
+ "info": "Utilize esse recurso para passar o CNPJ para uma nova linha, independente do endereço",
+ "default": false
+ },
+ {
+ "type": "header",
+ "content": "Selecionador de país/região",
+ "info": "Para adicionar um país/região, vá para suas [configurações de moeda](/admin/settings/payments)"
+ },
+ {
+ "type": "checkbox",
+ "id": "show_country_selector",
+ "label": "Mostrar selecionador de país/região",
+ "default": true
+ },
+ {
+ "type": "header",
+ "content": "Selecionador de idioma",
+ "info": "Para adicionar um idioma, vá para suas [configurações de idioma](/admin/settings/languages)"
+ },
+ {
+ "type": "checkbox",
+ "id": "show_locale_selector",
+ "label": "Mostrar selecionador de idioma",
+ "default": true
+ },
+ {
+ "type": "header",
+ "content": "Barra de privacidade do cliente"
+ },
+ {
+ "type": "checkbox",
+ "id": "show_cookie_bar",
+ "label": "Mostrar barra de privacidade - Cookies",
+ "info": "Mude as cores em Configurações > Barra de privacidade. Obs: A barra de cookies é baseada na sua navegação, portanto faça todas as alterações de cores antes de clicar em algum dos botões pela primeira vez. Posteriormente para ver os resultados, acesse outro perfil do chrome.",
+ "default": false
+ },
+ {
+ "type": "checkbox",
+ "id": "show_cookie_bar_per",
+ "label": "Mostrar barra para personalização",
+ "info": "Ative esse recurso para ver a barra após clicar sem querer em um dos botões e não esteja mais vendo a barra no personalizar. Lembre-se de desativar essa função após personalizar sua barra",
+ "default": false
+ },
+ {
+ "type": "richtext",
+ "id": "cookie_bar_content",
+ "label": "Conteúdo",
+ "default": "<p>Concordo com o processamento dos meus dados de acordo com as condições estabelecidas na política de privacidade.</p>"
+ },
+ {
+ "type": "text",
+ "id": "cookie_aceitar",
+ "label": "Botão Aceitar",
+ "default": "Aceitar"
+ },
+ {
+ "type": "text",
+ "id": "cookie_recusar",
+ "label": "Botão Recusar",
+ "default": "Rejeitar"
+ }
+ ],
+ "blocks": [
+ {
+ "type": "image",
+ "name": "Imagem",
+ "settings": [
+ {
+ "type": "image_picker",
+ "id": "image",
+ "label": "Imagem",
+ "info": "Recomendado 300 x 300px .png"
+ },
+ {
+ "type": "range",
+ "id": "image_width",
+ "min": 50,
+ "max": 300,
+ "step": 10,
+ "unit": "px",
+ "label": "Largura da imagem",
+ "default": 150
+ }
+ ]
+ },
+ {
+ "type": "text",
+ "name": "Texto",
+ "settings": [
+ {
+ "type": "text",
+ "id": "title",
+ "label": "Título",
+ "default": "Sobre nossa loja"
+ },
+ {
+ "type": "richtext",
+ "id": "content",
+ "label": "Conteúdo",
+ "default": "<p>Use esta área de texto para contar aos seus clientes sobre sua marca e visão. Você pode alterá-la no editor do tema.</p>"
+ }
+ ]
+ },
+ {
+ "type": "links",
+ "name": "Links",
+ "settings": [
+ {
+ "type": "link_list",
+ "id": "menu",
+ "label": "Menu",
+ "info": "Este menu não mostrará itens de menu suspensos.",
+ "default": "footer"
+ }
+ ]
+ },
+ {
+ "type": "social_media",
+ "name": "Mídias sociais",
+ "limit": 1,
+ "settings": [
+ {
+ "type": "paragraph",
+ "content": "Para configurar as mídias sociais, vá para suas configurações de mídias sociais."
+ },
+ {
+ "type": "text",
+ "id": "title",
+ "label": "Título",
+ "default": "Siga-nos"
+ },
+ {
+ "type": "richtext",
+ "id": "content",
+ "label": "Conteúdo",
+ "default": "<p>Para configurar as mídias sociais, vá para suas configurações de mídias sociais. Altere este texto no editor do tema.</p>"
+ }
+ ]
+ },
+ {
+ "type": "Atendimento-Vision",
+ "name": "Atendimento Vision",
+ "limit": 1,
+ "settings": [
+ {
+ "type": "paragraph",
+ "content": "Configure aqui suas informações de atendimento"
+ },
+ {
+ "type": "text",
+ "id": "atendimento_vision",
+ "label": "Título Atendimento",
+ "default": "Central de Atendimento"
+ },
+ {
+ "type": "text",
+ "id": "horario_loja",
+ "label": "Horário Atendimento",
+ "default": "seg. à sáb. 10 às 19h "
+ },
+ {
+ "type": "text",
+ "id": "email_loja",
+ "label": "E-mail de suporte",
+ "default": "suporte@sualoja.com"
+ },
+ {
+ "type": "text",
+ "id": "contato_loja",
+ "label": "Contato da Loja",
+ "default": "(11) 99999-9999"
+ },
+ {
+ "type": "checkbox",
+ "id": "botaowhats_rodape",
+ "label": "Habilitar Botão de Whatsapp no rodapé",
+ "info": "Botão fixo no rodapé. Não é botão sticker",
+ "default": false
+ },
+ {
+ "type": "text",
+ "id": "num_whats",
+ "label": "Número do Whatsapp",
+ "default": "11999999999",
+ "info": "Adicionar apenas número com DDD, sem espaços nem hífen"
+ }
+ ]
+ },
+ {
+ "type": "Pagamento-Seguranca",
+ "name": "Pagamento-Seguranca",
+ "limit": 1,
+ "settings": [
+ {
+ "type": "paragraph",
+ "content": "Configure as informações em configuração do tema > Alterações do Rodapé"
+ }
+ ]
+ },
+ {
+ "type": "newsletter",
+ "name": "Newsletter",
+ "limit": 1,
+ "settings": [
+ {
+ "type": "paragraph",
+ "content": "Os clientes que se inscreverem terão seu endereço de e-mail adicionado à lista de 'aceita marketing' [lista de clientes](/admin/customers?query=&accepts_marketing=1)."
+ },
+ {
+ "type": "text",
+ "id": "title",
+ "label": "Título",
+ "default": "Newsletter"
+ },
+ {
+ "type": "richtext",
+ "id": "content",
+ "label": "Conteúdo",
+ "default": "<p>Uma frase curta descrevendo o que alguém receberá ao se inscrever</p>"
+ }
+ ]
+ }
+ ],
+ "default": {
+ "blocks": [
+ {
+ "type": "text",
+ "settings": {}
+ },
+ {
+ "type": "links",
+ "settings": {}
+ },
+ {
+ "type": "newsletter",
+ "settings": {}
+ },
+ {
+ "type": "social_media",
+ "settings": {}
+ }
+ ]
+ }
+ }
+ {% endschema %}

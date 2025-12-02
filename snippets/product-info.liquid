@@ -1,0 +1,484 @@
+{%- capture product_form_id -%}product-form-{{ section.id }}-{{ product.id }}{%- endcapture -%}
+
+<style>
+  @media screen and (max-width: 600px) {
+  .product__info {
+    margin-left: -7px;
+    margin-right: -7px;
+}
+  }
+</style>
+
+<div class="product__info">
+  <!-- PRODUCT META -->
+  <product-meta form-id="{{ product_form_id }}" price-class="price--large" class="product-meta">
+    {%- if section.settings.show_vendor -%}
+      <h2 class="product-meta__vendor heading heading--small">
+        {%- assign vendor_handle = product.vendor | handle -%}
+        {%- assign vendor_collection = collections[vendor_handle] -%}
+
+        {%- if vendor_collection != blank -%}
+          <a href="{{ vendor_collection.url }}">{{ product.vendor }}</a>
+        {%- else -%}
+          <a href="{{ product.vendor | url_for_vendor }}">{{ product.vendor }}</a>
+        {%- endif -%}
+      </h2>
+    {%- endif -%}
+    
+    {% unless featured %}
+
+    {%- if section.settings.show_vendidos -%} 
+   {% assign random = product.id | divided_by: 20022 | modulo: 9550 %}   
+      <span class="quantitysell" style="font-size: 10px;color: var(--fonte-vendidos);background: var(--back-vendidos);padding: 3px 5px;border-radius: 3px;margin-right: 5px;">{{ random }} VENDIDOS</span>
+   {%- endif -%}
+      
+    {%- if product.metafields.custom.exclusividade -%}  
+    <span class="quantitysell" style="padding: 3px 5px;font-size: 10px;border-radius: 3px;background-color: var(--back-exclusivo);color: var(--fonte-exclusivo);margin-right: 5px;">{{ settings.exlusividade_label }}</span>
+     {%- endif -%}
+
+    {%- if product.metafields.custom.customizado -%}  
+    <span class="quantitysell" style="padding: 3px 5px;font-size: 10px;border-radius: 3px;background-color: var(--back-exclusivo2);color: var(--fonte-exclusivo2);">{{ product.metafields.custom.texto_customizado }}</span>
+     {%- endif -%}
+      
+    <h1 class="product-meta__title heading h3">{{ product.title }}</h1>
+
+
+      <!-- ESTRELAS APP DE REVIEW -->
+
+      <!-- ESTRELAS APP DE REVIEW -->
+      
+
+
+    {% else %}
+      <h2 class="product-meta__title heading h3">
+        <a href="{{ product.url }}">{{ product.title }}</a>
+      </h2>
+    {% endunless %}
+
+    <div class="product-meta__price-list-container" role="region" aria-live="polite">
+      <div class="price-list" data-product-price-list>
+        {%- if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price -%}
+          <span class="price price--highlight price--large">
+            <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+
+            {%- if settings.currency_code_enabled -%}
+              {{- product.selected_or_first_available_variant.price | money_with_currency -}}
+            {%- else -%}
+              {{- product.selected_or_first_available_variant.price | money -}}
+            {%- endif -%}
+          </span>
+
+          <span class="price price--compare">
+            <span class="visually-hidden">{{ 'product.general.regular_price' | t }}</span>
+
+            {%- if settings.currency_code_enabled -%}
+              {{- product.selected_or_first_available_variant.compare_at_price | money_with_currency -}}
+            {%- else -%}
+              {{- product.selected_or_first_available_variant.compare_at_price | money -}}
+            {%- endif -%}
+          </span>
+        {%- else -%}
+          <span class="price price--large">
+            <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+            {%- if settings.currency_code_enabled -%}
+              {{- product.selected_or_first_available_variant.price | money_with_currency -}}
+            {%- else -%}
+              {{- product.selected_or_first_available_variant.price | money -}}
+            {%- endif -%}
+          </span>
+        {%- endif -%}
+
+        
+        {%- if product.selected_or_first_available_variant.unit_price_measurement -%}
+          <div class="price text--subdued">
+            <div class="unit-price-measurement">
+              <span class="unit-price-measurement__price">{{ product.selected_or_first_available_variant.unit_price | money }}</span>
+              <span class="unit-price-measurement__separator">/</span>
+
+              {%- if product.selected_or_first_available_variant.unit_price_measurement.reference_value != 1 -%}
+                <span class="unit-price-measurement__reference-value">{{ product.selected_or_first_available_variant.unit_price_measurement.reference_value }}</span>
+              {%- endif -%}
+
+              <span class="unit-price-measurement__reference-unit">{{ product.selected_or_first_available_variant.unit_price_measurement.reference_unit }}</span>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="product-meta__label-list label-list" data-product-label-list>
+        {%- unless product.selected_or_first_available_variant.available -%}
+          <span class="label label--subdued">{{ 'collection.product.sold_out' | t }}</span>
+        {%- elsif product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price -%}
+          {%- if settings.discount_mode == 'percentage' -%}
+            {%- assign savings = product.selected_or_first_available_variant.compare_at_price | minus: product.selected_or_first_available_variant.price | times: 100.0 | divided_by: product.selected_or_first_available_variant.compare_at_price | round | append: '%' -%}
+          {%- else -%}
+            {%- capture savings -%}{{ product.selected_or_first_available_variant.compare_at_price | minus: product.selected_or_first_available_variant.price | money }}{%- endcapture -%}
+          {%- endif -%}
+
+          <span class="label label--highlight">{{ 'collection.product.discount_html' | t: savings: savings }}</span>
+        {%- endunless -%}
+        
+      </div>
+      
+    </div>
+
+     <!--Inicio 12x Marcos atualização por js-->
+    <div class="atualizacao-marcos" style="margin-top:15px"> 
+      {% liquid assign taxa_12x = settings.juros_parcelamento | divided_by: 100 | plus: 1%}
+    <p id="juros" style="display:none"> {{ settings.juros_parcelamento | divided_by: 100 | plus: 1 }} </p>
+      <p class="parcelamento" style="font-size:15px;margin-bottom:-18px;top: -21px;position: relative;"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="18" height="18" viewBox="0 0 32 32" style="
+    top: 4px;
+    position: relative;">
+<path d="M 5 6 C 3.355469 6 2 7.355469 2 9 L 2 23 C 2 24.644531 3.355469 26 5 26 L 27 26 C 28.644531 26 30 24.644531 30 23 L 30 9 C 30 7.355469 28.644531 6 27 6 Z M 5 8 L 27 8 C 27.566406 8 28 8.433594 28 9 L 28 11 L 5 11 L 5 13 L 28 13 L 28 23 C 28 23.566406 27.566406 24 27 24 L 5 24 C 4.433594 24 4 23.566406 4 23 L 4 9 C 4 8.433594 4.433594 8 5 8 Z"></path>
+</svg> em até 12x de <span style="color: var(--color-parcel-prod);"> <b id="parcela">{{ product.selected_or_first_available_variant.price |times: taxa_12x| divided_by: 12 | round:2 | money }}</b></span></p>
+{% if settings.parcelamento_enable %}
+  {% render 'vision_parcelamento', selected_variant: selected_variant %}
+  {% else %}
+  <div style="margin-bottom:-20px"></div>
+{% endif %}
+</div>
+<!--Fim 12x Marcos atualização por js-->
+
+
+
+  
+{%- if settings.show_pix_envio -%}
+{% render 'pixvision' %}
+{%- endif -%}
+    
+    {%- if section.settings.show_taxes_included -%}
+      {%- if cart.taxes_included or shop.shipping_policy.body != blank -%}
+        <p class="product-meta__taxes-included text--small">
+          {%- if cart.taxes_included -%}
+            {{ 'product.general.include_taxes' | t }}
+          {%- endif -%}
+
+          {%- if shop.shipping_policy.body != blank -%}
+            {{ 'product.general.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+          {%- endif -%}
+        </p>
+      
+      {%- endif -%}
+    {%- endif -%}
+
+    <product-payment-terms form-id="{{ product_form_id }}">
+      {%- assign product_installment_form_id = 'product-installment-form-' | append: section.id | append: '-' | append: product.id -%}
+
+      {%- form 'product', product, id: product_installment_form_id -%}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        {{- form | payment_terms -}}
+      {%- endform -%}
+    </product-payment-terms>
+
+    {%- if section.settings.show_product_rating or section.settings.show_sku -%}
+      <div class="product-meta__reference">
+        {%- if section.settings.show_product_rating -%}
+          <a href="{% if featured %}{{ product.url }}{% endif %}#product-{{ product.id }}-reviews-pocket" is="review-link" data-smooth-scroll class="product-meta__reviews-badge hidden-lap-and-up">{%- render 'product-rating', product: product -%}</a>
+          <a href="{% if featured %}{{ product.url }}{% endif %}#product-{{ product.id }}-tabs" is="review-link" data-smooth-scroll class="product-meta__reviews-badge hidden-pocket">{%- render 'product-rating', product: product -%}</a>
+        {%- endif -%}
+
+        {%- if section.settings.show_sku -%}
+          <span class="product-meta__sku text--subdued text--xxsmall" {% if product.selected_or_first_available_variant.sku == blank %}style="display: none"{% endif %} data-product-sku-container>
+            {{- 'product.general.sku' | t }}
+            <span class="product-meta__sku-number" data-product-sku-number>{{ product.selected_or_first_available_variant.sku }}</span>
+          </span>
+          
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    
+  </product-meta>
+        
+  {%- render 'product-form', product: product, update_url: update_url -%}   
+
+
+
+
+
+ {% if settings.show_whats_compra %}
+ 
+ <a href="https://api.whatsapp.com/send?phone={{ settings.whats_num_compra }}&text=Olá,%20gostaria%20de%20mais%20informações%20sobre%20o%20produto:%20{{ product.title | escape }}" class="btn-whatsapp-buy" target="_blank"><ion-icon name="logo-whatsapp" class="logo-whatsapp-ionic md hydrated" role="img" aria-label="logo whatsapp"></ion-icon>{{ settings.whats_compra_text }}</a>
+ 
+ <style>
+.logo-whatsapp-ionic {
+    color: var(--wpp_cor1);
+    font-size: 22px;
+    transition: all .3s ease-in-out;
+}
+
+.btn-whatsapp-buy {
+    background: var(--wpp_cor2);
+    border: 2px solid var(--wpp_cor5);
+    margin-bottom: 20px;
+    margin-top: 7px;
+    height: var(--alt-bot-qnt);
+    border-radius: var(--borda-bot-qnt) !important;
+    color: var(--wpp_cor1);
+    gap: 8px;
+    letter-spacing: var(--wpp_spc);
+    font-size: var(--fonte-wht);
+    padding: 14px;
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s ease-in-out;
+    font-weight: 600;
+}
+
+.btn-whatsapp-buy:hover {
+    background: var(--wpp_cor4);
+    color: var(--wpp_cor3);
+}
+
+.btn-whatsapp-buy:hover > .logo-whatsapp-ionic{
+    color: var(--wpp_cor3);
+}
+</style>
+ {% endif %}
+
+
+     
+
+  
+ {% if section.settings.show_bandeirascart %}
+
+
+<style>
+  
+ 
+  @media(max-width:768px) {
+  .cartoes{
+    max-height: auto;
+    width: var(--bandeiras-w-mobile);
+    margin-top: 0px;
+    margin-bottom: 5px;
+  }  
+  }
+
+  @media(min-width:769px) {
+   .cartoes{
+    max-height: auto;
+    width: var(--bandeiras-w-desktop);
+    margin-top: 0px;
+    margin-bottom: 5px;
+  }
+  } 
+ .security__payment p {
+	color: #565656;
+	text-align: center;
+	margin: 10px auto 0;
+	font-size: var(--bandeiras-t-fonte);
+}
+</style>
+
+  
+<center style="
+    background: white;
+    border: 1px solid #f6f6f8;
+    border-radius: var(--arredonda-box);
+    padding: 2px;
+    margin-top: 8px;
+    box-shadow: 0px 5px 6px -5px #f6f6f8;"><div class="security__payment" style="margin: 0px 0px 8px;"><p style="padding: 0px 0px 0px 0px;background: #f6f6f8;margin-top: -6px;border-radius: 4px;"><i style="color: #3A2A2F;"></i> <b>{{ section.settings.titulo_bandeiras }}</b></p>
+    </div
+      
+    <center style=""><div class="payment-list2">
+      
+{% if section.settings.show_bandeiras1 %}
+      
+            {% if section.settings.show_visa_p %}<img class="cartoes" src="{{ 'Visa.svg' | asset_url }}" alt="Visa">{% endif %}
+            {% if section.settings.show_master_p %}<img class="cartoes" src="{{ 'mastercard.svg' | asset_url }}" alt="Mastercard">{% endif %}
+            {% if section.settings.show_hiper_p %}<img class="cartoes" src="{{ 'hipercard.svg' | asset_url }}" alt="Hipercard">{% endif %}
+            {% if section.settings.show_elo_p %}<img class="cartoes" src="{{ 'Elo.svg' | asset_url }}" alt="Elo">{% endif %}
+            {% if section.settings.show_amex_p %}<img class="cartoes" src="{{ 'Amex.svg' | asset_url }}" alt="Amex">{% endif %}
+            {% if section.settings.show_discover_p %}<img class="cartoes" src="{{ 'Discover.svg' | asset_url }}" alt="Discover">{% endif %}
+            {% if section.settings.show_pix_p %}<img class="cartoes" src="{{ 'Pix.svg' | asset_url }}" alt="Pix">{% endif %}
+            {% if section.settings.show_boleto_p %}<img class="cartoes" src="{{ 'Boleto.svg' | asset_url }}" alt="Pix">{% endif %}
+      {% endif %}
+
+{% if section.settings.show_bandeiras2 %}
+
+{% if section.settings.show_visa_p %}<img class="cartoes" src="{{ 'Visa2.svg' | asset_url }}" alt="Visa">{% endif %}
+            {% if section.settings.show_master_p %}<img class="cartoes" src="{{ 'Master2.svg' | asset_url }}" alt="Mastercard">{% endif %}
+            {% if section.settings.show_hiper_p %}<img class="cartoes" src="{{ 'Hipercard2.svg' | asset_url }}" alt="Hipercard">{% endif %}
+            {% if section.settings.show_elo_p %}<img class="cartoes" src="{{ 'Elo2.svg' | asset_url }}" alt="Elo">{% endif %}
+            {% if section.settings.show_amex_p %}<img class="cartoes" src="{{ 'Amex2.svg' | asset_url }}" alt="Amex">{% endif %}
+            {% if section.settings.show_pix_p %}<img class="cartoes" src="{{ 'Pix2.svg' | asset_url }}" alt="Pix">{% endif %}
+            {% if section.settings.show_boleto_p %}<img class="cartoes" src="{{ 'Boleto2.svg' | asset_url }}" alt="Pix">{% endif %}
+     
+{% endif %}
+
+      
+  </div>   </center></center>
+
+{% endif %}
+
+{% if settings.show_frete1_depois %}
+ {% render 'frete1' %}
+{% else %}
+  <div style="margin-bottom:-7px"></div>
+{% endif %}
+  
+  {%- if section.settings.show_box1p -%} 
+<div class="tag-top-botao" style="padding: 12px 13px 8px 8px;border-radius: var(--arredonda-box);background: var(--box-primaria);box-shadow: 0px 5px 6px -5px #f6f6f8;border: 1px solid #f6f6f8;display: flex;font-weight: 100;margin: 15px 0px 0px 0px;margin-bottom: -10px;">
+ <div style="margin-right: 18px;">
+  {%- if section.settings.image_paginfo != blank -%} 
+  <img src="{{ section.settings.image_paginfo | img_url: image_size }}"  alt="" style="width: 20pt;margin-top: -8px;vertical-align: middle;margin-left: 5px;margin-bottom: 0px;">
+ {%- else -%}
+<img src="{{ 'Iconseg.png' | asset_url }}"  alt="" style="width: 20pt;vertical-align: middle;margin-top: -8px;margin-left: 5px;margin-bottom: 0px;">
+     {%- endif -%}
+ 
+ </div>  
+  
+  <div style="font-size: 12px; line-height:5px;color:var(--box-sec);">{{ section.settings.box1p_line1 }}{{ section.settings.box1p_line2 }}</div>
+</div>
+{%- endif -%}
+
+   {%- if section.settings.show_box2p -%} 
+  <div class="bandeiras-background-top" style="margin-top: 15px; padding: 12px 15px 4px 15px; border-radius: var(--arredonda-box); background: var(--box-primaria);box-shadow: 0px 5px 6px -5px #f6f6f8;border: 1px solid #f6f6f8; display: flex;">
+      <div style="margin-right: 18px">
+       <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="23" height="23" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve"><g><g fill="var(--box-titulo)" fill-rule="evenodd" clip-rule="evenodd"><path d="M7 16a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-3 1a3 3 0 1 1 6 0 3 3 0 0 1-6 0zM17.5 15.5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-3 1a3 3 0 1 1 6 0 3 3 0 0 1-6 0z" fill="var(--box-titulo)" data-original="var(--box-titulo)"></path><path d="M13 7.5a1 1 0 0 1 1-1h4a5 5 0 0 1 5 5V15a2 2 0 0 1-2 2h-1.5v-2H21v-3.5a3 3 0 0 0-3-3h-3V12h-2zM9 15h6.5v2H9z" fill="var(--box-titulo)" data-original="var(--box-titulo)"></path><path d="M1 6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v10a1 1 0 0 1-1 1H9v-2h4V6H3v9h2v2H3a2 2 0 0 1-2-2z" fill="var(--box-titulo)" data-original="var(--box-titulo)"></path></g></g></svg>
+      </div>  
+     <span style="margin-top: -5px; margin-bottom: 5px;"><div style="font-weight: 700; font-size: 14px; color:var(--box-titulo)">{{ section.settings.box2p_line1 }}</div><div style="font-size: 12px; line-height: 10px; color: var(--box-sec);">{{ section.settings.box2p_line2 }}</div><div style="font-size: 12px; color: var(--box-sec);">{{ section.settings.box2p_line3 }}</div></span>
+   </div>
+     {%- else -%}
+     <div style="margin-top:15px"> </div>
+{%- endif -%}
+ {%- if section.settings.show_box3p -%} 
+<div class="bandeiras-background-top" style="margin-top: 5px!important; padding: 12px 15px 4px 15px; border-radius: var(--arredonda-box); background: var(--box-primaria); box-shadow: 0px 5px 6px -5px #f6f6f8;border: 1px solid #f6f6f8;display: flex;">
+ <div style="margin-right: 18px">
+   <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="21" height="21" x="0" y="0" viewBox="0 0 20 20" style="enable-background:new 0 0 512 512" xml:space="preserve"><g><path d="M10 0 2 2.3v7.4c0 4.7 3.2 8.9 7.7 10.2l.3.1.3-.1c4.5-1.3 7.7-5.5 7.7-10.2V2.3zm6 9.7c0 3.7-2.5 7.1-6 8.2-3.5-1.1-6-4.5-6-8.2V3.8l6-1.7 6 1.7z" fill="var(--box-titulo)" data-original="var(--box-titulo)"></path><path d="M7.4 8.4 6 9.8l3.3 3.3 4.6-4.7L12.5 7l-3.2 3.2z" fill="var(--box-titulo)" data-original="var(--box-titulo)"></path></g></svg>
+  </div>  
+   <span style="margin-top: -5px; margin-bottom: 5px;"><div style="font-weight: 700; font-size: 14px;color:var(--box-titulo)">{{ section.settings.box3p_line1 }}</div><div style="font-size: 12px; line-height: 10px; color: var(--box-sec);">{{ section.settings.box3p_line2 }}</div><div style="font-size: 12px; color: var(--box-sec);">{{ section.settings.box3p_line3 }}</div>    </span>
+ </div>
+{%- endif -%}
+
+{%- if section.settings.show_fretesertaneja -%}
+  
+      {% render 'freteasertaneja.liquid' %}  
+   
+       {%- endif -%}
+
+  
+
+{%- if section.settings.show_buscacep -%}
+  
+      {% render 'visionfrete.liquid' %}  
+   
+       {%- endif -%}
+       
+  {%- assign help_page = section.settings.help_page -%}
+
+  {%- if section.settings.show_share_buttons or help_page != blank -%}
+    <div class="product-meta__aside">
+      {%- if section.settings.show_share_buttons -%}
+        <div class="product-meta__share text--subdued">
+          {%- assign share_url = shop.url | append: product.url -%}
+          {%- assign twitter_text = product.title | url_param_escape -%}
+          {%- assign pinterest_description = product.description | strip_html | truncatewords: 15 | url_param_escape -%}
+          {%- assign pinterest_image = product.featured_image | img_url: '800x' | prepend: 'https:' -%}
+
+          <button is="share-toggle-button" share-url="{{ share_url | escape }}" share-title="{{ product.title | escape }}" class="product-meta__share-label link hidden-tablet-and-up" aria-controls="mobile-share-buttons-{{ section.id }}" aria-expanded="false">{{ 'product.general.share' | t }}</button>
+          <div class="product-meta__share-label hidden-phone">{{ 'product.general.share' | t }}</div>
+
+          <popover-content id="mobile-share-buttons-{{ section.id }}" class="popover hidden-tablet-and-up">
+            <span class="popover__overlay"></span>
+
+        
+
+            <header class="popover__header">
+              <span class="popover__title heading h6">{{- 'article.general.share' | t -}}</span>
+
+              <button type="button" class="popover__close-button tap-area tap-area--large" data-action="close" title="{{ 'general.accessibility.close' | t | escape }}">
+                {%- render 'icon' with 'close' -%}
+              </button>
+            </header>
+
+            <div class="mobile-share-buttons">
+              <a class="mobile-share-buttons__item mobile-share-buttons__item--facebook" href="https://www.facebook.com/sharer.php?u={{ share_url }}" target="_blank" rel="noopener" aria-label="{{ 'general.social.facebook_share' | t }}">
+                {%- render 'icon' with 'facebook-share-mobile' -%} Facebook
+              </a>
+
+              <a class="mobile-share-buttons__item mobile-share-buttons__item--pinterest" href="https://pinterest.com/pin/create/button/?url={{ share_url }}{% if pinterest_image != blank %}&media={{ pinterest_image }}{% endif %}&description={{ pinterest_description }}" target="_blank" rel="noopener" aria-label="{{ 'general.social.pinterest_pin' | t }}">
+                {%- render 'icon' with 'pinterest-share-mobile' -%} Pinterest
+              </a>
+
+              <a class="mobile-share-buttons__item mobile-share-buttons__item--twitter" href="https://twitter.com/share?{% if twitter_text != blank %}text={{twitter_text}}&{% endif %}url={{ share_url }}" target="_blank" rel="noopener" aria-label="{{ 'general.social.twitter_tweet' | t }}">
+                {%- render 'icon' with 'twitter-share-mobile' -%} Twitter
+              </a>
+
+              <a class="mobile-share-buttons__item mobile-share-buttons__item--mail" href="mailto:?&subject={{ article.title | escape }}&body={{ share_url }}" aria-label="{{ 'general.social.email_share' | t }}">
+                {%- render 'icon' with 'email-share-mobile' -%} {{ 'general.social.email_label' | t }}
+              </a>
+            </div>
+          </popover-content>
+
+          <div class="product-meta__share-button-list hidden-phone">
+            <a class="product-meta__share-button-item product-meta__share-button-item--facebook link tap-area" href="https://www.facebook.com/sharer.php?u={{ share_url }}" target="_blank" rel="noopener" aria-label="{{ 'general.social.facebook_share' | t }}">
+              {%- render 'icon' with 'facebook', width: 8, height: 14 -%}
+            </a>
+
+            <a class="product-meta__share-button-item product-meta__share-button-item--pinterest link tap-area" href="https://pinterest.com/pin/create/button/?url={{ share_url }}{% if pinterest_image != blank %}&media={{ pinterest_image }}{% endif %}&description={{ pinterest_description }}" target="_blank" rel="noopener" aria-label="{{ 'general.social.pinterest_pin' | t }}">
+              {%- render 'icon' with 'pinterest', width: 10, height: 14 -%}
+            </a>
+
+            <a class="product-meta__share-button-item product-meta__share-button-item--twitter link tap-area" href="https://twitter.com/share?{% if twitter_text != blank %}text={{ twitter_text }}&{% endif %}url={{ share_url }}" target="_blank" rel="noopener" aria-label="{{ 'general.social.twitter_tweet' | t }}">
+              {%- render 'icon' with 'twitter', width: 17, height: 14 -%}
+            </a>
+
+            <a class="product-meta__share-button-item product-meta__share-button-item--mail link tap-area" href="mailto:?&subject={{ product.title | escape }}&body={{ share_url }}" aria-label="{{ 'general.social.email_share' | t }}">
+              {%- render 'icon' with 'share', width: 13, height: 13 -%}
+            </a>
+          </div>
+          
+        </div>
+      {%- endif -%}
+
+      {%- if help_page != blank -%}
+        <button is="toggle-button" class="product-meta__help link text--subdued hidden-tablet-and-up" aria-controls="product-{{ section.id }}-help-popover" aria-expanded="false">{{ 'product.general.need_help' | t }}</button>
+        <button is="toggle-button" class="product-meta__help link text--subdued hidden-phone" aria-controls="product-{{ section.id }}-help-drawer" aria-expanded="false">{{ 'product.general.need_help' | t }}</button>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  {%- if help_page != blank -%}
+    {%- comment -%}Drawer for tablet and higher{%- endcomment -%}
+    <drawer-content id="product-{{ section.id }}-help-drawer" class="drawer drawer--large hidden-phone">
+      <span class="drawer__overlay"></span>
+
+      <header class="drawer__header">
+        <p class="drawer__title heading h6">{{ help_page.title }}</p>
+
+        <button type="button" class="drawer__close-button tap-area" data-action="close" title="{{ 'general.accessibility.close' | t | escape }}">
+          {%- render 'icon' with 'close' -%}
+        </button>
+      </header>
+
+      <div class="drawer__content drawer__content--padded-start">
+        <div class="rte">
+          {{- help_page.content -}}
+        </div>
+      </div>
+    </drawer-content>
+
+    {%- comment -%}Popover for mobile{%- endcomment -%}
+    <popover-content hidden id="product-{{ section.id }}-help-popover" class="popover hidden-lap-and-up">
+      <span class="popover__overlay"></span>
+
+      <header class="popover__header">
+        <p class="popover__title heading h6">{{ help_page.title }}</p>
+
+        <button type="button" class="popover__close-button tap-area tap-area--large" data-action="close" title="{{ 'general.accessibility.close' | t | escape }}">
+          {%- render 'icon' with 'close' -%}
+        </button>
+      </header>
+
+      <div class="popover__content">
+        <div class="rte">
+          {{- help_page.content -}}
+        </div>
+      </div>
+    </popover-content>
+  {%- endif -%}
+</div>   

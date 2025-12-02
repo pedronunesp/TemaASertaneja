@@ -1,0 +1,426 @@
+{%- if section.settings.background != settings.background and section.settings.background != 'rgba(0,0,0,0)' -%}
+  {%- assign blends_with_background = false -%}
+{%- else -%}
+  {%- assign blends_with_background = true -%}
+{%- endif -%}
+
+{%- comment -%}
+------------------------------------------------------------------------------------------------------------------------
+  CSS
+------------------------------------------------------------------------------------------------------------------------
+{%- endcomment -%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background == 'rgba(0,0,0,0)' -%}
+      {%- assign section_background = settings.background -%}
+    {%- else -%}
+      {%- assign section_background = section.settings.background -%}
+    {%- endif -%}
+
+    {%- if section.settings.text_color == 'rgba(0,0,0,0)' -%}
+      {%- assign heading_color = settings.heading_color -%}
+      {%- assign text_color = settings.text_color -%}
+    {%- else -%}
+      {%- assign heading_color = section.settings.text_color -%}
+      {%- assign text_color = section.settings.text_color -%}
+    {%- endif -%}
+
+    --heading-color: {{ heading_color.red }}, {{ heading_color.green }}, {{ heading_color.blue }};
+    --text-color: {{ text_color.red }}, {{ text_color.green }}, {{ text_color.blue }};
+    --prev-next-button-background: var(--text-color);
+    --prev-next-button-color: var(--section-background);
+   --hashtag-color: {{section.settings.hashtag_color}};
+    --insta-btn-color: {{section.settings.insta-btn_color}};
+    --insta-fonte-color: {{section.settings.insta-fonte_color}};
+
+  --titulo-celular: {{section.settings.titulo_celular}}px;
+     --titulo-desk: {{section.settings.titulo_desk}}px;
+
+     --insta-icon-mobile: {{section.settings.tamanho_icon_mobile}}px;
+ --insta-icon-desktop: {{section.settings.tamanho_icon_desktop}}px;
+  
+    --section-background: {{ section_background.red }}, {{ section_background.green }}, {{ section_background.blue }};
+  }
+</style>
+
+<style>
+
+.instagram__image {
+  display: block;
+  height: 200px;
+  width: 200px;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 0.1px solid #ccc;
+  -webkit-user-select: none;
+          user-select: none;
+}
+
+.gallery__caption {
+  display: table-caption;
+  caption-side: bottom;
+  margin-top: 16px;
+}
+
+.perfil-image{
+  width: 21pt;
+    height: 21pt;
+    border-radius: 50%;
+    vertical-align: middle;
+  margin-left: 2.7px;
+    margin-bottom: -4.1px;
+      border: 1px solid #fff;
+}
+
+  .instagram_icons{
+    width:200px;
+    margin-top:2px;
+    margin-bottom:5px
+  }
+  
+  @media screen and (min-width: 1000px) {
+    .perfil-image{
+          margin-bottom: -1.1px;
+    }
+    .instagram__image {
+  display: block;
+  height: 300px;
+  width: 300px;
+    }
+    .instagram_icons{
+    width:300px;
+    margin-top:11px;
+      margin-bottom:15px
+
+  }
+  }
+  .instaborda{
+     width: 25pt;
+    height: 25pt;
+    border-radius: 50%;
+    display: table-cell;
+    vertical-align: middle;
+    margin-bottom: 5px;
+    background-image: linear-gradient(45deg, #ff0, #f00, #90c);
+  }
+
+  .legendainsta{
+      font-size:11.5px;
+   }
+    @media screen and (min-width: 1000px) {
+     .legendainsta{
+     font-size: 14px;
+       }
+  }
+
+.section__color-wrapper.vertical-breather {
+    padding-bottom: 10px !important;
+    padding-top: 10px !important;
+}
+
+
+  @media screen and (max-width: 800px) {
+  p.titulo_insta{
+    font-size: var(--titulo-celular);
+    font-weight: 600;
+    text-align: center;
+  }
+  
+img.instagram_icon_principal {
+        max-width:  var(--insta-icon-mobile);
+       display: block;
+    margin: 4px 5px -21px 1px !important;
+  display: initial !important;
+}
+  }
+
+ @media screen and (min-width: 800px) {
+  p.titulo_insta{
+    font-size: var(--titulo-desk);
+    font-weight: 600;
+    text-align: center;
+  }
+  
+img.instagram_icon_principal {
+        max-width: var(--insta-icon-desktop);
+       display: block;
+    margin: 4px 5px -21px 1px !important;
+  display: initial !important;
+}
+  }
+
+  
+</style>
+
+
+
+<section class="section {% unless blends_with_background %}section--flush{% endunless %}" style="margin-top:10px; margin-bottom:10px">
+  <div class="section__color-wrapper {% unless blends_with_background %}vertical-breather{% endunless %}">
+    {%- if section.settings.title != blank -%}
+      <header class="section__header container text-container" style="margin-bottom: 15px;">
+        
+        {%- if section.settings.title != blank -%}
+          <p class="titulo_insta">
+             <img src="{{ 'instagram.svg' | asset_url }}" alt="instagram" loading="lazy" class="instagram_icon_principal">{{ section.settings.title | escape }} </p>
+        {%- endif -%}
+      </header>
+    {%- endif -%}
+
+    {%- comment -%}
+    If we have more than 3 blocks we assume that by default the content may be scrollable. This may not be the case and
+    the JavaScript will fired up to remove it in case it is needed, but if it is indeed scrollable this will avoid
+    a reflow of the browser rendering engine. From our tests 3 is a sane default.
+    {%- endcomment -%}
+    <gallery-list class="gallery">
+      <scrollable-content {% unless section.settings.show_arrows %}draggable{% endunless %} class="gallery__list-wrapper {% if section.blocks.size >= 3 %}is-scrollable{% endif %} hide-scrollbar">
+        <div class="container">
+          <div class="gallery__list">
+            {%- for block in section.blocks -%}
+               
+              <gallery-item class="gallery__item" {{ block.shopify_attributes }}>
+                <spam style="font-weight: 600;display: flex;flex-direction: row;align-items: center;">
+                  <spam class="instaborda">
+                  {%- if section.settings.image_perfil != blank  -%}  <img class="perfil-image" src="{{ section.settings.image_perfil | img_url: image_size }}" alt="Perfil do instagram">
+                  {%- endif -%}
+                  </spam>{{ section.settings.meuarroba | escape }}</spam>
+                <figure class="gallery__figure">
+                  {%- if block.settings.image -%}
+                    {%- assign mobile_size = 370 | times: block.settings.image.aspect_ratio | ceil -%}
+                    {%- assign tablet_size = 520 | times: block.settings.image.aspect_ratio | ceil -%}
+                    {%- assign desktop_size = 600 | times: block.settings.image.aspect_ratio | ceil -%}
+                   
+                    <img loading="lazy" alt="instagram" sizes="(max-width: 740px) {{ mobile_size }}px, (max-width: 999px) {{ tablet_size }}px, {{ desktop_size }}px" class="instagram__image" {% render 'image-attributes', image: block.settings.image, sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000' %}>
+                  {%- else -%}
+                    {{- 'image' | placeholder_svg_tag: 'instagram__image instagram__image placeholder-background' -}}
+                  {%- endif -%}
+
+              {%- if section.settings.show_curtir -%}
+      <span>
+      <img src="{{ 'Instaiconsmarcos.png' | asset_url }}" alt="Icones instagram" loading="lazy" class="instagram_icons">
+    </span>
+        {%- if block.settings.caption != blank -%}
+                    <figcaption class="gallery__caption rte legendainsta" style="margin-top: -4px;line-height: 1.4;margin-bottom:0px;padding-left: 0px; padding-right: 0px;">
+                      <span>{{- block.settings.caption -}}</span>
+                    <span class="hashtags" style="color:var(--hashtag-color)">{{- block.settings.captionhashtag -}}</span>
+                    </figcaption>
+                   {%- endif -%}
+                {%- else -%}   
+{%- if block.settings.caption != blank -%}
+                    <figcaption class="gallery__caption rte legendainsta" style="margin-top: 5px;line-height: 1.4;margin-bottom:0px; text-align: justify;padding-left: 5px; padding-right: 5px;">
+                      <span>{{- block.settings.caption -}}</span>
+                    <span class="hashtags" style="color:var(--hashtag-color)">{{- block.settings.captionhashtag -}}</span>
+                    </figcaption>
+                   {%- endif -%}
+
+                  
+                {%- endif -%}   
+                
+              
+                
+                
+                </figure>
+              </gallery-item>
+            {%- endfor -%}
+          </div>
+        </div>
+      </scrollable-content>
+
+      {%- if section.blocks.size > 1 and section.settings.show_arrows -%}
+        <prev-next-buttons class="gallery__prev-next-buttons prev-next-buttons">
+          <button class="gallery__arrow prev-next-button prev-next-button--prev">
+            <span class="visually-hidden">{{ 'general.accessibility.previous' | t }}</span>
+            {%- include 'icon' with 'nav-arrow-left', direction_aware: true -%}
+          </button>
+
+          <button class="gallery__arrow prev-next-button prev-next-button--next">
+            <span class="visually-hidden">{{ 'general.accessibility.next' | t }}</span>
+            {%- include 'icon' with 'nav-arrow-right', direction_aware: true -%}
+          </button>
+        </prev-next-buttons>
+      {% endif %}
+
+      <div class="gallery__progress-bar-wrapper container">
+        <span class="gallery__progress-bar progress-bar" style="--divider: {{ section.blocks.size }}"></span>
+      </div>
+
+{%- if section.settings.button_text != blank -%}
+              <div class="section__footer" style="margin-top:20px !important;margin-bottom: 20px !important;">
+                <a class="button button--primary" style="background:var(--insta-btn-color) !important; padding-left: 15px;
+    padding-right: 15px;
+    height: 32px!important;
+    line-height: 28px;
+    font-size: calc(var(--base-font-size) - 5px);
+    letter-spacing: 2px; color:var(--insta-fonte-color) !important;" href="{{ section.settings.button_url }}">{{ section.settings.button_text }}</a>
+              </div>
+            {%- endif -%}
+      
+    </gallery-list>
+  </div>
+              
+</section>
+
+{% schema %}
+{
+  "name": "Instagram-Vision",
+  "class": "shopify-section--gallery",
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Imagem",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem",
+          "info": "Recomendado: .jpg com 1500 x 1800 px"
+        },
+        {
+          "type": "richtext",
+          "id": "caption",
+          "label": "Legenda"
+        },
+        {
+          "type": "richtext",
+          "id": "captionhashtag",
+          "label": "Hashtags"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Acompanhe nossa loja no Instagram"
+    },
+    {
+      "type": "range",
+      "id": "titulo_celular",
+      "min": 14,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamanho da fonte no celular",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "titulo_desk",
+      "min": 14,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamanho da fonte no desktop",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "tamanho_icon_mobile",
+      "min": 15,
+      "max": 25,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamanho do ícone no celular",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "tamanho_icon_desktop",
+      "min": 14,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamanho do ícone no desktop",
+      "default": 24
+    },
+    {
+      "type": "text",
+      "id": "meuarroba",
+      "label": "@ da sua loja",
+      "default": "@minhalojanoinsta"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_perfil",
+      "label": "Foto do perfil",
+      "info": "200 x 200 px. ATENÇÃO, UTILIZE UMA IMAGEM QUADRADA DE PROPORÇÃO 1:1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_curtir",
+      "label": "Mostrar ícones de curtir, comentar, compartilhar",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Mostrar setas de navegação",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Cores"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Fundo",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Cor dos textos",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "color",
+      "id": "hashtag_color",
+      "label": "Cor das hashtags",
+      "default": "#0008ff"
+    },
+    {
+      "type": "color",
+      "id": "insta-btn_color",
+      "label": "Cor do botão",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "insta-fonte_color",
+      "label": "Cor da fonte do botão",
+      "default": "#fff"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Texto do botão"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Link do perfil Instagram da loja"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram-Vision",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ],
+      "settings": {}
+    }
+  ]
+}
+
+{% endschema %}

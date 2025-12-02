@@ -1,0 +1,391 @@
+{%- comment -%}
+  Simple Search Bar - Um componente de pesquisa minimalista para o tema Focal
+  
+  Uso:
+  {%- render 'simple-search-bar' -%}
+  
+  Dependências:
+  - Usa as variáveis CSS do tema Focal
+  - Compatível com o sistema de ícones do tema
+{%- endcomment -%}
+
+<div class="simple-search-container">
+  <form action="{{ routes.search_url }}" method="get" role="search" class="simple-search-form">
+    <input type="hidden" name="type" value="product">
+    <input type="hidden" name="options[prefix]" value="last">
+    <input type="hidden" name="options[unavailable_products]" value="{{ settings.search_unavailable_products }}">
+    
+    <div class="simple-search-input-wrapper">
+      <input 
+        class="simple-search-input" 
+        type="text" 
+        name="q" 
+        autocomplete="off" 
+        autocorrect="off"
+        aria-label="{{ 'search.general.search_placeholder' | t }}" 
+        placeholder="{{ 'search.general.search_placeholder' | t }}"
+        {% if settings.enable_live_search %}data-live-search="true"{% endif %}
+      >
+      
+      <button type="submit" class="simple-search-submit" aria-label="Buscar">
+        {%- render 'icon' with 'header-search' -%}
+      </button>
+      
+      <button type="button" class="simple-search-clear" aria-label="Limpar" style="display: none;">
+        {%- render 'icon' with 'close' -%}
+      </button>
+    </div>
+    
+    {% if settings.enable_live_search %}
+    <div class="simple-search-results" style="display: none;">
+      <div class="simple-search-loading">
+        <div class="simple-search-spinner"></div>
+      </div>
+      <div class="simple-search-results-content"></div>
+    </div>
+    {% endif %}
+  </form>
+</div>
+
+<style>
+  /* Estilos para a barra de pesquisa simples */
+  .simple-search-container {
+    width: 100%; /* Usa 100% da largura disponível do container pai */
+    max-width: none;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .simple-search-form {
+    width: 100%;
+    position: relative;
+  }
+  
+  .simple-search-input-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-radius: 8px;
+    border: 1px solid rgba(var(--header-border-color), 0.2);
+    background-color: {{ section.settings.pesquisabackgroud }};
+    transition: all 0.2s ease;
+    overflow: hidden;
+    height: auto; /* Permite que o container se ajuste ao tamanho do input */
+  }
+  
+  .simple-search-input-wrapper:focus-within {
+    border-color: rgba(var(--header-text-color), 0.4);
+    box-shadow: 0 0 0 1px rgba(var(--header-text-color), 0.1);
+  }
+  
+  .simple-search-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 12px 15px;
+    font-size: 15px;
+    color: {{ section.settings.pesquisatexto }};
+    width: 100%;
+    outline: none;
+    /* A altura é controlada pelo header, mas mantemos o padding como fallback */
+    min-height: 40px; 
+    line-height: 1.2;
+  }
+  
+  .simple-search-input::placeholder {
+    color:{{ section.settings.pesquisatexto }};
+  }
+  
+  .simple-search-submit {
+    background: transparent;
+    border: none;
+    padding: 0 15px;
+    cursor: pointer;
+    color: {{ section.settings.pesquisatexto }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease;
+  }
+  
+  .simple-search-submit:hover {
+    opacity: 0.8;
+  }
+  
+  .simple-search-clear {
+    background: transparent;
+    border: none;
+    padding: 0 15px;
+    cursor: pointer;
+    color: {{ section.settings.pesquisatexto }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s ease;
+  }
+  
+  .simple-search-clear:hover {
+    opacity: 0.8;
+  }
+  
+  /* Resultados da pesquisa ao vivo */
+  .simple-search-results {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    background-color: rgb(var(--header-background));
+    border-radius: 10px;
+    border: 1px solid rgba(var(--header-border-color), 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+  .simple-search-loading {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .simple-search-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(var(--header-text-color), 0.2);
+    border-top-color: rgb(var(--header-text-color));
+    border-radius: 50%;
+    margin: 0 auto;
+    animation: simple-search-spin 0.6s linear infinite;
+  }
+  
+  @keyframes simple-search-spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  .simple-search-results-content {
+    padding: 10px 0;
+  }
+  
+  .simple-search-result-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    text-decoration: none;
+    color: rgb(var(--header-text-color));
+    transition: background-color 0.2s ease;
+  }
+  
+  .simple-search-result-item:hover {
+    background-color: rgba(var(--header-text-color), 0.05);
+  }
+  
+  .simple-search-result-image {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 4px;
+  }
+  
+  .simple-search-result-info {
+    flex: 1;
+  }
+  
+  .simple-search-result-title {
+    font-size: 14px;
+    margin: 0 0 4px;
+    font-weight: 500;
+  }
+  
+  .simple-search-result-price {
+    font-size: 13px;
+    color: rgba(var(--header-text-color), 0.8);
+  }
+  
+  .simple-search-no-results {
+    padding: 15px;
+    text-align: center;
+    color: rgba(var(--header-text-color), 0.7);
+    font-size: 14px;
+  }
+  
+  .simple-search-view-all {
+    display: block;
+    text-align: center;
+    padding: 10px 15px;
+    border-top: 1px solid rgba(var(--header-border-color), 0.1);
+    color: rgb(var(--header-text-color));
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  
+  .simple-search-view-all:hover {
+    background-color: rgba(var(--header-text-color), 0.05);
+  }
+  
+  /* Responsividade */
+  @media screen and (max-width: 740px) {
+    .simple-search-container {
+      width: 100%; /* Usa 100% da largura disponível do container pai */
+      margin: 0 auto;
+    }
+    
+    .simple-search-input-wrapper {
+      border-radius: 10px;
+      height: auto; /* Mantém altura automática para ajustar ao conteúdo */
+    }
+    
+    .simple-search-input {
+      padding: 10px 12px;
+      font-size: 13px;
+      min-height: 30px; /* Altura mínima menor para dispositivos móveis */
+    }
+    
+    .simple-search-submit,
+    .simple-search-clear {
+      padding: 0 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchForms = document.querySelectorAll('.simple-search-form');
+    
+    searchForms.forEach(form => {
+      const input = form.querySelector('.simple-search-input');
+      const clearButton = form.querySelector('.simple-search-clear');
+      const resultsContainer = form.querySelector('.simple-search-results');
+      const resultsContent = form.querySelector('.simple-search-results-content');
+      const loadingIndicator = form.querySelector('.simple-search-loading');
+      
+      // Mostrar/ocultar botão de limpar
+      input.addEventListener('input', function() {
+        clearButton.style.display = this.value.length > 0 ? 'flex' : 'none';
+        
+        // Se a pesquisa ao vivo estiver habilitada
+        if (this.dataset.liveSearch && this.value.length >= 3) {
+          performLiveSearch(this.value);
+        } else if (resultsContainer) {
+          resultsContainer.style.display = 'none';
+        }
+      });
+      
+      // Botão de limpar
+      if (clearButton) {
+        clearButton.addEventListener('click', function() {
+          input.value = '';
+          input.focus();
+          clearButton.style.display = 'none';
+          if (resultsContainer) {
+            resultsContainer.style.display = 'none';
+          }
+        });
+      }
+      
+      // Pesquisa ao vivo
+      let searchTimeout;
+      function performLiveSearch(query) {
+        if (!resultsContainer) return;
+        
+        clearTimeout(searchTimeout);
+        
+        if (query.length < 3) {
+          resultsContainer.style.display = 'none';
+          return;
+        }
+        
+        searchTimeout = setTimeout(() => {
+          resultsContainer.style.display = 'block';
+          
+          if (loadingIndicator) {
+            loadingIndicator.style.display = 'block';
+          }
+          
+          if (resultsContent) {
+            resultsContent.innerHTML = '';
+          }
+          
+          // Fazer a requisição de pesquisa
+          fetch(`/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product&resources[limit]=4&resources[options][unavailable_products]=${form.querySelector('input[name="options[unavailable_products]"]').value}`)
+            .then(response => response.json())
+            .then(data => {
+              if (loadingIndicator) {
+                loadingIndicator.style.display = 'none';
+              }
+              
+              const products = data.resources.results.products;
+              
+              if (products.length > 0) {
+                // Mostrar resultados
+                products.forEach(product => {
+                  const resultItem = document.createElement('a');
+                  resultItem.href = product.url;
+                  resultItem.className = 'simple-search-result-item';
+                  
+                  let imageHtml = '';
+                  if (product.image) {
+                    imageHtml = `<img class="simple-search-result-image" src="${product.image}" alt="${product.title}">`;
+                  }
+                  
+                  resultItem.innerHTML = `
+                    ${imageHtml}
+                    <div class="simple-search-result-info">
+                      <h4 class="simple-search-result-title">${product.title}</h4>
+                      <div class="simple-search-result-price">${product.price}</div>
+                    </div>
+                  `;
+                  
+                  resultsContent.appendChild(resultItem);
+                });
+                
+                // Adicionar link "Ver todos"
+                const viewAllLink = document.createElement('a');
+                viewAllLink.href = `/search?q=${encodeURIComponent(query)}&type=product`;
+                viewAllLink.className = 'simple-search-view-all';
+                viewAllLink.textContent = 'Ver todos os resultados';
+                resultsContent.appendChild(viewAllLink);
+              } else {
+                // Nenhum resultado
+                resultsContent.innerHTML = `
+                  <div class="simple-search-no-results">
+                    Nenhum resultado encontrado
+                  </div>
+                `;
+              }
+            })
+            .catch(error => {
+              if (loadingIndicator) {
+                loadingIndicator.style.display = 'none';
+              }
+              
+              resultsContent.innerHTML = `
+                <div class="simple-search-no-results">
+                  Erro ao buscar resultados
+                </div>
+              `;
+              console.error('Erro na pesquisa:', error);
+            });
+        }, 300);
+      }
+      
+      // Fechar resultados ao clicar fora
+      document.addEventListener('click', function(event) {
+        if (!form.contains(event.target) && resultsContainer) {
+          resultsContainer.style.display = 'none';
+        }
+      });
+      
+      // Evitar que o clique nos resultados feche o container
+      if (resultsContainer) {
+        resultsContainer.addEventListener('click', function(event) {
+          event.stopPropagation();
+        });
+      }
+    });
+  });
+</script>

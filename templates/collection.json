@@ -1,0 +1,67 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "collection-banner": {
+      "type": "collection-banner",
+      "settings": {
+        "show_collection_image": false,
+        "show_collection_title": true,
+        "show_collection_description": false,
+        "section_height": "small",
+        "text_width": "medium",
+        "image_text_color": "#ffffff",
+        "image_overlay_color": "#000000",
+        "image_overlay_opacity": 30,
+        "quick_links": ""
+      }
+    },
+    "ec774f3b-2e15-4924-b4de-d9d1612027f9": {
+      "type": "rich-text",
+      "disabled": true,
+      "settings": {
+        "subheading": "",
+        "title": "",
+        "content": "<p>A sua loja é a melhor do segmento</p>",
+        "button_text": "",
+        "button_link": "",
+        "background_type": "full_width",
+        "text_width": "medium",
+        "text_position": "center",
+        "text_alignment": "center",
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background": "rgba(0,0,0,0)",
+        "button_text_color": "rgba(0,0,0,0)"
+      }
+    },
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "show_sort_by": true,
+        "products_per_page": 10,
+        "mobile_products_per_row": "2",
+        "desktop_products_per_row": 5,
+        "show_filters": true,
+        "show_filter_group_name": false,
+        "show_color_swatch": true,
+        "open_first_filter_group": false,
+        "filter_position": "always_visible",
+        "promotion_position": "top",
+        "promotion_height": "small"
+      }
+    }
+  },
+  "order": [
+    "collection-banner",
+    "ec774f3b-2e15-4924-b4de-d9d1612027f9",
+    "main"
+  ]
+}

@@ -1,0 +1,124 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-cart",
+      "blocks": {
+        "totals": {
+          "type": "totals",
+          "settings": {}
+        },
+        "order_note": {
+          "type": "order_note",
+          "disabled": true,
+          "settings": {
+            "open_by_default": false
+          }
+        }
+      },
+      "block_order": [
+        "totals",
+        "order_note"
+      ],
+      "settings": {
+        "show_payment_methods": true,
+        "show_bandeiras1": true,
+        "show_bandeiras2": false,
+        "titulo_bandeiras": "PAGAMENTO SEGURO E RÁPIDO",
+        "show_visa_p": true,
+        "show_master_p": true,
+        "show_hiper_p": true,
+        "show_elo_p": true,
+        "show_amex_p": true,
+        "show_discover_p": true,
+        "show_pix_p": true,
+        "show_boleto_p": false,
+        "show_shipping_estimator": true,
+        "shipping_estimator_default_country": "Brasil",
+        "empty_button_link": "shopify://collections/all"
+      }
+    },
+    "cart-recommendations": {
+      "type": "cart-recommendations",
+      "disabled": true,
+      "settings": {
+        "title": "Você pode gostar"
+      }
+    },
+    "c33a7713-511a-414a-9e7b-5ce81c0a84fc": {
+      "type": "featured-collections",
+      "blocks": {
+        "template--17030236438823__c33a7713-511a-414a-9e7b-5ce81c0a84fc-16714040816bfef7c3-0": {
+          "type": "collection",
+          "disabled": true,
+          "settings": {
+            "collection": "tenis-feminino",
+            "label": "",
+            "button_text": "",
+            "button_url": ""
+          }
+        },
+        "be79b431-1caa-439f-ae54-919f2700783d": {
+          "type": "collection",
+          "disabled": true,
+          "settings": {
+            "collection": "",
+            "label": "",
+            "button_text": "",
+            "button_url": ""
+          }
+        },
+        "c3fb4707-5652-4876-99ba-579caed7e989": {
+          "type": "collection",
+          "settings": {
+            "collection": "sutias",
+            "label": "",
+            "button_text": "",
+            "button_url": ""
+          }
+        },
+        "904eafb7-9a1c-4a2f-b54d-1c1df508ad5a": {
+          "type": "collection",
+          "disabled": true,
+          "settings": {
+            "collection": "",
+            "label": "",
+            "button_text": "",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--17030236438823__c33a7713-511a-414a-9e7b-5ce81c0a84fc-16714040816bfef7c3-0",
+        "be79b431-1caa-439f-ae54-919f2700783d",
+        "c3fb4707-5652-4876-99ba-579caed7e989",
+        "904eafb7-9a1c-4a2f-b54d-1c1df508ad5a"
+      ],
+      "settings": {
+        "title": "Você também pode gostar",
+        "content": "",
+        "products_count": 8,
+        "products_per_row": 4,
+        "stack_products": false,
+        "show_cta": true,
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background": "rgba(0,0,0,0)",
+        "button_text_color": "rgba(0,0,0,0)"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "cart-recommendations",
+    "c33a7713-511a-414a-9e7b-5ce81c0a84fc"
+  ]
+}
