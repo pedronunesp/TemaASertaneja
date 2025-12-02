@@ -10,70 +10,81 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Verifica se estamos em uma página com calculadora de frete
-    const cepCalculatorInput = document.getElementById('cep-input');
-    const calculateButton = document.getElementById('calculate-freight-btn');
+    // Selectors for VisionFrete (Product/Cart pages)
+    const visionInput = document.getElementById('campo-cep');
+    const visionButton = document.querySelector('.buscaCep');
     
-    if (cepCalculatorInput && calculateButton) {
-      // Recupera o CEP salvo
+    // Selectors for other calculators (generic fallback)
+    const genericInput = document.getElementById('cep-input');
+    const genericButton = document.getElementById('calculate-freight-btn');
+
+    const targetInput = visionInput || genericInput;
+    const targetButton = visionButton || genericButton;
+    
+    if (targetInput) {
+      // Retrieve saved CEP
       const savedCep = localStorage.getItem('shopify_customer_cep') || 
-                       {% if cart.attributes.customer_cep %}
+                       {% if cart.attributes.CEP %}
+                         "{{ cart.attributes.CEP }}"
+                       {% elsif cart.attributes.customer_cep %}
                          "{{ cart.attributes.customer_cep }}"
                        {% else %}
                          null
                        {% endif %};
                          
       if (savedCep) {
-        // Preenche o campo de CEP na calculadora
-        cepCalculatorInput.value = savedCep.replace(/\D/g, '');
+        // Fill input
+        targetInput.value = savedCep.replace(/\D/g, ''); // Keep only numbers or format as needed
         
-        // Opcional: aciona o cálculo de frete automaticamente
-        // Descomente a linha abaixo se quiser que o cálculo seja feito automaticamente
-        // calculateButton.click();
+        // Format for VisionFrete (expects 00000-000 usually, but let's check mask)
+        // visionfrete.liquid uses data-mask="00000-000" but logic handles raw input?
+        // Let's trigger input event just in case
+        targetInput.dispatchEvent(new Event('input', { bubbles: true }));
+        
+        // Optional: Auto-click button if on product page and we have a CEP
+        // Only if it's visionButton to avoid loops or unwanted behavior
+        if (visionButton && window.location.pathname.includes('/products/')) {
+           // visionButton.click(); // Uncomment if auto-calculation is desired
+        }
       }
       
-      // Quando o cálculo for feito, salva o CEP globalmente
-      calculateButton.addEventListener('click', function() {
-        const cep = cepCalculatorInput.value.replace(/\D/g, '');
-        if (cep.length === 8) {
-          // Formata o CEP (00000-000)
-          const formattedCep = cep.replace(/(\d{5})(\d{3})/, '$1-$2');
-          
-          // Atualiza o CEP global
-          if (window.globalCep && typeof window.globalCep.setCep === 'function') {
-            window.globalCep.setCep(cep);
-          } else {
-            // Fallback se o objeto globalCep não estiver disponível
+      // Listen for calculation to update global state
+      if (targetButton) {
+        targetButton.addEventListener('click', function() {
+          const cep = targetInput.value.replace(/\D/g, '');
+          if (cep.length === 8) {
+            const formattedCep = cep.replace(/(\d{5})(\d{3})/, '$1-$2');
+            
+            // Save to localStorage
             localStorage.setItem('shopify_customer_cep', formattedCep);
             
-            // Atualiza o cart.attributes
+            // Dispatch event
+            document.dispatchEvent(new CustomEvent('cep_updated', { 
+              detail: { cep: formattedCep } 
+            }));
+            
+            // Update Cart Attributes
             fetch('/cart/update.js', {
               method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
+              headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
                 attributes: {
-                  customer_cep: formattedCep
+                  'CEP': formattedCep
                 }
               })
-            })
-            .then(response => response.json())
-            .catch(error => {
-              // Erro silencioso ao salvar CEP
-            });
+            }).catch(e => console.warn(e));
           }
-        }
-      });
+        });
+      }
     }
     
-    // Escuta por atualizações no CEP
+    // Listen for global updates (e.g. from Header)
     document.addEventListener('cep_updated', function(e) {
       const newCep = e.detail.cep;
-      
-      // Atualiza o campo de CEP na calculadora de frete, se existir
-      if (cepCalculatorInput) {
-        cepCalculatorInput.value = newCep;
+      if (newCep && targetInput) {
+        targetInput.value = newCep;
+        // Optionally trigger calculation
+        // if (targetButton) targetButton.click();
       }
     });
   });

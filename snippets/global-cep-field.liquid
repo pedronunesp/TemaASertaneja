@@ -4,9 +4,22 @@
 {% endcomment %}
 
 <style>
+  /* Global Bar Styling (Parent Container) */
+  .global-cep-bar {
+    background-color: #f9f9f9;
+    border-top: 1px solid #e5e5e5;
+    padding: 8px 0;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .global-cep-component {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     font-family: var(--font-body-family, sans-serif);
   }
 
@@ -16,23 +29,26 @@
     align-items: center;
     gap: 8px;
     background: transparent;
-    border: 1px solid transparent; /* Para manter alinhamento se precisar de borda no hover */
-    padding: 6px 10px;
-    border-radius: 4px;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    border-radius: 20px; /* Pill shape */
     cursor: pointer;
-    color: inherit;
+    color: var(--color-text, #333);
     font-size: 0.9rem;
-    transition: background-color 0.2s, opacity 0.2s;
+    font-weight: 500;
+    transition: all 0.2s ease;
   }
 
   .cep-trigger:hover {
     background-color: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0,0,0,0.1);
   }
   
   .cep-trigger svg {
     width: 18px;
     height: 18px;
     flex-shrink: 0;
+    color: var(--color-primary, #000); /* Use theme primary color if available */
   }
 
   .cep-text {
@@ -325,11 +341,16 @@
       return value.replace(/\D/g, '').replace(/^(\d{5})(\d)/, '$1-$2');
     }
 
-    async function fetchCepData(cep) {
+    async function fetchCepData(cep, shouldDispatch = true) {
       const cleanCep = cep.replace(/\D/g, '');
       if (cleanCep.length !== 8) {
         showError('CEP incompleto.');
         return;
+      }
+      
+      // Evita refetch se for o mesmo CEP e já tivermos dados (opcional, mas bom para performance)
+      if (cleanCep === currentCep && currentCity && currentState) {
+          return;
       }
 
       setLoading(true);
@@ -375,9 +396,11 @@
         toggleModal(true); // Fecha modal
 
         // Dispara evento para outros scripts (ex: atualizar frete no carrinho)
-        document.dispatchEvent(new CustomEvent('cep_updated', { 
-          detail: { cep: cleanCep, city: city, state: state } 
-        }));
+        if (shouldDispatch) {
+            document.dispatchEvent(new CustomEvent('cep_updated', { 
+              detail: { cep: cleanCep, city: city, state: state, source: 'global-cep-field' } 
+            }));
+        }
 
         // Tenta atualizar atributo do carrinho (se a função existir ou via fetch)
         updateCartAttributes(cleanCep, city, state);
@@ -462,6 +485,24 @@
     clearBtn.addEventListener('click', (e) => {
       e.preventDefault();
       clearLocation();
+    });
+
+    // Escuta atualizações externas (ex: calculadora da página de produto)
+    document.addEventListener('cep_updated', (e) => {
+      const cep = e.detail.cep;
+      const source = e.detail.source;
+      
+      // Ignora se a atualização veio daqui mesmo
+      if (source === 'global-cep-field') return;
+
+      if (cep) {
+         // Atualiza sem disparar novo evento para evitar loops
+         fetchCepData(cep, false);
+      } else if (cep === null) {
+          // Se cep for null, limpa (mas cuidado com loops aqui também)
+          // clearLocation dispara evento, então precisamos de flag lá também?
+          // clearLocation não aceita flag ainda, mas podemos ignorar por enquanto
+      }
     });
 
     // Inicializa
