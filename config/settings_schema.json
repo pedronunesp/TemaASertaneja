@@ -1,0 +1,2518 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "A Sertaneja",
+    "theme_author": "A Sertaneja",
+    "theme_version": "1.0",
+    "theme_documentation_url": "https://https://asertanejaoficial.com.br/",
+    "theme_support_url": "https://https://asertanejaoficial.com.br/"
+  },
+  
+  {
+    "name": "Alterações Pagina Inicial e Logo",
+    "settings": [
+      {
+        "type": "header",
+        "content": "BARRA DE ANÚNCIOS"
+      },
+      {
+        "type": "range",
+        "id": "anuncio_fontem",
+        "label": "Fonte Anuncio Mobile",
+        "min": 5,
+        "max": 30,
+        "unit": "px",
+        "info": "Use esse recurso para aumentar a fonte da barra de anúncios no mobile",
+        "step": 1,
+        "default": 12
+      },
+      {
+        "type": "range",
+        "id": "anuncio_alturam",
+        "label": "Altura Anuncio Mobile",
+        "min": 20,
+        "max": 70,
+        "unit": "px",
+        "info": "Use esse recurso para aumentar a altura da barra de anúncios no mobile",
+        "step": 1,
+        "default": 30
+      },
+      {
+        "type": "range",
+        "id": "anuncio_fonted",
+        "label": "Fonte Anuncio desktop",
+        "min": 5,
+        "max": 30,
+        "unit": "px",
+        "info": "Use esse recurso para aumentar a fonte da barra de anúncios no desktop",
+        "step": 1,
+        "default": 16
+      },
+      {
+        "type": "range",
+        "id": "anuncio_alturad",
+        "label": "Altura Anuncio desktop",
+        "min": 20,
+        "max": 70,
+        "unit": "px",
+        "info": "Use esse recurso para aumentar a altura da barra de anúncios no desktop",
+        "step": 1,
+        "default": 30
+      },
+      {
+        "type": "header",
+        "content": "LOGOTIPO"
+      },
+      {
+        "type": "range",
+        "id": "logo_ps_m",
+        "label": "Padding superior Mobile",
+        "min": 0,
+        "max": 40,
+        "unit": "px",
+        "info": "Use esse recurso para aumentar o espaçamento superior entre a logo e a barra de anúncio no mobile",
+        "step": 1,
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "logo_pi_m",
+        "label": "Padding inferior Mobile",
+        "min": 0,
+        "max": 40,
+        "unit": "px",
+        "info": "Use esse recurso para aumentar o espaçamento inferior entre a logo e o fim da seção de cabeçalho no mobile",
+        "step": 1,
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "logo_ps_d",
+        "label": "Padding superior Desktop",
+        "min": 0,
+        "max": 40,
+        "unit": "px",
+        "info": "Use esse recurso para aumentar o espaçamento superior entre a logo e a barra de anúncio no desktop",
+        "step": 1,
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "logo_pi_d",
+        "label": "Padding inferior desktop",
+        "min": 0,
+        "max": 40,
+        "unit": "px",
+        "info": "Use esse recurso para aumentar o espaçamento inferior entre a logo e o fim da seção de cabeçalho no desktop",
+        "step": 1,
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "logo_correcao_m",
+        "label": "Ajuste Logo mobile",
+        "min": -40,
+        "max": 40,
+        "unit": "px",
+        "info": "Use esse recurso para conseguir centralizar sua logo perfeitamente no cabeçalho. Use 0 como padrão. Valores negativos elevam a logotipo enquanto valores positivos a abaixam",
+        "step": 1,
+        "default": -8
+      },
+      {
+        "type": "range",
+        "id": "logo_correcao_d",
+        "label": "Ajuste Logo desktop",
+        "min": -40,
+        "max": 40,
+        "unit": "px",
+        "info": "Use esse recurso para conseguir centralizar sua logo perfeitamente no cabeçalho. Use 0 como padrão. Valores negativos elevam a logotipo enquanto valores positivos a abaixam",
+        "step": 1,
+        "default": -9
+      },
+      {
+        "type": "header",
+        "content": "Fontes títulos e subtítulos das coleções"
+      },
+      {
+        "type": "range",
+        "id": "colecao_fonte1m",
+        "label": "Fonte dos títulos mobile",
+        "min": 10,
+        "max": 50,
+        "unit": "px",
+        "step": 1,
+        "default": 22
+      },
+      {
+        "type": "range",
+        "id": "colecao_fonte1d",
+        "label": "Fonte dos títulos Desktop",
+        "min": 10,
+        "max": 50,
+        "unit": "px",
+        "step": 1,
+        "default": 22
+      }
+    ]
+  },
+  {
+    "name": "Alterações Pagina Produto",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Caminho da página"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_caminho",
+        "label": "Mostrar caminho da página",
+        "info": "Esse caminho do produto/página é o que aparece no Desktop no canto esquerto. Exemplo: Pagina inicial > Todos os produtos > Produto tal",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Informações Iniciais"
+      },
+      {
+        "type": "color",
+        "id": "background_vendidos",
+        "label": "Background Vendidos",
+        "info": "Cor de fundo da label de vendidos",
+        "default": "#f5f5f5"
+      },
+      {
+        "type": "color",
+        "id": "fonte_vendidos",
+        "label": "Fonte Vendidos",
+        "info": "Cor da fonte da label de vendidos",
+        "default": "#a7a5a5"
+      },
+      {
+        "type": "text",
+        "id": "exlusividade_label",
+        "label": "Label Exclusividade",
+        "info": "Utilize o campo acima para mudar o texto da label de exclusividade. Útil para datas específicas por exemplo: PROMOÇÃO DO DIA DAS MÃES. Obs: cuidado com o tamanho do texto utilizado",
+        "default": "EXCLUSIVIDADE"
+      },
+      {
+        "type": "color",
+        "id": "background_exclusividade",
+        "label": "Background Exclusividade",
+        "info": "Cor de fundo da label de exclusividade",
+        "default": "#fff4eb"
+      },
+      {
+        "type": "color",
+        "id": "fonte_exclusividade",
+        "label": "Fonte Exclusividade",
+        "info": "Cor da fonte da label de exclusividade",
+        "default": "#e2a696"
+      },
+      {
+        "type": "text",
+        "id": "exlusividade_label2",
+        "label": "Label Mais Vendido",
+        "info": "Utilize o campo acima para mudar o texto da label Mais Vendido",
+        "default": "MAIS VENDIDO"
+      },
+      {
+        "type": "color",
+        "id": "background_exclusividade2",
+        "label": "Background Mais Vendido",
+        "info": "Cor de fundo da label Mais Vendido",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "fonte_exclusividade2",
+        "label": "Fonte label 3",
+        "info": "Cor da fonte da label Mais Vendido",
+        "default": "#FFF"
+      },
+      {
+        "type": "header",
+        "content": "Mensagem Pix"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_pix_envio",
+        "label": "Mensagem Pagamento PIX",
+        "info": "Mensagem de pagamento PIX com desconto e envio prioritário",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "pix_envio_percent",
+        "label": "Porcentagem desconto",
+        "info": "Porcentagem de desconto oferecida para pagamentos via PIX",
+        "default": "5% OFF"
+      },
+      {
+        "type": "text",
+        "id": "pix_envio_envio",
+        "label": "Mensagem de envio",
+        "info": "Mensagem para parte de envio prioritário no PIX",
+        "default": "+ Envio Prioritário"
+      },
+      {
+        "type": "range",
+        "id": "pix_envio_tfonte",
+        "label": "Tamanho da fonte",
+        "info": "Ajuste o tamanho da fonte do script",
+        "min": 5,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "default": 13
+      },
+      {
+        "type": "range",
+        "id": "pix_envio_tsimb",
+        "label": "Tamanho do Simbolo",
+        "info": "Ajuste o tamanho do simbolo PIX",
+        "min": 5,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "default": 18
+      },
+      {
+        "type": "range",
+        "id": "pix_envio_bordgeral",
+        "label": "Arredondamento externo",
+        "info": "Ajuste o arredondamento da parte externa da mensagem",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 7
+      },
+      {
+        "type": "range",
+        "id": "pix_envio_bordenvio",
+        "label": "Arredondamento mensagem Envio",
+        "info": "Ajuste o arredondamento da parte da mensagem de envio",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 15
+      },
+      {
+        "type": "color",
+        "id": "pix_envio_fundo",
+        "label": "Cor de fundo Geral",
+        "default": "#f0f0f0"
+      },
+      {
+        "type": "color",
+        "id": "pix_envio_textdesc",
+        "label": "Cor da % desconto",
+        "default": "#201F1F"
+      },
+      {
+        "type": "color",
+        "id": "pix_envio_textnpix",
+        "label": "Cor de ..no pix..",
+        "default": "#5E5E5E"
+      },
+      {
+        "type": "color",
+        "id": "pix_envio_simb",
+        "label": "Cor simbolo PIX",
+        "default": "#01b47c"
+      },
+      {
+        "type": "color",
+        "id": "pix_envio_enviofundo",
+        "label": "Cor fundo Envio prioritário",
+        "default": "#01b47c"
+      },
+      {
+        "type": "color",
+        "id": "pix_envio_enviotexto",
+        "label": "Cor texto Envio prioritário",
+        "default": "#fff"
+      },
+      {
+        "type": "header",
+        "content": "BOXES DE FRETE, GARANTIA E SEGURANÇA"
+      },
+      {
+        "type": "color",
+        "id": "boxes_primaria",
+        "label": "Background dos boxes",
+        "info": "Cor dos backgrounds dos box de frete, garantia e segurança.",
+        "default": "#FAFAFA"
+      },
+      {
+        "type": "color",
+        "id": "boxes_sec",
+        "label": "Fonte dos boxes",
+        "info": "Cor das fontes dos box de frete, garantia e segurança.",
+        "default": "#8f8f8f"
+      },
+      {
+        "type": "color",
+        "id": "boxes_titulo",
+        "label": "Cor dos títulos e símbolos",
+        "info": "Cor dos títulos e símbolos dos box de frete e garantia",
+        "default": "#282828"
+      },
+      {
+        "type": "header",
+        "content": "LISTA PREÇO"
+      },
+      {
+        "type": "range",
+        "id": "preco_size",
+        "label": "Fonte Preço Desktop",
+        "info": "Ajuste o tamanho da fonte do preço para desktop",
+        "min": 14,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 28
+      },
+      {
+        "type": "range",
+        "id": "preco_sizem",
+        "label": "Fonte Preço mobile",
+        "info": "Ajuste o tamanho da fonte do preço para mobile",
+        "min": 14,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 28
+      },
+      {
+        "type": "color",
+        "id": "parcel_prod",
+        "label": "Cor parcelamento",
+        "info": "Cor do valor do parcelamento em 12x",
+        "default": "#333"
+      },
+      {
+        "type": "range",
+        "id": "fonte_descont_pr",
+        "label": "Fonte da label desconto",
+        "info": "Ajuste o tamanho da label de desconto",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 12
+      },
+      {
+        "type": "range",
+        "id": "borda_descont_pr",
+        "label": "Borda da label desconto",
+        "info": "Ajuste o arredondamento da label de desconto",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 4
+      },
+      {
+        "type": "color",
+        "id": "labeldesconto_color",
+        "label": "Cor da Label Desconto",
+        "info": "Cor da label de desconto ao lado do preço e nos cards iniciais",
+        "default": "#d43e15"
+      },
+      {
+        "type": "color",
+        "id": "labeldesconto_fonte",
+        "label": "Letra da Label Desconto",
+        "info": "Cor da fonte label de desconto",
+        "default": "#fff"
+      },
+      {
+        "type": "header",
+        "content": "Botão de Compra, quantidade e Whatsapp"
+      },
+      {
+        "type": "range",
+        "id": "alt_botao_quantidade",
+        "label": "Altura botão compra, quantidade, whats",
+        "info": "Defina a altura do botão de compra, do seletor de quantidade, botão whatsapp e botão flutuante",
+        "min": 40,
+        "max": 70,
+        "unit": "px",
+        "step": 1,
+        "default": 50
+      },
+      {
+        "type": "range",
+        "id": "borda_botao_quantidade",
+        "label": "Arredondamento botão compra, quantidade e whatsapp",
+        "info": "Defina o arredondamento do botão de compra, whatsapp, do seletor de quantidade e botão flutuante",
+        "min": 0,
+        "max": 50,
+        "unit": "px",
+        "step": 1,
+        "default": 7
+      },
+      {
+        "type": "header",
+        "content": "Título e Largura das bandeiras abaixo do botão de compra"
+      },
+      {
+        "type": "range",
+        "id": "fonte_t_bandeiras",
+        "label": "Tamanho da fonte",
+        "info": "Tamanho da fonte do título das bandeiras",
+        "min": 5,
+        "max": 20,
+        "unit": "px",
+        "default": 12
+      },
+      {
+        "type": "range",
+        "id": "bandeiras_w_mobile",
+        "label": "Tamanho bandeiras mobile",
+        "info": "Use esse recurso se diminuir o número de bandeiras, para que consiga preencher totalmente a largura disponível",
+        "min": 5,
+        "max": 20,
+        "unit": "%",
+        "default": 10
+      },
+      {
+        "type": "range",
+        "id": "bandeiras_w_desktop",
+        "label": "Tamanho bandeiras desktop",
+        "info": "Use esse recurso se diminuir o número de bandeiras, para que consiga preencher totalmente a largura disponível",
+        "min": 5,
+        "max": 20,
+        "unit": "%",
+        "default": 10
+      },
+      {
+        "type": "header",
+        "content": "Botão de Whatsapp"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_whats_compra",
+        "label": "Botão Whatsapp",
+        "info": "Mostrar botão de whatsapp abaixo do botão de compra",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "whats_num_compra",
+        "label": "Numero Whatsapp",
+        "info": "Digite o número no formado 11999999999 sem espaços ou -",
+        "default": "11999999999"
+      },
+      {
+        "type": "text",
+        "id": "whats_compra_text",
+        "label": "Frase Botão",
+        "info": "Conteúdo do botão",
+        "default": "Comprar pelo WhatsApp"
+      },
+      {
+        "type": "range",
+        "id": "fonte_whatscompra",
+        "label": "Fonte do btn whatsapp",
+        "info": "Defina a fonte do botão do whatspp",
+        "min": 14,
+        "max": 18,
+        "step": 1,
+        "default": 16
+      },
+      {
+        "type": "range",
+        "id": "spc_whatscompra",
+        "label": "espaçamento fonte",
+        "info": "Defina o espaçamento entre as letras da fonte do botão do whatspp",
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.1,
+        "default": 0.2
+      },
+      {
+        "type": "color",
+        "id": "whatscompra_cor1",
+        "label": "Cor primária",
+        "info": "Cor da fonte e icon do whatsapp",
+        "default": "#0fb930"
+      },
+      {
+        "type": "color",
+        "id": "whatscompra_cor2",
+        "label": "Background botão Wpp",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "whatscompra_cor3",
+        "label": "Cor primária hover",
+        "info": "Cor da fonte e icon do whatsapp quando se passa o mouse sobre",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "whatscompra_cor4",
+        "label": "Background hover",
+        "default": "#0fb930"
+      },
+      {
+        "type": "color",
+        "id": "whatscompra_cor5",
+        "label": "Cor da Borda do btn",
+        "default": "#0fb930"
+      },
+      {
+        "type": "header",
+        "content": "Alteração Boxes"
+      },
+      {
+        "type": "range",
+        "id": "arredonda_boxes",
+        "label": "Arredondamento das bordas",
+        "info": "Defina o arredondamento das bordas dos boxes abaixo do botão de compra, isso inlcui o box de bandeiras de pagamento, fretes, e demais.",
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 6
+      }
+    ]
+  },
+  {
+    "name": "Alterações Rodapé",
+    "settings": [
+      {
+        "type": "header",
+        "content": "RODAPÉ VISION"
+      },
+      {
+        "type": "paragraph",
+        "content": "Botão Whatsapp no Rodapé"
+      },
+      {
+        "type": "color",
+        "id": "colorp_whats",
+        "label": "Cor do Botão do whatsapp",
+        "info": "Cor do botão do Whatsapp",
+        "default": "#008026"
+      },
+      {
+        "type": "color",
+        "id": "colors_whats",
+        "label": "Cor da escrita e símbolo do whatsapp",
+        "info": "Cor da letra e símbolo do whatsapp",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "colort_whats",
+        "label": "Cor do botão ao passar o mouse",
+        "info": "Cor do botão do whatsapp ao passar o mouse sobre",
+        "default": "#008026"
+      },
+      {
+        "type": "color",
+        "id": "colorq_whats",
+        "label": "Cor da escrita ao passar o mouse",
+        "info": "Cor da escrita ao passar o mouse sobre",
+        "default": "#fff"
+      },
+      {
+        "type": "paragraph",
+        "content": "Formas de Pagamento"
+      },
+      {
+        "type": "paragraph",
+        "content": "BANDEIRAS ESTILO 1"
+      },
+      {
+        "type": "checkbox",
+        "id": "bandeiras1_foot",
+        "label": "Bandeiras Estilo 1",
+        "default": true
+      },
+      {
+        "type": "paragraph",
+        "content": "BANDEIRAS ESTILO 2"
+      },
+      {
+        "type": "range",
+        "id": "selito-largura",
+        "label": "Largura bandeiras Desktop",
+        "info": "Válido apenas para o rodapé padrão",
+        "min": 20,
+        "max": 70,
+        "step": 1,
+        "unit": "px",
+        "default": 40
+      },
+      {
+        "type": "range",
+        "id": "selito-larguram",
+        "label": "Largura bandeiras Mobile",
+        "info": "Válido apenas para o rodapé padrão",
+        "min": 10,
+        "max": 70,
+        "step": 1,
+        "unit": "px",
+        "default": 33
+      },
+      {
+        "type": "checkbox",
+        "id": "bandeiras2_foot",
+        "label": "Bandeiras Estilo 2",
+        "default": false
+      },
+      {
+        "type": "paragraph",
+        "content": "BANDEIRAS ATIVAS"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_visa_fv",
+        "label": "Ativar bandeira Visa",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_diners_fv",
+        "label": "Ativar bandeira Dinners",
+        "info": "Não válido para o rodapé padrão com bandeiras Estilo 2",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_master_fv",
+        "label": "Ativar bandeira Mastercard",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_hiper_fv",
+        "label": "Ativar bandeira Hipercard",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_Aura_fv",
+        "label": "Ativar bandeira Aura",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_elo_fv",
+        "label": "Ativar bandeira Elo",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_amex_fv",
+        "label": "Ativar bandeira Amex",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_discover_fv",
+        "label": "Ativar bandeira Discover",
+        "info": "Não válido para o rodapé padrão com bandeiras Estilo 2",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_boleto_fv",
+        "label": "Ativar Boleto",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_pix_fv",
+        "label": "Ativar pix",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Selos"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_lojaverificada",
+        "label": "Habilitar Selos de segurança",
+        "info": "Habilite para apresentar os selos de loja verificada",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "reclameaqui",
+        "label": "Habilitar selo reclameaqui",
+        "info": "Habilite para apresentar o selo do reclame aqui no rodapé",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "link_reclameaqui",
+        "label": "Link reclame aqui",
+        "info": "insira o link para redirecionamento do Reclame aqui",
+        "default": "https://www.reclameaqui.com.br/"
+      },
+      {
+        "type": "checkbox",
+        "id": "norton",
+        "label": "Habilitar selo norton",
+        "info": "Habilite para apresentar o selo do Norton, escolha entre esse e o selo do reclame aqui",
+        "default": false
+      },
+      {
+        "type": "image_picker",
+        "id": "selo2",
+        "label": "Image",
+        "info": "recomendado 200 x 60px svg. Essa imagem será utilizada caso não queira usar o selo do Reclame Aqui nem Norton"
+      },
+      {
+        "type": "text",
+        "id": "linkselo",
+        "label": "Link para selo",
+        "info": "insira o link para redirecionamento do selo, como no exemplo acima ˆ",
+        "default": "https://safeweb.norton.com/report/show?url=www.minhaloja.com"
+      },
+      {
+        "type": "header",
+        "content": "__________________"
+      },
+      {
+        "type": "paragraph",
+        "content": "ICONES SOCIAIS GERAIS ALTERAÇÕES"
+      },
+      {
+        "type": "range",
+        "id": "radius-social",
+        "label": "Arredondamento das bordas",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 8
+      },
+      {
+        "type": "range",
+        "id": "margind-social",
+        "label": "Margem direita",
+        "min": 0,
+        "max": 15,
+        "step": 1,
+        "unit": "px",
+        "default": 5
+      },
+      {
+        "type": "range",
+        "id": "margini-social",
+        "label": "Margem inferior",
+        "min": 0,
+        "max": 15,
+        "step": 1,
+        "unit": "px",
+        "default": 5
+      },
+      {
+        "type": "color",
+        "id": "cor-borda-social",
+        "label": "Cor da borda",
+        "default": "#d7d7d7"
+      },
+      {
+        "type": "color",
+        "id": "cor-icon-social",
+        "label": "Cor do icone",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "background-icon-social",
+        "label": "Cor do background do icone",
+        "default": "#fff"
+      }
+    ]
+  },
+  {
+    "name": "Barra de privacidade",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Barra de cookies"
+      },
+      {
+        "type": "color",
+        "id": "cookie_fundogeral",
+        "label": "Cor do fundo da barra",
+        "default": "#ededed"
+      },
+      {
+        "type": "color",
+        "id": "cookie_fontegeral",
+        "label": "Cor da fonte da barra",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "cookie_aceitarfundo",
+        "label": "Cor do fundo botão aceitar",
+        "default": "#008026"
+      },
+      {
+        "type": "color",
+        "id": "cookie_aceitarfonte",
+        "label": "Cor da fonte botão aceitar",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "cookie_recusarfundo",
+        "label": "Cor do fundo botão rejeitar",
+        "default": "#fa0000"
+      },
+      {
+        "type": "color",
+        "id": "cookie_recusarfonte",
+        "label": "Cor da fonte botão rejeitar",
+        "default": "#fff"
+      },
+      {
+        "type": "range",
+        "id": "cookies_fonte",
+        "label": "Tamanho da fonte geral",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "default": 14
+      }
+    ]
+  },
+  {
+    "name": "Sticky WhatsApp",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Whatsapp Flutuante"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_sticky_whats",
+        "label": "Ativar Wpp sticky",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_sticky_whatsd",
+        "label": "Mostrar no Desktop",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_sticky_whatsm",
+        "label": "Mostrar no Mobile",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "whats_num_sticky",
+        "label": "Numero Whatsapp",
+        "info": "Digite o número no formado 11999999999 sem espaços ou -",
+        "default": "11999999999"
+      }
+    ]
+  },
+  {
+    "name": "Fretes Tema Vision",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Primeira Opção de Frete"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_frete1_antes",
+        "label": "Frete 1 antes do btn compra",
+        "info": "Primeira opção de frete, antes do botão de compra",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_frete1_depois",
+        "label": "Frete 1 depois do btn compra",
+        "info": "Primeira opção de frete, depois do botão de compra",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "frete1_frase",
+        "label": "Prazo de entrega ou envio",
+        "info": "Recomendações: Utilize no máximo 4 palavras para o texto ficar uniforme em todos os dispositiveis móveis",
+        "default": "Prazo de envio de 2 a 5 dias"
+      },
+      {
+        "type": "checkbox",
+        "id": "frete1_caminhao",
+        "label": "Usar simbolo Caminhão",
+        "info": "Primeira opção de frete, com simbolo do caminhão",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "frete1_correios",
+        "label": "Usar simbolo Correios",
+        "info": "Primeira opção de frete, com simbolo dos correios. Opção apenas disponível se a box do caminhão estiver desativada",
+        "default": false
+      },
+      {
+        "type": "color",
+        "id": "product_truck_background",
+        "label": "Cor do fundo do caminhão de Frete",
+        "default": "#00c3ee"
+      },
+      {
+        "type": "color",
+        "id": "product_truck_color",
+        "label": "Cor do caminhão de Frete",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "product_free_shipping_color",
+        "label": "Cor do Frete Grátis",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "product_localization_color",
+        "label": "Cor da localização",
+        "default": "#36b376"
+      },
+      {
+        "type": "color",
+        "id": "color_frete_fundo",
+        "label": "Cor do fundo",
+        "default": "#fff"
+      },
+      {
+        "type": "header",
+        "content": "Segunda Opcao de frete CEP",
+        "info": "Altere aqui as informações sobre o frete"
+      },
+      {
+        "type": "text",
+        "id": "fretechamada",
+        "label": "Título",
+        "info": "Título do card de frete",
+        "default": "Calcule o Envio e Prazo de Entrega"
+      },
+      {
+        "type": "text",
+        "id": "fretebotaofrase",
+        "label": "Frase botão",
+        "info": "Nome que aparecerá no botão",
+        "default": "Calcular"
+      },
+      {
+        "type": "color",
+        "id": "buscar_frete_btn",
+        "label": "Cor background do botão buscar",
+        "default": "#36b376"
+      },
+      {
+        "type": "color",
+        "id": "buscar_frete_fonte",
+        "label": "Cor da fonte do botão buscar",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "buscar_frete_local",
+        "label": "Cor da localização",
+        "default": "#36b376"
+      },
+      {
+        "type": "color",
+        "id": "buscar_frete_preco",
+        "label": "Cor dos preços no resultado do frete",
+        "default": "#36b376"
+      },
+      {
+        "type": "checkbox",
+        "id": "opcao_frete1",
+        "label": "1º Linha Frete",
+        "info": "Ativar 1º linha do frete",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "frete1_nome",
+        "label": "Nome para o frete 1",
+        "info": "Nome para o primeiro frete, utilize termos como Grátis, padrão, PAC etc.",
+        "default": "Padrão"
+      },
+      {
+        "type": "text",
+        "id": "frete1_preco",
+        "label": "Preco Frete 1",
+        "info": "Adicione o preço para primeira opção de frete",
+        "default": "Grátis"
+      },
+      {
+        "type": "text",
+        "id": "frete1_prazo",
+        "label": "Prazo Frete 1",
+        "info": "Adicione o prazo para primeira opção de frete",
+        "default": "8 a 11 dias"
+      },
+      {
+        "type": "checkbox",
+        "id": "opcao_frete2",
+        "label": "2º Linha Frete",
+        "info": "Ativar a 2º linha do frete",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "frete2_nome",
+        "label": "Nome para o frete 2",
+        "info": "Nome para o segundo frete, utilize termos como expresso, sedex etc.",
+        "default": "Expresso"
+      },
+      {
+        "type": "text",
+        "id": "frete2_preco",
+        "label": "Preco Frete 2",
+        "info": "Adicione o preço para segunda opção de frete",
+        "default": "R$ 9,79"
+      },
+      {
+        "type": "text",
+        "id": "frete2_prazo",
+        "label": "Prazo Frete 2",
+        "info": "Adicione o prazo para segunda opção de frete",
+        "default": "5 a 7 dias"
+      },
+      {
+        "type": "checkbox",
+        "id": "opcao_frete3",
+        "label": "3º Linha Frete",
+        "info": "Ativar a 3º linha do frete",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "frete3_nome",
+        "label": "Nome para o frete 3",
+        "info": "Nome para o terceiro frete, utilize termos como expresso, sedex etc.",
+        "default": "Jadlog"
+      },
+      {
+        "type": "text",
+        "id": "frete3_preco",
+        "label": "Preco Frete 3",
+        "info": "Adicione o preço para terceira opção de frete",
+        "default": "R$ 9,79"
+      },
+      {
+        "type": "text",
+        "id": "frete3_prazo",
+        "label": "Prazo Frete 3",
+        "info": "Adicione o prazo para terceira opção de frete",
+        "default": "5 a 7 dias"
+      },
+      {
+        "type": "checkbox",
+        "id": "opcao_frete4",
+        "label": "4º Linha Frete",
+        "info": "Ativar a 4º linha do frete",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "frete4_nome",
+        "label": "Nome para o frete 4",
+        "info": "Nome para o quarto frete, utilize termos como expresso, sedex etc.",
+        "default": "Transportadora"
+      },
+      {
+        "type": "text",
+        "id": "frete4_preco",
+        "label": "Preco Frete 4",
+        "info": "Adicione o preço para quarta opção de frete",
+        "default": "R$ 9,79"
+      },
+      {
+        "type": "text",
+        "id": "frete4_prazo",
+        "label": "Prazo Frete 4",
+        "info": "Adicione o prazo para quarta opção de frete",
+        "default": "5 a 7 dias"
+      },
+      {
+        "type": "checkbox",
+        "id": "opcao_frete5",
+        "label": "5º Linha Frete",
+        "info": "Ativar a 5º linha do frete",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "frete5_nome",
+        "label": "Nome para o frete 5",
+        "info": "Nome para o quinto frete, utilize termos como expresso, sedex etc.",
+        "default": "PAC"
+      },
+      {
+        "type": "text",
+        "id": "frete5_preco",
+        "label": "Preco Frete 5",
+        "info": "Adicione o preço para quinta opção de frete",
+        "default": "R$ 9,79"
+      },
+      {
+        "type": "text",
+        "id": "frete5_prazo",
+        "label": "Prazo Frete 5",
+        "info": "Adicione o prazo para quinta opção de frete",
+        "default": "5 a 7 dias"
+      }
+    ]
+  },
+  {
+    "name": "Tabela Medida Pag Produto",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Botão de medidas em pop-up"
+      },
+      {
+        "type": "paragraph",
+        "content": "Como Usar"
+      },
+      {
+        "type": "paragraph",
+        "content": "Vá até o produto onde deseja que o popup apareça. Definas as seguintes tags, medidas1 ou medidas2 ou .... até medidas10. Caso adicione a tag medidas1 a imagem referente ao Produto Tipo 1 será apresentada. Qualquer dúvida, assita a aula sobre essa função"
+      },
+      {
+        "type": "paragraph",
+        "content": "Aviso: Você definir até 10 imagens diferentes para tamanho. Ex: Tamanho para tenis, camisa, calça, saia, etc."
+      },
+      {
+        "type": "checkbox",
+        "id": "hide_popup_size",
+        "label": "Ativar opção de medidas?",
+        "info": "Botão de medidas nas variações do produto.",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "popup_button-text",
+        "label": "Nome que aparece no botão",
+        "info": "Por padrão fica sendo 'MEDIDAS'",
+        "default": "CONFIRA SUAS MEDIDAS"
+      },
+      {
+        "type": "color",
+        "id": "popup_size-color",
+        "label": "Cor do Botão de Medidas",
+        "info": "Troque a cor do botão aqui",
+        "default": "#2b3948"
+      },
+      {
+        "type": "color",
+        "id": "popup_text_medidas-color",
+        "label": "Cor da palavra",
+        "info": "Defina uma cor para o texto",
+        "default": "#ffffff"
+      },
+      {
+        "type": "range",
+        "id": "popup_border",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "label": "Borda arredondada do botão",
+        "info": "Para deixar sem deixe em 0",
+        "default": 6
+      },
+      {
+        "type": "color",
+        "id": "popup_show-color",
+        "label": "Cor da caixa do pop-up",
+        "info": "Box que abre ao clicar no botão",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "popup_text-color",
+        "label": "Cores no Pop-Up",
+        "info": "Defina uma cor para o título, o X e a borda.",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "icon_popup_titulo",
+        "label": "Cor título",
+        "info": "Defina uma cor para o titulo dentro do popup",
+        "default": "#000"
+      },
+      {
+        "type": "paragraph",
+        "content": "—————————————————"
+      },
+      {
+        "type": "text",
+        "id": "size-product",
+        "label": "Tipo de Produto 1",
+        "info": "Defina aqui o nome do tipo de produto, exemplo: anel, pulseira, sapato...",
+        "default": "Tamanho do..."
+      },
+      {
+        "type": "image_picker",
+        "id": "sizeproduct_pc",
+        "label": "Medidas na versão Desktop",
+        "info": "Formatos aceito: png, jpg ou gif. Por padrão, o seletor de imagem aparece vazio ao recarregar o personalizar. Verifique se a imagem foi carregada clicando no botão e habilitando o script"
+      },
+      {
+        "type": "image_picker",
+        "id": "sizeproduct_celular",
+        "label": "Medidas na versão Celular",
+        "info": "Formatos aceito: png, jpg ou gif"
+      },
+      {
+        "type": "paragraph",
+        "content": "—————————————————"
+      },
+      {
+        "type": "text",
+        "id": "size-product2",
+        "label": "Tipo de Produto 2",
+        "info": "Defina aqui o nome do tipo de produto, exemplo: anel, pulseira, sapato..."
+      },
+      {
+        "type": "image_picker",
+        "id": "sizeproduct_pc2",
+        "label": "Medidas na versão Desktop",
+        "info": "Formatos aceito: png, jpg ou gif"
+      },
+      {
+        "type": "image_picker",
+        "id": "sizeproduct_celular2",
+        "label": "Medidas na versão Celular",
+        "info": "Formatos aceito: png, jpg ou gif"
+      },
+      {
+        "type": "paragraph",
+        "content": "—————————————————"
+      },
+      {
+        "type": "text",
+        "id": "size-product3",
+        "label": "Tipo de Produto 3",
+        "info": "Defina aqui o nome do tipo de produto, exemplo: anel, pulseira, sapato..."
+      },
+      {
+        "type": "image_picker",
+        "id": "sizeproduct_pc3",
+        "label": "Medidas na versão Desktop",
+        "info": "Formatos aceito: png, jpg ou gif"
+      },
+      {
+        "type": "image_picker",
+        "id": "sizeproduct_celular3",
+        "label": "Medidas na versão Celular",
+        "info": "Formatos aceito: png, jpg ou gif"
+      },
+      {
+        "type": "paragraph",
+        "content": "—————————————————"
+      },
+      {
+        "type": "text",
+        "id": "size-product4",
+        "label": "Tipo de Produto 4",
+        "info": "Defina aqui o nome do tipo de produto, exemplo: anel, pulseira, sapato..."
+      },
+      {
+        "type": "image_picker",
+        "id": "sizeproduct_pc4",
+        "label": "Medidas na versão Desktop",
+        "info": "Formatos aceito: png, jpg ou gif"
+      },
+      {
+        "type": "image_picker",
+        "id": "sizeproduct_celular4",
+        "label": "Medidas na versão Celular",
+        "info": "Formatos aceito: png, jpg ou gif"
+      },
+      {
+        "type": "paragraph",
+        "content": "—————————————————"
+      },
+      {
+        "type": "text",
+        "id": "size-product5",
+        "label": "Tipo de Produto 5",
+        "info": "Defina aqui o nome do tipo de produto, exemplo: anel, pulseira, sapato..."
+      },
+      {
+        "type": "image_picker",
+        "id": "sizeproduct_pc5",
+        "label": "Medidas na versão Desktop",
+        "info": "Formatos aceito: png, jpg ou gif"
+      },
+      {
+        "type": "image_picker",
+        "id": "sizeproduct_celular5",
+        "label": "Medidas na versão Celular",
+        "info": "Formatos aceito: png, jpg ou gif"
+      },
+      {
+        "type": "paragraph",
+        "content": "—————————————————"
+      },
+      {
+        "type": "text",
+        "id": "size-product6",
+        "label": "Tipo de Produto 6",
+        "info": "Defina aqui o nome do tipo de produto, exemplo: anel, pulseira, sapato..."
+      },
+      {
+        "type": "image_picker",
+        "id": "sizeproduct_pc6",
+        "label": "Medidas na versão Desktop",
+        "info": "Formatos aceito: png, jpg ou gif"
+      },
+      {
+        "type": "image_picker",
+        "id": "sizeproduct_celular6",
+        "label": "Medidas na versão Celular",
+        "info": "Formatos aceito: png, jpg ou gif"
+      },
+      {
+        "type": "paragraph",
+        "content": "—————————————————"
+      },
+      {
+        "type": "text",
+        "id": "size-product7",
+        "label": "Tipo de Produto 7",
+        "info": "Defina aqui o nome do tipo de produto, exemplo: anel, pulseira, sapato..."
+      },
+      {
+        "type": "image_picker",
+        "id": "sizeproduct_pc7",
+        "label": "Medidas na versão Desktop",
+        "info": "Formatos aceito: png, jpg ou gif"
+      },
+      {
+        "type": "image_picker",
+        "id": "sizeproduct_celular7",
+        "label": "Medidas na versão Celular",
+        "info": "Formatos aceito: png, jpg ou gif"
+      },
+      {
+        "type": "paragraph",
+        "content": "—————————————————"
+      },
+      {
+        "type": "text",
+        "id": "size-product8",
+        "label": "Tipo de Produto 8",
+        "info": "Defina aqui o nome do tipo de produto, exemplo: anel, pulseira, sapato..."
+      },
+      {
+        "type": "image_picker",
+        "id": "sizeproduct_pc8",
+        "label": "Medidas na versão Desktop",
+        "info": "Formatos aceito: png, jpg ou gif"
+      },
+      {
+        "type": "image_picker",
+        "id": "sizeproduct_celular8",
+        "label": "Medidas na versão Celular",
+        "info": "Formatos aceito: png, jpg ou gif"
+      },
+      {
+        "type": "paragraph",
+        "content": "—————————————————"
+      },
+      {
+        "type": "text",
+        "id": "size-product9",
+        "label": "Tipo de Produto 9",
+        "info": "Defina aqui o nome do tipo de produto, exemplo: anel, pulseira, sapato..."
+      },
+      {
+        "type": "image_picker",
+        "id": "sizeproduct_pc9",
+        "label": "Medidas na versão Desktop",
+        "info": "Formatos aceito: png, jpg ou gif"
+      },
+      {
+        "type": "image_picker",
+        "id": "sizeproduct_celular9",
+        "label": "Medidas na versão Celular",
+        "info": "Formatos aceito: png, jpg ou gif"
+      },
+      {
+        "type": "paragraph",
+        "content": "—————————————————"
+      },
+      {
+        "type": "text",
+        "id": "size-product10",
+        "label": "Tipo de Produto 10",
+        "info": "Defina aqui o nome do tipo de produto, exemplo: anel, pulseira, sapato..."
+      },
+      {
+        "type": "image_picker",
+        "id": "sizeproduct_pc10",
+        "label": "Medidas na versão Desktop",
+        "info": "Formatos aceito: png, jpg ou gif"
+      },
+      {
+        "type": "image_picker",
+        "id": "sizeproduct_celular10",
+        "label": "Medidas na versão Celular",
+        "info": "Formatos aceito: png, jpg ou gif"
+      }
+    ]
+  },
+  {
+    "name": "Bloqueadores",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Funções",
+        "info": "Bloqueadores essenciais para extensões comuns"
+      },
+      {
+        "type": "checkbox",
+        "id": "ali_hunter_enable",
+        "label": "Bloquear AliHunter",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "botao_direito_enable",
+        "label": "Bloquear botão direito",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "atalho_f12_enable",
+        "label": "Bloquear F12",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "selecionar_conteudo_enable",
+        "label": "Bloquear seleção de conteúdo",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Parcelamento Tema Vision",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Parcelamento"
+      },
+      {
+        "type": "text",
+        "id": "juros_parcelamento",
+        "label": "Juros para 12x",
+        "info": "Adicione utilizando (.) e com pelo menos uma casa decimal. Juros para o até 12x abaixo do preço",
+        "default": "19.79"
+      },
+      {
+        "type": "checkbox",
+        "id": "parcelamento_enable",
+        "label": "Habilitar parcelamento",
+        "info": "Configure as taxas corretamente para corresponder as informações no seu checkout.",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "taxa_segunda_parcela",
+        "label": "2º Parcela",
+        "info": "Adicione utilizando (.) e com pelo menos uma casa decimal.",
+        "default": "5.41"
+      },
+      {
+        "type": "text",
+        "id": "taxa_terceira_parcela",
+        "label": "3º Parcela",
+        "default": "6.78"
+      },
+      {
+        "type": "text",
+        "id": "taxa_quarta_parcela",
+        "label": "4º Parcela",
+        "default": "8.25"
+      },
+      {
+        "type": "text",
+        "id": "taxa_quinta_parcela",
+        "label": "5º Parcela",
+        "default": "9.66"
+      },
+      {
+        "type": "text",
+        "id": "taxa_sexta_parcela",
+        "label": "6º Parcela",
+        "default": "11.04"
+      },
+      {
+        "type": "text",
+        "id": "taxa_setima_parcela",
+        "label": "7º Parcela",
+        "default": "12.25"
+      },
+      {
+        "type": "text",
+        "id": "taxa_oitava_parcela",
+        "label": "8º Parcela",
+        "default": "13.85"
+      },
+      {
+        "type": "text",
+        "id": "taxa_nona_parcela",
+        "label": "9º Parcela",
+        "default": "15.44"
+      },
+      {
+        "type": "text",
+        "id": "taxa_decima_parcela",
+        "label": "10º Parcela",
+        "default": "16.59"
+      },
+      {
+        "type": "text",
+        "id": "taxa_decima_primeira_parcela",
+        "label": "11º Parcela",
+        "default": "18.19"
+      },
+      {
+        "type": "text",
+        "id": "taxa_decima_segunda_parcela",
+        "label": "12º Parcela",
+        "default": "19.79"
+      },
+      {
+        "type": "color",
+        "id": "color_primary_parcelamento",
+        "label": "Cor primária parcelamento",
+        "info": "Cor dos icones quando clicados, ex: cartão, boleto, pix e valor final para Pix e Boleto",
+        "default": "#0033C6"
+      },
+      {
+        "type": "color",
+        "id": "color_secondary_parcelamento",
+        "label": "Cor secundária parcelamento",
+        "info": "Cor dos textos dentro do script. Ex: a vista, 2x de..., total",
+        "default": "#565c69"
+      },
+      {
+        "type": "color",
+        "id": "color_terciary_parcelamento",
+        "label": "Cor terciária parcelamento",
+        "info": "Cor dos icones quando não clicados,  ex: cartão, boleto, pix e valor final para Pix e Boleto",
+        "default": "#b6bbc2"
+      },
+      {
+        "type": "color",
+        "id": "color_quart_parcelamento",
+        "label": "Cor fundo do ativador",
+        "info": "Cor do fundo do Ver opções de parcelamento",
+        "default": "#2E9E7B"
+      },
+      {
+        "type": "color",
+        "id": "color_quint_parcelamento",
+        "label": "Cor fonte do ativador",
+        "info": "Cor da fonte do ativador",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "borda_atv_parcelamento2",
+        "label": "Cor borda do ativador",
+        "info": "Cor da borda do ativador",
+        "default": "#000"
+      },
+      {
+        "type": "range",
+        "id": "borda_atv_parcelamento",
+        "label": "Arredondamento do Ativador",
+        "info": "Defina o arredondamento do Background do ativador.",
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "default": 5
+      },
+      {
+        "type": "header",
+        "content": "Pix"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_pix_parcelamento",
+        "label": "Mostrar aba PIX",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "desconto_pix",
+        "label": "Desconto %",
+        "default": "5.0"
+      },
+      {
+        "type": "text",
+        "id": "desconto_pix_text",
+        "label": "Texto tempo de processamento",
+        "default": "Pague com o PIX e priorizamos o despacho em 1 hora!"
+      },
+      {
+        "type": "header",
+        "content": "Boleto"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_boleto_parcelamento",
+        "label": "Mostrar aba Boleto",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "desconto_boleto",
+        "label": "Desconto %",
+        "default": "0.0"
+      },
+      {
+        "type": "text",
+        "id": "desconto_boleto_text",
+        "label": "Texto tempo de processamento",
+        "default": "O prazo de pagamento via boleto bancário é de 2 dias corridos."
+      }
+    ]
+  },
+  {
+    "name": "Aparência",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Adapte o tema ao estilo da sua marca alterando elementos arredondados, espaçamento e estilo dos ícones."
+      },
+      {
+        "type": "range",
+        "id": "icon_stroke_width",
+        "min": 1,
+        "max": 2,
+        "step": 0.1,
+        "unit": "px",
+        "label": "Espessura do ícone",
+        "default": 2
+      },
+      {
+        "type": "range",
+        "id": "button_border_radius",
+        "min": 0,
+        "max": 30,
+        "step": 2,
+        "unit": "px",
+        "label": "Raio da borda do botão/input",
+        "default": 0
+      },
+      {
+        "type": "select",
+        "id": "block_border_radius",
+        "label": "Raio da borda do bloco",
+        "options": [
+          {
+            "value": "none",
+            "label": "Nenhum"
+          },
+          {
+            "value": "small",
+            "label": "Pequeno"
+          },
+          {
+            "value": "medium",
+            "label": "Médio"
+          },
+          {
+            "value": "large",
+            "label": "Grande"
+          }
+        ],
+        "default": "none"
+      },
+      {
+        "type": "select",
+        "id": "vertical_spacing",
+        "label": "Espaçamento vertical",
+        "info": "Impacta o espaçamento vertical separando cada seção.",
+        "options": [
+          {
+            "value": "small",
+            "label": "Pequeno"
+          },
+          {
+            "value": "medium",
+            "label": "Médio"
+          },
+          {
+            "value": "large",
+            "label": "Grande"
+          }
+        ],
+        "default": "large"
+      }
+    ]
+  },
+  {
+    "name": "Cores",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Menu de Navegação"
+      },
+      {
+        "type": "color",
+        "id": "bolinha_sacola",
+        "label": "Bolinha da sacola de compra",
+        "info": "Cor de fundo da bolinha da sacola de compra",
+        "default": "#e2a696"
+      },
+      {
+        "type": "color",
+        "id": "bolinha_sacola_fonte",
+        "label": "Fonte da bolinha da sacola de compra",
+        "info": "Cor da fonte da bolinha da sacola de compra",
+        "default": "#fff"
+      },
+      {
+        "type": "header",
+        "content": "Geral"
+      },
+      {
+        "type": "color",
+        "id": "heading_color",
+        "label": "Cabeçalho",
+        "default": "#1c1b1b"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Texto do corpo",
+        "default": "#677279"
+      },
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Fundo",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "secondary_background",
+        "label": "Segundo fundo",
+        "info": "Use uma cor próxima ao fundo principal.",
+        "default": "#f7f8fd"
+      },
+      {
+        "type": "color",
+        "id": "success_color",
+        "label": "Sucesso",
+        "default": "#168342"
+      },
+      {
+        "type": "color",
+        "id": "error_color",
+        "label": "Erro",
+        "default": "#e00000"
+      },
+      {
+        "type": "header",
+        "content": "Cabeçalho"
+      },
+      {
+        "type": "color",
+        "id": "header_background",
+        "label": "Fundo",
+        "default": "#1e316a"
+      },
+      {
+        "type": "color",
+        "id": "header_text_color",
+        "label": "Texto",
+        "default": "#ffffff"
+      },
+      {
+        "type": "header",
+        "content": "Rodapé"
+      },
+      {
+        "type": "color",
+        "id": "footer_background",
+        "label": "Fundo",
+        "default": "#f3f5f6"
+      },
+      {
+        "type": "color",
+        "id": "footer_text_color",
+        "label": "Texto",
+        "default": "#677279"
+      },
+      {
+        "type": "header",
+        "content": "Botão Primário"
+      },
+      {
+        "type": "color",
+        "id": "primary_button_background",
+        "label": "Fundo",
+        "default": "#00badb"
+      },
+      {
+        "type": "color",
+        "id": "primary_button_text_color",
+        "label": "Texto",
+        "default": "#ffffff"
+      },
+      {
+        "type": "header",
+        "content": "Botão Secundário"
+      },
+      {
+        "type": "color",
+        "id": "secondary_button_background",
+        "label": "Fundo",
+        "default": "#1e2d7d"
+      },
+      {
+        "type": "color",
+        "id": "secondary_button_text_color",
+        "label": "Texto",
+        "default": "#ffffff"
+      },
+      {
+        "type": "header",
+        "content": "Produto"
+      },
+      {
+        "type": "color",
+        "id": "product_rating_color",
+        "label": "Classificação em estrelas",
+        "default": "#f6a429"
+      },
+      {
+        "type": "color",
+        "id": "product_on_sale_accent",
+        "label": "Destaque de promoção",
+        "default": "#e00000"
+      },
+      {
+        "type": "color",
+        "id": "product_sold_out_accent",
+        "label": "Destaque de esgotado",
+        "default": "#6f719b"
+      },
+      {
+        "type": "color",
+        "id": "product_custom_label_background",
+        "label": "Rótulo personalizado",
+        "info": "[Saiba mais](https://support.maestrooo.com/article/75-collection-displaying-custom-label)",
+        "default": "#1e316a"
+      },
+      {
+        "type": "color",
+        "id": "product_custom_label_2_background",
+        "label": "Rótulo personalizado 2",
+        "info": "[Saiba mais](https://support.maestrooo.com/article/75-collection-displaying-custom-label)",
+        "default": "#1e316a"
+      },
+      {
+        "type": "color",
+        "id": "product_in_stock_text_color",
+        "label": "Destaque de disponível",
+        "default": "#168342"
+      },
+      {
+        "type": "color",
+        "id": "product_low_stock_text_color",
+        "label": "Destaque de estoque baixo",
+        "default": "#e00000"
+      }
+    ]
+  },
+  {
+    "name": "Tipografia",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Títulos"
+      },
+      {
+        "type": "font_picker",
+        "id": "heading_font",
+        "label": "Fonte",
+        "info": "Selecionar fontes diferentes pode afetar a velocidade da sua loja online. Saiba mais sobre [fontes do sistema](https://help.shopify.com/en/manual/online-store/os/store-speed/improving-speed#fonts).",
+        "default": "helvetica_n4"
+      },
+      {
+        "type": "select",
+        "id": "heading_font_size",
+        "label": "Tamanho dos títulos",
+        "options": [
+          {
+            "value": "small",
+            "label": "Pequeno"
+          },
+          {
+            "value": "medium",
+            "label": "Médio"
+          },
+          {
+            "value": "large",
+            "label": "Grande"
+          }
+        ],
+        "default": "medium"
+      },
+      {
+        "type": "select",
+        "id": "heading_text_transform",
+        "label": "Estilo dos títulos",
+        "options": [
+          {
+            "value": "normal",
+            "label": "Normal"
+          },
+          {
+            "value": "lowercase",
+            "label": "Minúsculas"
+          },
+          {
+            "value": "uppercase",
+            "label": "Maiúsculas"
+          }
+        ],
+        "default": "uppercase"
+      },
+      {
+        "type": "header",
+        "content": "Texto do corpo"
+      },
+      {
+        "type": "font_picker",
+        "id": "text_font",
+        "label": "Fonte",
+        "info": "Selecionar fontes diferentes pode afetar a velocidade da sua loja online. Saiba mais sobre [fontes do sistema](https://help.shopify.com/en/manual/online-store/os/store-speed/improving-speed#fonts).",
+        "default": "helvetica_n4"
+      },
+      {
+        "type": "range",
+        "id": "text_font_size",
+        "label": "Tamanho base",
+        "min": 12,
+        "max": 20,
+        "unit": "px",
+        "default": 15
+      }
+    ]
+  },
+  {
+    "name": "Barra de escassez",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Barra de escassez"
+      },
+      {
+        "type": "paragraph",
+        "content": "A barra de escassez é apresentada por TAG de produto, para que a barra apareça, vá até o seu produto e coloque a tag: escassez. Se quiser que a barra apareça em todos os produtos, selecione todos e clique em inserir TAGs"
+      },
+      {
+        "type": "color",
+        "id": "colorp_progress",
+        "label": "Cor Background Barra de escassez",
+        "info": "Cor do background da barra de escassez",
+        "default": "#A9A9A9"
+      },
+      {
+        "type": "color",
+        "id": "colors_progress",
+        "label": "Cor Barra de escassez",
+        "info": "Cor principal da barra de escassez",
+        "default": "#B90000"
+      },
+      {
+        "type": "range",
+        "id": "alt_progress",
+        "label": "Altura da Barra de escassez",
+        "min": 7,
+        "max": 20,
+        "unit": "px",
+        "default": 9
+      },
+      {
+        "type": "range",
+        "id": "font_progress",
+        "label": "Fonte da barra de escassez",
+        "min": 10,
+        "max": 20,
+        "unit": "px",
+        "default": 13
+      }
+    ]
+  },
+  {
+    "name": "Formato de Moeda",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Códigos de Moeda"
+      },
+      {
+        "type": "paragraph",
+        "content": "Os preços do carrinho e do checkout sempre exibem os códigos de moeda. Exemplo: $1.00 USD."
+      },
+      {
+        "type": "checkbox",
+        "id": "currency_code_enabled",
+        "label": "Mostrar códigos de moeda",
+        "default": false
+      }
+    ]
+  },
+  {
+    "name": "Animação",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Usuários que configuraram suas preferências para minimizar movimentos não essenciais terão automaticamente animações reduzidas."
+      },
+      {
+        "type": "checkbox",
+        "id": "show_image_zoom",
+        "label": "Mostrar zoom da imagem",
+        "info": "Afeta várias imagens que são ampliadas lentamente ao passar o mouse sobre elas",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "stagger_products_apparition",
+        "label": "Revelar produtos um por um",
+        "info": "Afeta qualquer listagem de grade de produtos",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "stagger_blog_posts_apparition",
+        "label": "Revelar postagens de blog uma por uma",
+        "info": "Afeta qualquer listagem de postagens de blog",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "reveal_product_media",
+        "label": "Revelar mídia do produto",
+        "info": "Afeta páginas de produtos e a seção de produtos em destaque",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Amostra de Cores",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "round_color_swatches",
+        "label": "Amostra de cores redondo",
+        "default": false
+      },
+      {
+        "type": "textarea",
+        "id": "color_swatch_config",
+        "label": "Configuração",
+        "placeholder": "Vermelho:#ff0000\nVerde:#00ff00\nAzul:#0000ff",
+        "info": "Cada regra deve estar em sua própria linha. [Saiba mais](https://support.maestrooo.com/article/80-product-uploading-custom-color-for-color-swatch) sobre a convenção exata de nomenclatura."
+      }
+    ]
+  },
+  {
+    "name": "Grade de Produtos",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Mostrar fornecedor",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_secondary_image",
+        "label": "Mostrar imagem secundária ao passar o mouse",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "product_add_to_cart",
+        "label": "Ativar adição rápida ao carrinho",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_product_rating",
+        "label": "Mostrar classificação do produto",
+        "info": "Para exibir uma classificação, adicione um aplicativo de avaliação de produtos. [Saiba mais](https://help.shopify.com/en/manual/products/product-reviews/installation)",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_discount",
+        "label": "Mostrar etiqueta de desconto",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "discount_mode",
+        "label": "Mostrar desconto como...",
+        "options": [
+          {
+            "value": "percentage",
+            "label": "Porcentagem"
+          },
+          {
+            "value": "saving",
+            "label": "Economia"
+          }
+        ],
+        "default": "saving"
+      },
+      {
+        "type": "select",
+        "id": "product_color_display",
+        "label": "Modo de exibição de cor do produto",
+        "options": [
+          {
+            "value": "hide",
+            "label": "Ocultar"
+          },
+          {
+            "value": "count",
+            "label": "Contagem"
+          },
+          {
+            "value": "swatch",
+            "label": "Amostra de cor"
+          }
+        ],
+        "default": "count"
+      },
+      {
+        "type": "select",
+        "id": "product_image_size",
+        "label": "Tamanho da imagem do produto",
+        "options": [
+          {
+            "value": "natural",
+            "label": "Natural"
+          },
+          {
+            "value": "short",
+            "label": "Curto (4:3)"
+          },
+          {
+            "value": "square",
+            "label": "Quadrado (1:1)"
+          },
+          {
+            "value": "tall",
+            "label": "Alto (2:3)"
+          }
+        ],
+        "default": "natural"
+      }
+    ]
+  },
+  {
+    "name": "Busca",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Buscar por"
+      },
+      {
+        "type": "checkbox",
+        "id": "search_enable_products",
+        "label": "Produtos",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "search_enable_blog_posts",
+        "label": "Publicações do blog",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "search_enable_pages",
+        "label": "Páginas",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "search_enable_collections",
+        "label": "Coleções",
+        "info": "Os resultados das coleções aparecem apenas na busca preditiva.",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "search_unavailable_products",
+        "label": "Produtos esgotados devem...",
+        "options": [
+          {
+            "value": "show",
+            "label": "Sempre ser exibidos"
+          },
+          {
+            "value": "hide",
+            "label": "Ficar ocultos"
+          },
+          {
+            "value": "last",
+            "label": "Ser exibidos por último"
+          }
+        ],
+        "default": "last"
+      }
+    ]
+  },
+  {
+    "name": "Carrinho",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Tipo de carrinho",
+        "options": [
+          {
+            "value": "drawer",
+            "label": "Gaveta"
+          },
+          {
+            "value": "message",
+            "label": "Mensagem"
+          },
+          {
+            "value": "page",
+            "label": "Página"
+          }
+        ],
+        "default": "page"
+      },
+      {
+        "type": "header",
+        "content": "Botão continuar comprando carrinho"
+      },
+      {
+        "type": "color",
+        "id": "continuar-compra-fundo",
+        "label": "Fundo Botão continar comprando",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "continuar-compra-texto",
+        "label": "Texto Botão continar comprando",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "continuar-compra-borda",
+        "label": "Borda Botão continar comprando",
+        "default": "#000"
+      },
+      {
+        "type": "header",
+        "content": "Alteraçoes bandeiras de pagamento"
+      },
+      {
+        "type": "range",
+        "id": "fonte_t_bandeirasc",
+        "label": "Tamanho da fonte",
+        "info": "Tamanho da fonte do título das bandeiras",
+        "min": 5,
+        "max": 20,
+        "unit": "px",
+        "default": 12
+      },
+      {
+        "type": "range",
+        "id": "bandeiras_w_mobilec",
+        "label": "Tamanho bandeiras mobile",
+        "info": "Use esse recurso se diminuir o número de bandeiras, para que consiga preencher totalmente a largura disponível",
+        "min": 5,
+        "max": 20,
+        "unit": "%",
+        "default": 10
+      },
+      {
+        "type": "range",
+        "id": "bandeiras_w_desktopc",
+        "label": "Tamanho bandeiras desktop",
+        "info": "Use esse recurso se diminuir o número de bandeiras, para que consiga preencher totalmente a largura disponível",
+        "min": 5,
+        "max": 20,
+        "unit": "%",
+        "default": 10
+      },
+      {
+        "type": "select",
+        "id": "cart_icon",
+        "label": "Ícone do carrinho",
+        "options": [
+          {
+            "value": "shopping_bag",
+            "label": "Sacola de compras"
+          },
+          {
+            "value": "shopping_cart",
+            "label": "Carrinho de compras"
+          },
+          {
+            "value": "tote_bag",
+            "label": "Sacola"
+          }
+        ],
+        "default": "shopping_bag"
+      },
+      {
+        "type": "url",
+        "id": "cart_empty_button_link",
+        "label": "Link do botão de esvaziar carrinho",
+        "default": "/collections/all"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_show_free_shipping_threshold",
+        "label": "Mostrar valor mínimo para frete grátis",
+        "info": "Certifique-se de que suas [taxas de envio](/admin/settings/shipping) estejam configuradas corretamente.",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "cart_free_shipping_threshold",
+        "label": "Valor mínimo para frete grátis",
+        "info": "Digite o valor usando apenas números. Se estiver usando várias moedas, separe cada código de moeda com seu valor (por exemplo: USD:50,EUR:60,JPY:9000)",
+        "default": "50"
+      }
+    ]
+  },
+  {
+    "name": "Mídias Sociais",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Contas"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook",
+        "label": "Facebook"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter",
+        "label": "Twitter"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest",
+        "label": "Pinterest"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram",
+        "label": "Instagram"
+      },
+      {
+        "type": "text",
+        "id": "social_vimeo",
+        "label": "Vimeo"
+      },
+      {
+        "type": "text",
+        "id": "social_tumblr",
+        "label": "Tumblr"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube",
+        "label": "YouTube"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok",
+        "label": "TikTok"
+      },
+      {
+        "type": "text",
+        "id": "social_linkedin",
+        "label": "LinkedIn"
+      },
+      {
+        "type": "text",
+        "id": "social_snapchat",
+        "label": "Snapchat"
+      },
+      {
+        "type": "text",
+        "id": "social_fancy",
+        "label": "Fancy"
+      },
+      {
+        "type": "text",
+        "id": "social_wechat",
+        "label": "WeChat"
+      },
+      {
+        "type": "text",
+        "id": "social_reddit",
+        "label": "Reddit"
+      },
+      {
+        "type": "text",
+        "id": "social_line",
+        "label": "LINE"
+      },
+      {
+        "type": "text",
+        "id": "social_spotify",
+        "label": "Spotify"
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Imagem",
+        "info": "Recomendado 96 x 96px em formato .png"
+      }
+    ]
+  }
+]

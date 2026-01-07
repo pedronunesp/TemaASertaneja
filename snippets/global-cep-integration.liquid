@@ -1,0 +1,81 @@
+{% comment %}
+  Global CEP Integration - Integração com calculadora de frete
+  
+  Uso:
+  {%- render 'global-cep-integration' -%}
+  
+  Este snippet fornece funções para integrar o CEP global com calculadoras de frete
+  ou outros componentes que precisam do CEP do cliente.
+{% endcomment %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Verifica se estamos em uma página com calculadora de frete
+    const cepCalculatorInput = document.getElementById('cep-input');
+    const calculateButton = document.getElementById('calculate-freight-btn');
+    
+    if (cepCalculatorInput && calculateButton) {
+      // Recupera o CEP salvo
+      const savedCep = localStorage.getItem('shopify_customer_cep') || 
+                       {% if cart.attributes.customer_cep %}
+                         "{{ cart.attributes.customer_cep }}"
+                       {% else %}
+                         null
+                       {% endif %};
+                         
+      if (savedCep) {
+        // Preenche o campo de CEP na calculadora
+        cepCalculatorInput.value = savedCep.replace(/\D/g, '');
+        
+        // Opcional: aciona o cálculo de frete automaticamente
+        // Descomente a linha abaixo se quiser que o cálculo seja feito automaticamente
+        // calculateButton.click();
+      }
+      
+      // Quando o cálculo for feito, salva o CEP globalmente
+      calculateButton.addEventListener('click', function() {
+        const cep = cepCalculatorInput.value.replace(/\D/g, '');
+        if (cep.length === 8) {
+          // Formata o CEP (00000-000)
+          const formattedCep = cep.replace(/(\d{5})(\d{3})/, '$1-$2');
+          
+          // Atualiza o CEP global
+          if (window.globalCep && typeof window.globalCep.setCep === 'function') {
+            window.globalCep.setCep(cep);
+          } else {
+            // Fallback se o objeto globalCep não estiver disponível
+            localStorage.setItem('shopify_customer_cep', formattedCep);
+            
+            // Atualiza o cart.attributes
+            fetch('/cart/update.js', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                attributes: {
+                  customer_cep: formattedCep
+                }
+              })
+            })
+            .then(response => response.json())
+            .catch(error => {
+              console.error('Erro ao salvar CEP no carrinho:', error);
+            });
+          }
+        }
+      });
+    }
+    
+    // Escuta por atualizações no CEP
+    document.addEventListener('cep_updated', function(e) {
+      const newCep = e.detail.cep;
+      console.log('CEP atualizado:', newCep);
+      
+      // Atualiza o campo de CEP na calculadora de frete, se existir
+      if (cepCalculatorInput) {
+        cepCalculatorInput.value = newCep;
+      }
+    });
+  });
+</script>

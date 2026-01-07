@@ -1,0 +1,468 @@
+<section class="precachaca-section" id="garrafa-container">
+  <div class="page-width">
+    <h2 class="title">{{ section.settings.title }}</h2>
+    
+    <div class="description">{{ section.settings.description }}</div>
+    
+    <div class="bottle-container">
+      <div class="glow-effect" style="background-color: {{ section.settings.glow_color }}"></div>
+      <div class="bottle-wrapper">
+        {% if section.settings.bottle_image %}
+          <img 
+            id="garrafa-img" 
+            src="{{ section.settings.bottle_image | img_url: 'master' }}" 
+            alt="{{ section.settings.bottle_image.alt | escape }}" 
+            class="bottle-image"
+            loading="eager"
+            data-horizontal-sensitivity="{{ section.settings.horizontal_sensitivity }}"
+            data-vertical-sensitivity="{{ section.settings.vertical_sensitivity }}"
+            data-scale-intensity="{{ section.settings.scale_intensity | divided_by: 100.0 }}"
+            data-beta-offset="{{ section.settings.beta_offset }}"
+            data-gamma-offset="{{ section.settings.gamma_offset }}"
+          >
+        {% else %}
+          <div class="placeholder-image">Adicione uma imagem da garrafa</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Variáveis para o giroscópio
+    let bottle = document.getElementById('garrafa-img');
+    let container = document.getElementById('garrafa-container');
+    let lastX = 0;
+    let lastY = 0;
+    let rotX = 0;
+    let rotY = 0;
+    let isAnimating = false;
+    let isScrolling = false;
+    let scrollTimeout;
+    let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    // Obter configurações de sensibilidade do elemento
+    const horizontalSensitivity = bottle ? parseFloat(bottle.dataset.horizontalSensitivity) || 1.8 : 1.8;
+    const verticalSensitivity = bottle ? parseFloat(bottle.dataset.verticalSensitivity) || 1.5 : 1.5;
+    const scaleIntensity = bottle ? parseFloat(bottle.dataset.scaleIntensity) || 0.005 : 0.005;
+    
+    // Compensação para o ângulo natural do celular
+    const betaOffset = bottle ? parseFloat(bottle.dataset.betaOffset) || 0 : 0;
+    const gammaOffset = bottle ? parseFloat(bottle.dataset.gammaOffset) || 0 : 0;
+    
+    // Verificar se o dispositivo tem giroscópio
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener('deviceorientation', handleOrientation);
+    }
+    
+    // Responder ao movimento do mouse apenas em desktop
+    if (!isMobile) {
+      container.addEventListener('mousemove', handleMouseMove);
+      container.addEventListener('mouseleave', resetPosition);
+    }
+    
+    // Função para lidar com giroscópio
+    function handleOrientation(event) {
+      if (isScrolling || !bottle) return;
+      
+      if (event.beta !== null && event.gamma !== null) {
+        // Aplicar compensação para o ângulo natural do dispositivo
+        let y = event.beta - betaOffset;  // Compensa inclinação vertical natural
+        let x = event.gamma - gammaOffset; // Compensa inclinação horizontal natural
+        
+        // Limitar os valores para evitar rotações extremas
+        x = Math.max(-25, Math.min(25, x));
+        y = Math.max(-25, Math.min(25, y));
+        
+        // Usar configurações de sensibilidade
+        rotY = x * horizontalSensitivity;
+        rotX = -y * verticalSensitivity;
+        
+        if (!isAnimating) {
+          isAnimating = true;
+          requestAnimationFrame(updateBottle);
+        }
+      }
+    }
+    
+    // Função para lidar com movimento do mouse
+    function handleMouseMove(event) {
+      if (!bottle) return;
+      
+      const rect = container.getBoundingClientRect();
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const mouseX = event.clientX - rect.left;
+      const mouseY = event.clientY - rect.top;
+      
+      // Usar configurações de sensibilidade (com multiplicador um pouco maior para o mouse)
+      rotY = (mouseX - centerX) / centerX * (horizontalSensitivity * 10);
+      rotX = (mouseY - centerY) / centerY * (-verticalSensitivity * 10);
+      
+      if (!isAnimating) {
+        isAnimating = true;
+        requestAnimationFrame(updateBottle);
+      }
+    }
+    
+    // Função para resetar posição
+    function resetPosition() {
+      rotX = 0;
+      rotY = 0;
+      
+      if (!isAnimating) {
+        isAnimating = true;
+        requestAnimationFrame(updateBottle);
+      }
+    }
+    
+    // Atualizar posição da garrafa
+    function updateBottle() {
+      if (!bottle) return;
+      
+      const easing = isMobile ? 0.15 : 0.08; // Ajustado para movimento mais suave
+      
+      lastX += (rotX - lastX) * easing;
+      lastY += (rotY - lastY) * easing;
+      
+      // Adicionar um pequeno movimento Z para aumentar efeito 3D
+      const zTranslation = Math.abs(lastX) + Math.abs(lastY);
+      const scale = 1 + (zTranslation * scaleIntensity);
+      
+      bottle.style.transform = `rotateX(${lastX}deg) rotateY(${lastY}deg) scale(${scale})`;
+      
+      if (Math.abs(rotX - lastX) > 0.05 || Math.abs(rotY - lastY) > 0.05) {
+        requestAnimationFrame(updateBottle);
+      } else {
+        isAnimating = false;
+      }
+    }
+    
+    // Detectar início e fim do scroll
+    window.addEventListener('scroll', function() {
+      isScrolling = true;
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(function() {
+        isScrolling = false;
+      }, 100);
+    }, { passive: true });
+    
+    // Animação inicial
+    setTimeout(function() {
+      if (!bottle) return;
+      
+      rotY = 10; // Aumentado para movimento mais visível
+      setTimeout(function() {
+        rotY = -10; // Aumentado para movimento mais visível
+        setTimeout(function() {
+          rotY = 0;
+        }, 1000);
+      }, 1000);
+      requestAnimationFrame(updateBottle);
+    }, 500);
+    
+    // Permissão para giroscópio em iOS
+    if (typeof DeviceOrientationEvent !== 'undefined' && 
+        typeof DeviceOrientationEvent.requestPermission === 'function') {
+      container.addEventListener('click', function() {
+        DeviceOrientationEvent.requestPermission()
+          .then(function(response) {
+            if (response === 'granted') {
+              window.addEventListener('deviceorientation', handleOrientation);
+            }
+          })
+          .catch(console.error);
+      });
+    }
+  });
+</script>
+
+<style>
+  body, html, main, #MainContent, .shopify-section {
+    background-color: {{ section.settings.background_color }} !important;
+    color: #ffffff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .shopify-section {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  
+  .precachaca-section {
+    padding: {{ section.settings.section_padding }}px;
+    background-color: {{ section.settings.background_color }};
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .page-width {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .title {
+    color: {{ section.settings.heading_color }};
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+  
+  .description {
+    color: {{ section.settings.text_color }};
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: clamp(16px, 2vw, 18px);
+    line-height: 1.5;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .bottle-container {
+    position: relative;
+    height: clamp(300px, 60vh, 600px);
+    max-width: 100%;
+    margin: 0 auto 50px;
+    perspective: 1200px;
+    overflow: visible;
+  }
+  
+  .glow-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70%;
+    height: 70%;
+    transform: translate(-50%, -50%);
+    background-color: {{ section.settings.glow_color }};
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: {{ section.settings.glow_intensity }};
+    z-index: 1;
+    transition: all 0.5s ease;
+  }
+  
+  .bottle-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    will-change: transform;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .bottle-image {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    transform-origin: center center;
+    transition: transform 0.15s ease-out;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));
+  }
+  
+  .placeholder-image {
+    width: 200px;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .precachaca-section {
+      padding: {{ section.settings.section_padding_mobile }}px;
+    }
+    
+    .title {
+      margin-bottom: 20px;
+    }
+    
+    .description {
+      margin-bottom: 30px;
+    }
+    
+    .bottle-container {
+      height: clamp(250px, 50vh, 400px);
+      margin-bottom: 30px;
+    }
+    
+    .glow-effect {
+      width: 80%;
+      height: 60%;
+      filter: blur(40px);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Pré-venda Cachaça",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Conteúdo"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "EDIÇÃO LIMITADA - RESERVE AGORA"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Descrição",
+      "default": "<p>Estamos preparando uma cachaça artesanal exclusiva, envelhecida em tonéis de carvalho que resultam num sabor incomparável. Esta é uma edição limitada e você pode garantir a sua com prioridade. Cadastre-se abaixo para receber informações exclusivas e ter acesso prioritário quando abrirmos as vendas.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottle_image",
+      "label": "Imagem da garrafa",
+      "info": "Recomendamos uma imagem PNG com fundo transparente"
+    },
+    {
+      "type": "header",
+      "content": "Cores e estilo"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Cor do título",
+      "default": "#e66d00"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Cor do texto",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Cor de fundo da seção",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "glow_color",
+      "label": "Cor do efeito luminoso",
+      "default": "#e66d00"
+    },
+    {
+      "type": "range",
+      "id": "glow_intensity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "label": "Intensidade do efeito luminoso",
+      "default": 0.5
+    },
+    {
+      "type": "header",
+      "content": "Configurações de interatividade"
+    },
+    {
+      "type": "range",
+      "id": "horizontal_sensitivity",
+      "min": 0.5,
+      "max": 5,
+      "step": 0.1,
+      "label": "Sensibilidade horizontal (giroscópio/mouse)",
+      "default": 1.8,
+      "info": "Controla o quanto a garrafa rotaciona para os lados"
+    },
+    {
+      "type": "range",
+      "id": "vertical_sensitivity",
+      "min": 0.5,
+      "max": 5,
+      "step": 0.1,
+      "label": "Sensibilidade vertical (giroscópio/mouse)",
+      "default": 1.5,
+      "info": "Controla o quanto a garrafa rotaciona para cima/baixo"
+    },
+    {
+      "type": "range",
+      "id": "scale_intensity",
+      "min": 0,
+      "max": 2,
+      "step": 0.1,
+      "label": "Intensidade do efeito de escala (0.0 a 0.02)",
+      "default": 0.5,
+      "info": "Controla o efeito de zoom durante a rotação (valor dividido por 100)"
+    },
+    {
+      "type": "header",
+      "content": "Ajuste de posição inicial (giroscópio)"
+    },
+    {
+      "type": "range",
+      "id": "beta_offset",
+      "min": -45,
+      "max": 45,
+      "step": 1,
+      "label": "Compensação de inclinação vertical",
+      "default": 30,
+      "info": "Compensa a posição natural inclinada do celular (valor típico entre 20-40)"
+    },
+    {
+      "type": "range",
+      "id": "gamma_offset",
+      "min": -30,
+      "max": 30,
+      "step": 1,
+      "label": "Compensação de inclinação lateral",
+      "default": 0,
+      "info": "Compensa a inclinação lateral do celular, caso necessário"
+    },
+    {
+      "type": "header",
+      "content": "Espaçamento"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 40,
+      "unit": "px",
+      "label": "Padding da seção"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_mobile",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "default": 20,
+      "unit": "px",
+      "label": "Padding da seção (mobile)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pré-venda Cachaça",
+      "category": "Promocional"
+    }
+  ]
+}
+{% endschema %}

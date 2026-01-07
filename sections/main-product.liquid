@@ -1,0 +1,857 @@
+{%- unless template.suffix contains 'quick-buy' -%}
+  <style>
+    #shopify-section-{{ section.id }} {
+      {%- assign buy_buttons_block = section.blocks | where: 'type', 'buy_buttons' | first -%}
+
+      {%- if buy_buttons_block.settings.show_payment_button -%}
+        {%- if buy_buttons_block.settings.atc_button_background == 'rgba(0,0,0,0)' -%}
+          {%- assign secondary_button_background = settings.secondary_button_background -%}
+        {%- else -%}
+          {%- assign secondary_button_background = buy_buttons_block.settings.atc_button_background -%}
+        {%- endif -%}
+
+        {%- if buy_buttons_block.settings.atc_button_text_color == 'rgba(0,0,0,0)' -%}
+          {%- assign secondary_button_text_color = settings.secondary_button_text_color -%}
+        {%- else -%}
+          {%- assign secondary_button_text_color = buy_buttons_block.settings.atc_button_text_color -%}
+        {%- endif -%}
+
+        {%- if buy_buttons_block.settings.buy_now_button_background == 'rgba(0,0,0,0)' -%}
+          {%- assign primary_button_background = settings.primary_button_background -%}
+        {%- else -%}
+          {%- assign primary_button_background = buy_buttons_block.settings.buy_now_button_background -%}
+        {%- endif -%}
+
+        {%- if buy_buttons_block.settings.buy_now_button_text_color == 'rgba(0,0,0,0)' -%}
+          {%- assign primary_button_text_color = settings.primary_button_text_color -%}
+        {%- else -%}
+          {%- assign primary_button_text_color = buy_buttons_block.settings.buy_now_button_text_color -%}
+        {%- endif -%}
+      {%- else -%}
+        {%- if buy_buttons_block.settings.atc_button_background == 'rgba(0,0,0,0)' -%}
+          {%- assign primary_button_background = settings.primary_button_background -%}
+        {%- else -%}
+          {%- assign primary_button_background = buy_buttons_block.settings.atc_button_background -%}
+        {%- endif -%}
+
+        {%- if buy_buttons_block.settings.atc_button_text_color == 'rgba(0,0,0,0)' -%}
+          {%- assign primary_button_text_color = settings.primary_button_text_color -%}
+        {%- else -%}
+          {%- assign primary_button_text_color = buy_buttons_block.settings.atc_button_text_color -%}
+        {%- endif -%}
+      {%- endif -%}
+
+      --primary-button-background: {{ primary_button_background.red }}, {{ primary_button_background.green }}, {{ primary_button_background.blue }};
+      --primary-button-text-color: {{ primary_button_text_color.red }}, {{ primary_button_text_color.green }}, {{ primary_button_text_color.blue }};
+      --secondary-button-background: {{ secondary_button_background.red }}, {{ secondary_button_background.green }}, {{ secondary_button_background.blue }};
+      --secondary-button-text-color: {{ secondary_button_text_color.red }}, {{ secondary_button_text_color.green }}, {{ secondary_button_text_color.blue }};
+  
+  </style>
+
+  <section>
+    {%- if section.settings.show_sticky_add_to_cart and product.available -%}
+      {%- render 'product-sticky-form', product: product -%}
+    {%- endif -%}
+
+    <div class="container">
+  {%- if settings.show_caminho -%}
+      <nav aria-label="{{ 'general.breadcrumb.title' | t }}" class="breadcrumb text--xsmall text--subdued hidden-phone">
+        <ol class="breadcrumb__list" role="list">
+          <li class="breadcrumb__item">
+            <a class="breadcrumb__link" href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a>
+          </li>
+
+          {%- if collection -%}
+            <li class="breadcrumb__item">
+              <a class="breadcrumb__link" href="{{ collection.url }}">{{- collection.title -}}</a>
+            </li>
+          {%- endif -%}
+
+          <li class="breadcrumb__item">
+            <span class="breadcrumb__link" aria-current="page">{{ product.title }}</span>
+          </li>
+        </ol>
+      </nav>
+    {%- else -%}
+    <div style="margin-top:20px"></div>
+  {%- endif -%}
+
+
+      <!-- PRODUCT TOP PART -->
+      <div class="product product--thumbnails-{{ section.settings.desktop_thumbnails_position }}">
+        {%- render 'product-media', product: product -%}
+        {%- render 'product-info', product: product, update_url: true -%}
+      </div>
+    </div>
+  </section>
+{%- else -%}
+  {%- comment -%}
+  The quick shop HTML being very different, we render it here. On mobile and tablet/desktop, the product renders also
+  quite differently, as it is in a drawer on tablet/desktop, and a popover on mobile.
+  {%- endcomment -%}
+
+  {%- capture quick_buy_product_info -%}
+    <div class="quick-buy-product">
+      {%- assign featured_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media -%}
+
+      {%- if template.suffix == 'quick-buy-drawer' -%}
+        <img loading="lazy" sizes="114px" class="quick-buy-product__image" {% render 'image-attributes', image: featured_media, sizes: '114,228,342' %}>
+      {%- else -%}
+        <img loading="lazy" sizes="65px" class="quick-buy-product__image" {% render 'image-attributes', image: featured_media, sizes: '65,130,195' %}>
+      {%- endif -%}
+
+      <div class="quick-buy-product__info {% if template.suffix == 'quick-buy-popover' %}text--small{% endif %}">
+        <product-meta form-id="product-form-{{ section.id }}-{{ product.id }}" unit-price-class="text--xsmall" class="product-item-meta">
+          {%- if section.settings.show_vendor -%}
+            {%- assign vendor_handle = product.vendor | handle -%}
+            {%- assign collection_for_vendor = collections[vendor_handle] -%}
+
+            {%- unless collection_for_vendor.empty? -%}
+              <a href="{{ collection_for_vendor.url }}" class="product-item-meta__vendor heading {% if template.suffix == 'quick-buy-drawer' %}heading--small{% else %}heading--xsmall{% endif %}">{{ product.vendor }}</a>
+            {%- else -%}
+              <a href="{{ product.vendor | url_for_vendor }}" class="product-item-meta__vendor heading {% if template.suffix == 'quick-buy-drawer' %}heading--small{% else %}heading--xsmall{% endif %}">{{ product.vendor }}</a>
+            {%- endunless -%}
+          {%- endif -%}
+
+          <a href="{{ product.url }}" class="product-item-meta__title">{{ product.title }}</a>
+
+          <div class="product-item-meta__price-list-container" role="region" aria-live="polite">
+            <div class="price-list" data-product-price-list>
+              {%- if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price -%}
+                <span class="price price--highlight">
+                  <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+
+                  {%- if settings.currency_code_enabled -%}
+                    {{- product.selected_or_first_available_variant.price | money_with_currency -}}
+                  {%- else -%}
+                    {{- product.selected_or_first_available_variant.price | money -}}
+                  {%- endif -%}
+                </span>
+
+                <span class="price price--compare">
+                  <span class="visually-hidden">{{ 'product.general.regular_price' | t }}</span>
+
+                  {%- if settings.currency_code_enabled -%}
+                    {{- product.selected_or_first_available_variant.compare_at_price | money_with_currency -}}
+                  {%- else -%}
+                    {{- product.selected_or_first_available_variant.compare_at_price | money -}}
+                  {%- endif -%}
+                </span>
+              {%- else -%}
+                <span class="price">
+                  <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+
+                  {%- if settings.currency_code_enabled -%}
+                    {{- product.selected_or_first_available_variant.price | money_with_currency -}}
+                  {%- else -%}
+                    {{- product.selected_or_first_available_variant.price | money -}}
+                  {%- endif -%}
+                </span>
+              {%- endif -%}
+
+              {%- if product.selected_or_first_available_variant.unit_price_measurement -%}
+                <div class="price text--subdued text--xsmall">
+                  <div class="unit-price-measurement">
+                    <span class="unit-price-measurement__price">{{ product.selected_or_first_available_variant.unit_price | money }}</span>
+                    <span class="unit-price-measurement__separator">/</span>
+
+                    {%- if product.selected_or_first_available_variant.unit_price_measurement.reference_value != 1 -%}
+                      <span class="unit-price-measurement__reference-value">{{ product.selected_or_first_available_variant.unit_price_measurement.reference_value }}</span>
+                    {%- endif -%}
+
+                    <span class="unit-price-measurement__reference-unit">{{ product.selected_or_first_available_variant.unit_price_measurement.reference_unit }}</span>
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+
+            {%- if template.suffix == 'quick-buy-popover' -%}
+              <a href="{{ product.url }}" class="link text--subdued">{{ 'product.general.view_details' | t }}</a>
+            {%- endif -%}
+          </div>
+        </product-meta>
+      </div>
+    </div>
+  {%- endcapture -%}
+
+  {%- if template.suffix == 'quick-buy-drawer' -%}
+    <quick-buy-drawer class="drawer drawer--large drawer--quick-buy">
+      <cart-notification hidden class="cart-notification cart-notification--drawer"></cart-notification>
+
+      <span class="drawer__overlay"></span>
+
+      <header class="drawer__header">
+        <p class="drawer__title heading h6">{{ 'product.form.choose_options' | t }}</p>
+
+        <button type="button" class="drawer__close-button tap-area" data-action="close" title="{{ 'general.accessibility.close' | t | escape }}">
+          {%- render 'icon' with 'close' -%}
+        </button>
+      </header>
+
+      <div class="drawer__content">
+        {{- quick_buy_product_info -}}
+        {%- render 'product-form', product: product -%}
+      </div>
+    </quick-buy-drawer>
+  {%- elsif template.suffix == 'quick-buy-popover' -%}
+    <quick-buy-popover class="popover popover--quick-buy">
+      <span class="popover__overlay"></span>
+
+      <header class="popover__header">
+        {{- quick_buy_product_info -}}
+
+        <button type="button" class="popover__close-button tap-area tap-area--large" data-action="close" title="{{ 'general.accessibility.close' | t | escape }}">
+          {%- render 'icon' with 'close' -%}
+        </button>
+      </header>
+
+      <div class="popover__content popover__content--no-padding">
+        {%- render 'product-form', product: product -%}
+      </div>
+    </quick-buy-popover>
+  {%- endif -%}
+{%- endunless -%}
+
+{% schema %}
+{
+  "name": "Página de produto",
+  "class": "shopify-section--main-product",
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "variant_picker",
+      "name": "Seletor de variantes",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "hide_sold_out_variants",
+          "label": "Ocultar variantes esgotadas",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "selector_mode",
+          "label": "Tipo de seletor",
+          "options": [
+            {
+              "value": "block",
+              "label": "Bloco"
+            },
+            {
+              "value": "dropdown",
+              "label": "Menu suspenso"
+            }
+          ],
+          "default": "block"
+        },
+        {
+          "type": "select",
+          "id": "color_mode",
+          "label": "Tipo de seletor de cor",
+          "info": "O modo de imagem da variante requer que todas as variantes tenham uma imagem associada. [Saiba mais](https://help.shopify.com/pt-BR/manual/products/product-media/add-images-variants#add-images-to-existing-variants)",
+          "options": [
+            {
+              "value": "block",
+              "label": "Bloco"
+            },
+            {
+              "value": "dropdown",
+              "label": "Menu suspenso"
+            },
+            {
+              "value": "color",
+              "label": "Amostra de cor"
+            },
+            {
+              "value": "variant_image",
+              "label": "Imagem da variante"
+            }
+          ],
+          "default": "color"
+        },
+        {
+          "type": "page",
+          "id": "size_chart_page",
+          "label": "Página de tabela de tamanhos",
+          "info": "Apresente uma página para a opção de tamanho"
+        }
+      ]
+    },
+    {
+      "type": "quantity_selector",
+      "name": "Seletor de quantidade",
+      "limit": 1
+    },
+    {
+      "type": "buy_buttons",
+      "name": "Botões de compra",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_payment_button",
+          "label": "Mostrar botão de pagamento dinâmico",
+          "info": "Cada cliente verá seu método de pagamento preferido entre os disponíveis em sua loja, como PayPal ou Apple Pay. [Saiba mais](https://help.shopify.com/pt-BR/manual/using-themes/change-the-layout/dynamic-checkout)",
+          "default": true
+        },
+        {
+          "type": "color",
+          "id": "atc_button_background",
+          "label": "Cor de fundo do botão Adicionar ao carrinho",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "color",
+          "id": "atc_button_text_color",
+          "label": "Cor do texto do botão Adicionar ao carrinho",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "color",
+          "id": "buy_now_button_background",
+          "label": "Cor de fundo do botão Comprar agora",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "color",
+          "id": "buy_now_button_text_color",
+          "label": "Cor do texto do botão Comprar agora",
+          "default": "rgba(0,0,0,0)"
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Descrição",
+      "limit": 1
+    },
+    {
+      "type": "inventory",
+      "name": "Inventário",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "range",
+          "id": "low_inventory_threshold",
+          "label": "Limiar de baixo estoque",
+          "info": "Use a cor de estoque baixo quando a quantidade estiver abaixo do limiar. Escolha 0 para sempre mostrar em estoque.",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 0
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Texto",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Texto"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Imagem",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem"
+        },
+        {
+          "type": "select",
+          "id": "image_alignment",
+          "label": "Alinhamento",
+          "options": [
+            {
+              "value": "left",
+              "label": "Esquerda"
+            },
+            {
+              "value": "center",
+              "label": "Centro"
+            },
+            {
+              "value": "right",
+              "label": "Direita"
+            }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 50,
+          "max": 500,
+          "step": 10,
+          "unit": "px",
+          "label": "Largura",
+          "default": 150
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Botão",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Crie um link para sua página de contato, mercado externo..."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto"
+        },
+        {
+          "type": "checkbox",
+          "id": "stretch",
+          "label": "Ampliar botão",
+          "default": true
+        },
+        {
+          "type": "color",
+          "id": "background",
+          "label": "Cor de fundo",
+          "default": "rgba(0,0,0,0)"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Cor do texto",
+          "default": "rgba(0,0,0,0)"
+        }
+      ]
+    },
+    {
+      "type": "liquid",
+      "name": "Liquid personalizado",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "liquid",
+          "label": "Liquid",
+          "info": "Adicione trechos de aplicativo ou outro código liquid para criar personalizações avançadas."
+        }
+      ]
+    },
+    {
+      "type": "line_item_property",
+      "name": "Propriedade item de linha",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "As propriedades do item de linha são usadas para coletar informações de personalização para um item adicionado ao carrinho."
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Rótulo",
+          "default": "Seu rótulo"
+        },
+        {
+          "type": "select",
+          "id": "type",
+          "label": "Tipo",
+          "options": [
+            {
+              "value": "text",
+              "label": "Texto"
+            },
+            {
+              "value": "checkbox",
+              "label": "Caixa de seleção"
+            }
+          ],
+          "default": "text"
+        },
+        {
+          "type": "header",
+          "content": "Texto",
+          "info": "Aplicável apenas para propriedade do item de linha do tipo Texto."
+        },
+        {
+          "type": "checkbox",
+          "id": "required",
+          "label": "Obrigatório",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "allow_long_text",
+          "label": "Permitir texto longo",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Caixa de seleção",
+          "info": "Aplicável apenas para propriedade do item de linha do tipo Caixa de seleção."
+        },
+        {
+          "type": "text",
+          "id": "checked_value",
+          "label": "Valor quando marcado",
+          "default": "Sim"
+        },
+        {
+          "type": "text",
+          "id": "unchecked_value",
+          "label": "Valor quando desmarcado",
+          "default": "Não"
+        }
+      ]
+    }
+  ],
+  "settings": [
+      {
+      "type": "checkbox",
+      "id": "show_progressbar",
+      "label": "Barra de escassez",
+      "info": "Mostrar Barra de escassez, Faça as alterações em Configurações do tema. Obs: Por questão de otimização de código, após alguma alteração na pagina do produto salve ou atualize a página para que a barra de escassez apareça como visivel novamente. Isso impede a renderização multipla desse script tornando a página mais leve.",
+      "default": true
+    },
+     {
+        "type": "paragraph",
+        "content": "A barra de escassez é apresentada por TAG de produto, para que a barra apareça, vá até o seu produto e coloque a tag: escassez. Se quiser que a barra apareça em todos os produtos, selecione todos e clique em inserir TAGs"
+      },
+    {
+      "type": "checkbox",
+      "id": "show_exclusividade",
+      "label": "Label Exclusividade",
+      "info": "Mostrar etiqueta de exclusividade acima do título do produto. Altere cor e texto nas configurações",
+      "default": true
+    },
+     {
+      "type": "checkbox",
+      "id": "show_label3",
+      "label": "Label Mais Vendido",
+      "info": "Mostrar etiqueta de Mais Vendido acima do título do produto. Altere cor e texto nas configurações",
+      "default": true
+    },
+
+     {
+      "type": "checkbox",
+      "id": "show_vendidos",
+      "label": "Label vendidos",
+      "info": "Mostrar etiqueta de vendidos acima do título do produto",
+      "default": true
+    },
+    
+  
+
+    {
+      "type": "checkbox",
+      "id": "show_bandeirascart",
+      "label": "Bandeiras",
+      "info": "Mostrar Bandeiras abaixo do botão de compra. OBS: altere a largura das bandeiras em Configurações > Alterações Página do Produto",
+      "default": true
+    },
+
+{
+        "type": "paragraph",
+        "content": "BANDEIRAS ESTILO 1"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_bandeiras1",
+        "label": "Mostrar Estilo 1",
+        "info": "Mostrar bandeiras das formas de pagamento Estilo 1",
+        "default": true
+      },
+      {
+        "type": "paragraph",
+        "content": "BANDEIRAS ESTILO 2"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_bandeiras2",
+        "label": "Mostrar Estilo 2",
+        "info": "Mostrar bandeiras das formas de pagamento Estilo 2",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "titulo_bandeiras",
+        "label": "Título das Bandeiras",
+        "info": "Frase acima das bandeiras de pagamento",
+        "default": "PAGAMENTO SEGURO E RÁPIDO"
+      },
+
+    {
+        "type": "checkbox",
+        "id": "show_visa_p",
+        "label": "Mostrar Visa",
+        "info": "Mostrar Visa nas bandeiras das formas de pagamento. Atenção, essa alteração implicará também nas bandeiras dos cartões utilizadas no box de parcelamento",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_master_p",
+        "label": "Mostrar Mastercard",
+        "info": "Mostrar Mastercard nas bandeiras das formas de pagamento",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_hiper_p",
+        "label": "Mostrar Hipercard",
+        "info": "Mostrar Hipercard nas bandeiras das formas de pagamento",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_elo_p",
+        "label": "Mostrar Elo",
+        "info": "Mostrar Elo nas bandeiras das formas de pagamento",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_amex_p",
+        "label": "Mostrar Amex",
+        "info": "Mostrar Amex nas bandeiras das formas de pagamento",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_discover_p",
+        "label": "Mostrar Discover",
+        "info": "Mostrar Discover card nas bandeiras das formas de pagamento. Disponível apenas no estilo 1",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_pix_p",
+        "label": "Mostrar Pix",
+        "info": "Mostrar Pix junto as bandeiras das formas de pagamento",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_boleto_p",
+        "label": "Mostrar boleto",
+        "info": "Mostrar boleto junto as bandeiras das formas de pagamento",
+        "default": true
+      },
+   
+
+    {
+      "type": "checkbox",
+      "id": "show_box1p",
+      "label": "Box de pagamento seguro",
+      "info": "Mostrar box 1, pagamento e informações seguras",
+      "default": true
+    },
+    {
+          "type": "richtext",
+          "id": "box1p_line1",
+          "label": "Linha 1",
+          "default": "<p>Pagamentos e informações estão seguros</p>"
+        },
+    {
+          "type": "richtext",
+          "id": "box1p_line2",
+          "label": "Linha 2",
+          "default": "<p>Site oficial com todos os direitos reservados</p>"
+        },
+    
+    {
+          "type": "image_picker",
+          "id": "image_paginfo",
+          "label": "Imagem Pagamento e informações",
+          "info": "Imagem para o script abaixo do botão de compra: Recomendado máximo de 50px de largura. Use uma versão reduzida da sua logomarca, favicon ou algum ícone de segurança. OBS: Uma imagem padrão é utilizada caso nenhum upload seja realizado!"
+        },
+    {
+      "type": "checkbox",
+      "id": "show_box2p",
+      "label": "Box de Frete",
+      "info": "Mostrar box 2, Frete",
+      "default": true
+    },
+     {
+          "type": "richtext",
+          "id": "box2p_line1",
+          "label": "Título Frete",
+          "default": "<p>Frete Grátis</p>"
+        },
+    {
+          "type": "richtext",
+          "id": "box2p_line2",
+          "label": "Linha 1 frete",
+          "default": "<p>Frete grátis em pedidos acima de R$99</p>"
+        },
+    {
+          "type": "richtext",
+          "id": "box2p_line3",
+          "label": "Linha 2 frete",
+          "default": "<p>Entrega realizada pelos Correios Brasileiros©.</p>"
+        },
+    
+    {
+      "type": "checkbox",
+      "id": "show_box3p",
+      "label": "Box de Garantia",
+      "info": "Mostrar box 3, Garantia",
+      "default": true
+    },
+
+{
+          "type": "richtext",
+          "id": "box3p_line1",
+          "label": "Título Garantia",
+          "default": "<p>Devoluções Gratuitas</p>"
+        },
+    {
+          "type": "richtext",
+          "id": "box3p_line2",
+          "label": "Linha 1 garantia",
+          "default": "<p>Reembolso de 100% do seu dinheiro</p>"
+        },
+    {
+          "type": "richtext",
+          "id": "box3p_line3",
+          "label": "Linha 2 garantia",
+          "default": "<p>7 dias após o recebimento da mercadoria.</p>"
+        },
+    
+    {
+      "type": "checkbox",
+      "id": "show_buscacep",
+      "label": "Frete por CEP",
+      "info": "Buscar frete a partir do CEP. Altere as informações em configurações do tema",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Exibir fabricante",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sku",
+      "label": "Exibir SKU",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_taxes_included",
+      "label": "Exibir impostos incluídos",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_rating",
+      "label": "Exibir avaliação do produto",
+      "info": "Para exibir uma avaliação, adicione um aplicativo de avaliação do produto. [Saiba mais](https://help.shopify.com/pt-BR/manual/products/product-reviews/installation)",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sticky_add_to_cart",
+      "label": "Exibir botão de compra fixo",
+      "info": "Será ocultado se nenhum bloco de botões de compra for adicionado à página.",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_share_buttons",
+      "label": "Exibir botões de compartilhamento",
+      "default": true
+    },
+    {
+      "type": "page",
+      "id": "help_page",
+      "label": "Página de ajuda",
+      "info": "Apresente uma página para ajudar seus clientes"
+    },
+    {
+      "type": "header",
+      "content": "Mídia"
+    },
+    {
+      "type": "paragraph",
+      "content": "Saiba mais sobre [tipos de mídia](https://help.shopify.com/pt-BR/manual/products/product-media)"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video_autoplay",
+      "label": "Habilitar reprodução automática de vídeos",
+      "info": "Os vídeos são reproduzidos automaticamente com som desligado",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video_looping",
+      "label": "Habilitar repetição de vídeos",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_image_zoom",
+      "label": "Habilitar zoom da imagem",
+      "info": "O zoom não mostra vídeos nem modelos 3D.",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_thumbnails_on_mobile",
+      "label": "Exibir miniaturas em dispositivos móveis",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "desktop_thumbnails_position",
+      "label": "Posição das miniaturas no desktop",
+      "options": [
+        {
+          "value": "left",
+          "label": "Esquerda"
+        },
+        {
+          "value": "bottom",
+          "label": "Inferior"
+        }
+      ],
+      "default": "bottom"
+    },
+    {
+      "type": "select",
+      "id": "transition_effect",
+      "label": "Efeito de transição",
+      "options": [
+        {
+          "value": "slide",
+          "label": "Deslizar"
+        },
+        {
+          "value": "fade",
+          "label": "Desaparecer"
+        }
+      ],
+      "default": "slide"
+    },
+ {
+      "type": "checkbox",
+      "id": "show_fretesertaneja",
+      "label": "Exibir Calculadora de Frete Sertaneja",
+      "default": false
+    },
+
+
+  ]
+}
+{% endschema %}
+

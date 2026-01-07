@@ -1,0 +1,1103 @@
+{% comment %}
+  Global CEP Field - Integrado ao Header
+  
+  Uso:
+  {%- render 'global-cep-field' -%}
+  
+  Este snippet cria um campo de CEP elegante e integrado ao header.
+{% endcomment %}
+
+<div class="global-cep-container">
+  <!-- Estado inicial - Solicitar CEP -->
+  <div class="global-cep-input-container" {% if cart.attributes.customer_cep %}style="display: none;"{% endif %}>
+    <div class="global-cep-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
+      </svg>
+    </div>
+    <span class="global-cep-placeholder">Insira seu CEP</span>
+    <button id="global-cep-add-button" class="global-cep-add-button" aria-label="Adicionar CEP">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+  
+  <!-- Campo de input para inserir o CEP -->
+  <div id="global-cep-form" class="global-cep-form" style="display: none;">
+    <div class="global-cep-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
+      </svg>
+    </div>
+    <input type="text" id="global-cep-input" class="global-cep-input" placeholder="Digite o CEP" maxlength="9" aria-label="Campo de CEP">
+    <button id="global-cep-button" class="global-cep-button" aria-label="Confirmar CEP">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" fill="currentColor"/>
+      </svg>
+    </button>
+    <button id="global-cep-clear" class="global-cep-clear" aria-label="Remover CEP">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" fill="currentColor"/>
+      </svg>
+    </button>
+    <button id="global-cep-cancel" class="global-cep-cancel" aria-label="Cancelar">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+  
+  <!-- Estado com CEP definido -->
+  <div id="global-cep-display" class="global-cep-display" {% if cart.attributes.customer_cep %}style="display: flex;"{% else %}style="display: none;"{% endif %}>
+    <div class="global-cep-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
+      </svg>
+    </div>
+    <div class="global-cep-info">
+      <span id="global-cep-value" class="global-cep-value">
+        {% if cart.attributes.customer_city and cart.attributes.customer_state %}
+          Entregando para: {{ cart.attributes.customer_city }}/{{ cart.attributes.customer_state }}
+        {% elsif cart.attributes.customer_cep %}
+          Entregando para: CEP informado
+        {% endif %}
+      </span>
+      <span id="global-cep-number" class="global-cep-number">
+        {% if cart.attributes.customer_cep %}
+          {{ cart.attributes.customer_cep }}
+        {% endif %}
+      </span>
+    </div>
+    <div class="global-cep-actions-container">
+      <button id="global-cep-edit" class="global-cep-edit" aria-label="Editar CEP">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="currentColor"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Mensagem de erro -->
+  <div id="global-cep-error" class="global-cep-error">
+    <span id="global-cep-error-message"></span>
+    <button id="global-cep-error-close" class="global-cep-error-close" aria-label="Fechar mensagem de erro">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<style>
+  /* Estilos para o campo de CEP global integrado ao header */
+  .global-cep-container {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin-right: 20px;
+    position: relative;
+    height: 100%;
+    background: transparent;
+    flex-grow: 1;
+    max-width: 350px;
+  }
+
+  .global-cep-input-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    background: transparent;
+    width: 100%;
+    cursor: pointer;
+    padding: 0 4px;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+  }
+  
+  .global-cep-input-container:hover {
+    background-color: rgba(var(--header-text-color-rgb, 51, 51, 51), 0.05);
+  }
+  
+  .global-cep-input-container:active {
+    background-color: rgba(var(--header-text-color-rgb, 51, 51, 51), 0.1);
+    transform: scale(0.99);
+  }
+  
+  .global-cep-form {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    background: transparent;
+    width: 100%;
+    padding: 0 4px;
+    border-radius: 4px;
+    background-color: rgba(var(--header-text-color-rgb, 51, 51, 51), 0.03);
+  }
+  
+  .global-cep-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--header-text-color, #333);
+    opacity: 0.8;
+    margin-right: 6px;
+    flex-shrink: 0;
+  }
+
+  .global-cep-placeholder {
+    color: var(--header-text-color, #333);
+    opacity: 0.8;
+    flex-grow: 1;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+  }
+
+  .global-cep-input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(var(--header-text-color-rgb, 51, 51, 51), 0.3);
+    color: var(--header-text-color, #333);
+    font-size: 14px;
+    padding: 4px 6px;
+    flex-grow: 1;
+    min-width: 0;
+    transition: all 0.2s ease;
+  }
+  
+  .global-cep-input::placeholder {
+    color: var(--header-text-color, #333);
+    opacity: 0.6;
+  }
+  
+  .global-cep-input:focus {
+    outline: none;
+    border-bottom-color: var(--header-text-color, #333);
+  }
+
+  .global-cep-button, .global-cep-add-button, .global-cep-cancel, .global-cep-clear {
+    background: transparent;
+    border: none;
+    color: var(--header-text-color, #333);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    border-radius: 50%;
+  }
+
+  .global-cep-button:hover, .global-cep-add-button:hover, .global-cep-cancel:hover, .global-cep-clear:hover {
+    opacity: 1;
+    background-color: rgba(var(--header-text-color-rgb, 51, 51, 51), 0.1);
+  }
+  
+  .global-cep-button:active, .global-cep-add-button:active, .global-cep-cancel:active, .global-cep-clear:active {
+    transform: scale(0.9);
+  }
+  
+  .global-cep-display {
+    display: flex;
+    align-items: center;
+    color: var(--header-text-color, #333);
+    height: 100%;
+    background: transparent;
+    width: 100%;
+    padding: 0 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .global-cep-display:hover {
+    background-color: rgba(var(--header-text-color-rgb, 51, 51, 51), 0.05);
+  }
+  
+  .global-cep-info {
+    flex-grow: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .global-cep-value {
+    font-size: 14px;
+    color: var(--header-text-color, #333);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+  
+  .global-cep-number {
+    font-size: 12px;
+    color: var(--header-text-color, #333);
+    opacity: 0.7;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+  
+  .global-cep-actions-container {
+    display: flex;
+    align-items: center;
+    margin-left: 4px;
+    flex-shrink: 0;
+  }
+  
+  .global-cep-edit {
+    background: transparent;
+    border: none;
+    color: var(--header-text-color, #333);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: all 0.2s ease;
+    border-radius: 50%;
+  }
+  
+  .global-cep-edit:hover {
+    opacity: 1;
+    background-color: rgba(var(--header-text-color-rgb, 51, 51, 51), 0.1);
+  }
+  
+  .global-cep-edit:active {
+    transform: scale(0.9);
+  }
+  
+  .global-cep-error {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background-color: #ff3b30;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 8px;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 101;
+    box-shadow: 0 4px 12px rgba(255, 59, 48, 0.3);
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .global-cep-error.active {
+    display: flex;
+  }
+  
+  .global-cep-error-close {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+    opacity: 0.8;
+    transition: all 0.2s ease;
+    border-radius: 50%;
+  }
+  
+  .global-cep-error-close:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Feedback visual para o botão de confirmação */
+  .global-cep-button.pulse {
+    animation: pulse 1.5s infinite;
+    background-color: rgba(var(--header-text-color-rgb, 51, 51, 51), 0.05);
+  }
+  
+  .global-cep-button.saving {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(var(--header-text-color-rgb, 51, 51, 51), 0.2);
+    }
+    70% {
+      box-shadow: 0 0 0 6px rgba(var(--header-text-color-rgb, 51, 51, 51), 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(var(--header-text-color-rgb, 51, 51, 51), 0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Estilos responsivos */
+  @media screen and (max-width: 767px) {
+    .global-cep-container {
+      margin-right: 10px;
+      max-width: none;
+      font-size: 13px;
+    }
+    
+    .global-cep-value {
+      font-size: 13px;
+    }
+    
+    .global-cep-number {
+      font-size: 11px;
+    }
+    
+    .global-cep-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+/* Estilos específicos para desktop */
+@media screen and (min-width: 768px) {
+  .global-cep-container {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: 25px;
+    font-size: 15px;
+    height: 40px;
+  }
+  
+  .global-cep-input-container {
+    padding: 0 10px;
+    height: 40px;
+    border-radius: 6px;
+    border: 1px solid rgba(var(--header-text-color-rgb, 51, 51, 51), 0.1);
+  }
+  
+  .global-cep-form {
+    padding: 0 10px;
+    height: 40px;
+    border-radius: 6px;
+    border: 1px solid rgba(var(--header-text-color-rgb, 51, 51, 51), 0.2);
+  }
+  
+  .global-cep-display {
+    padding: 0 10px;
+    height: 40px;
+    border-radius: 6px;
+    border: 1px solid rgba(var(--header-text-color-rgb, 51, 51, 51), 0.1);
+  }
+  
+  .global-cep-icon {
+    margin-right: 10px;
+  }
+  
+  .global-cep-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .global-cep-placeholder {
+    font-size: 15px;
+  }
+  
+  .global-cep-input {
+    font-size: 15px;
+    padding: 6px 8px;
+  }
+  
+  .global-cep-button, .global-cep-add-button, .global-cep-cancel, .global-cep-clear, .global-cep-edit {
+    padding: 6px;
+  }
+  
+  .global-cep-button svg, .global-cep-add-button svg, .global-cep-cancel svg, .global-cep-clear svg, .global-cep-edit svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .global-cep-value {
+    font-size: 15px;
+  }
+  
+  .global-cep-number {
+    font-size: 13px;
+  }
+  
+  .global-cep-error {
+    padding: 12px 16px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+  
+  /* Melhora o feedback visual para o botão de confirmação */
+  .global-cep-button.pulse {
+    box-shadow: 0 0 0 0 rgba(var(--header-text-color-rgb, 51, 51, 51), 0.3);
+  }
+  
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(var(--header-text-color-rgb, 51, 51, 51), 0.3);
+    }
+    70% {
+      box-shadow: 0 0 0 8px rgba(var(--header-text-color-rgb, 51, 51, 51), 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(var(--header-text-color-rgb, 51, 51, 51), 0);
+    }
+  }
+  
+  /* Melhora a notificação para desktop */
+  #cep-notification {
+    padding: 14px 24px !important;
+    font-size: 15px !important;
+    border-radius: 10px !important;
+  }
+}
+
+/* Estilo para centralizar o componente quando usado em contêineres flexíveis */
+@media screen and (min-width: 992px) {
+  .global-cep-container {
+    margin: 0 auto;
+  }
+}
+
+</style>
+
+<script>
+  // Verifica se o componente já foi inicializado globalmente
+  if (!window.globalCepInitialized) {
+    window.globalCepInitialized = true;
+    
+    // Cache global para armazenar dados do CEP
+    window.globalCepCache = {
+      lastFetch: 0,
+      isLoading: false,
+      data: null
+    };
+    
+    // Função global para buscar informações do CEP
+    window.fetchCepInfo = async function(cep) {
+      // Verifica se já temos o resultado em cache e se foi buscado recentemente (menos de 24h)
+      const now = Date.now();
+      const cachedData = sessionStorage.getItem(`cep_data_${cep}`);
+      
+      if (cachedData) {
+        try {
+          const parsedData = JSON.parse(cachedData);
+          const cacheTime = parsedData._timestamp || 0;
+          
+          // Se o cache for recente (menos de 24h), retorna os dados do cache
+          if (now - cacheTime < 24 * 60 * 60 * 1000) {
+            return {
+              cep: parsedData.cep,
+              cidade: parsedData.localidade,
+              estado: parsedData.uf,
+              bairro: parsedData.bairro
+            };
+          }
+        } catch (e) {
+          console.error('Erro ao ler cache do CEP:', e);
+        }
+      }
+      
+      try {
+        const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        const data = await response.json();
+        
+        if (!data.erro) {
+          // Adiciona timestamp ao cache
+          data._timestamp = now;
+          
+          // Salva no sessionStorage para uso futuro
+          sessionStorage.setItem(`cep_data_${cep}`, JSON.stringify(data));
+          
+          return {
+            cep: data.cep,
+            cidade: data.localidade,
+            estado: data.uf,
+            bairro: data.bairro
+          };
+        } else {
+          throw new Error('CEP não encontrado');
+        }
+      } catch (error) {
+        console.error('Erro ao buscar informações do CEP:', error);
+        return null;
+      }
+    };
+    
+    // Função global para atualizar os atributos do carrinho
+    window.updateCartAttribute = function(cep, city, state) {
+      // Verifica se os valores são diferentes dos atuais
+      const currentCep = "{{ cart.attributes.customer_cep }}";
+      const currentCity = "{{ cart.attributes.customer_city }}";
+      const currentState = "{{ cart.attributes.customer_state }}";
+      
+      if (cep === currentCep && city === currentCity && state === currentState) {
+        return Promise.resolve(); // Não faz nada se os valores forem iguais
+      }
+      
+      return fetch('/cart/update.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          attributes: {
+            customer_cep: cep || '',
+            customer_city: city || '',
+            customer_state: state || ''
+          }
+        })
+      })
+      .then(response => response.json())
+      .catch(error => {
+        console.error('Erro ao salvar dados no carrinho:', error);
+      });
+    };
+    
+    // API global para acessar dados do CEP em qualquer lugar do site
+    window.globalCep = {
+      getCep: function() {
+        return localStorage.getItem('shopify_customer_cep')?.replace(/\D/g, '') || null;
+      },
+      getCity: function() {
+        return localStorage.getItem('shopify_customer_city') || null;
+      },
+      getState: function() {
+        return localStorage.getItem('shopify_customer_state') || null;
+      },
+      setCep: function(cep) {
+        if (!cep || cep.length < 8) return false;
+        
+        const formattedCep = cep.replace(/(\d{5})(\d{3})/, '$1-$2');
+        localStorage.setItem('shopify_customer_cep', formattedCep);
+        
+        // Busca informações adicionais do CEP se necessário
+        this.fetchCepDetails(cep, true);
+        
+        // Dispara evento para notificar outros componentes
+        document.dispatchEvent(new CustomEvent('cep_updated', { 
+          detail: { cep: cep }
+        }));
+        
+        return true;
+      },
+      getInfo: function() {
+        return {
+          cep: this.getCep(),
+          cidade: this.getCity(),
+          estado: this.getState()
+        };
+      },
+      clear: function() {
+        localStorage.removeItem('shopify_customer_cep');
+        localStorage.removeItem('shopify_customer_city');
+        localStorage.removeItem('shopify_customer_state');
+        
+        // Remove do cart.attributes
+        window.updateCartAttribute('', '', '');
+        
+        // Dispara evento para notificar outros componentes
+        document.dispatchEvent(new CustomEvent('cep_updated', { 
+          detail: { cep: null, city: null, state: null }
+        }));
+        
+        return true;
+      },
+      fetchCepDetails: async function(cep, force = false) {
+        // Evita múltiplas requisições simultâneas
+        if (window.globalCepCache.isLoading) return;
+        
+        // Se force=true, limpa o cache deste CEP para garantir dados atualizados
+        if (force) {
+          sessionStorage.removeItem(`cep_data_${cep}`);
+        }
+        
+        // Verifica se já temos cidade e estado
+        const localCity = localStorage.getItem('shopify_customer_city');
+        const localState = localStorage.getItem('shopify_customer_state');
+        // Se já temos cidade e estado e não estamos forçando, não precisa buscar novamente
+        if (localCity && localState && !force) return;
+        
+        window.globalCepCache.isLoading = true;
+        
+        try {
+          const info = await window.fetchCepInfo(cep);
+          
+          if (info && info.cidade) {
+            // Salva a cidade e estado no localStorage
+            localStorage.setItem('shopify_customer_city', info.cidade);
+            localStorage.setItem('shopify_customer_state', info.estado);
+            
+            // Atualiza os atributos do carrinho
+            await window.updateCartAttribute(
+              localStorage.getItem('shopify_customer_cep'),
+              info.cidade,
+              info.estado
+            );
+            
+            // Dispara evento para notificar outros componentes
+            document.dispatchEvent(new CustomEvent('cep_updated', { 
+              detail: { 
+                cep: cep,
+                city: info.cidade,
+                state: info.estado,
+                neighborhood: info.bairro
+              }
+            }));
+            
+            // Atualiza o cache global
+            window.globalCepCache.data = info;
+            window.globalCepCache.lastFetch = Date.now();
+            
+            return info;
+          }
+        } catch (error) {
+          console.error('Erro ao buscar detalhes do CEP:', error);
+        } finally {
+          window.globalCepCache.isLoading = false;
+        }
+      },
+      
+      // Função para abrir o modal/formulário de CEP
+      openModal: function(options = {}) {
+        const silent = options.silent || false;
+        // Mostra o formulário de CEP
+        const cepInputContainer = document.querySelector('.global-cep-input-container');
+        const cepForm = document.querySelector('.global-cep-form');
+        const cepInput = document.querySelector('#global-cep-input');
+        if (cepInputContainer && cepForm && cepInput) {
+          cepInputContainer.style.display = 'none';
+          cepForm.style.display = 'flex';
+          cepInput.focus();
+        } else {
+          console.warn('Elementos do formulário de CEP não encontrados no DOM');
+        }
+        return true;
+      }
+    };
+  }
+
+  // Inicialização do componente na página atual
+  document.addEventListener('DOMContentLoaded', function() {
+    // Elementos do DOM
+    const cepInput = document.getElementById('global-cep-input');
+    const cepButton = document.getElementById('global-cep-button');
+    const cepCancel = document.getElementById('global-cep-cancel');
+    const cepDisplay = document.getElementById('global-cep-display');
+    const cepValue = document.getElementById('global-cep-value');
+    const cepNumber = document.getElementById('global-cep-number');
+    const cepClear = document.getElementById('global-cep-clear');
+    const cepInputContainer = document.querySelector('.global-cep-input-container');
+    const cepForm = document.getElementById('global-cep-form');
+    const cepAddButton = document.getElementById('global-cep-add-button');
+    const cepError = document.getElementById('global-cep-error');
+    const cepErrorMessage = document.getElementById('global-cep-error-message');
+    const cepErrorClose = document.getElementById('global-cep-error-close');
+    const cepEdit = document.getElementById('global-cep-edit');
+    
+    // Função para limpar o cache de um CEP específico
+    function clearCepCache(cep) {
+      if (cep) {
+        sessionStorage.removeItem(`cep_data_${cep.replace(/\D/g, '')}`);
+      }
+    }
+    
+    // Função para formatar o CEP com a máscara
+    function formatCep(cep) {
+      const cleanCep = cep.replace(/\D/g, '');
+      if (cleanCep.length > 5) {
+        return cleanCep.substring(0, 5) + '-' + cleanCep.substring(5);
+      }
+      return cleanCep;
+    }
+    
+    // Inicialização: verifica se já temos dados salvos
+    function init() {
+      // Verifica se já temos um CEP salvo
+      const savedCep = localStorage.getItem('shopify_customer_cep');
+      
+      if (savedCep) {
+        // Se já temos um CEP, carrega os dados
+        cepNumber.textContent = formatCep(savedCep);
+        
+        // Verifica se temos cidade e estado
+        const localCity = localStorage.getItem('shopify_customer_city');
+        const localState = localStorage.getItem('shopify_customer_state');
+        
+        // Se temos cidade e estado, mostra diretamente
+        if (localCity && localState) {
+          cepValue.textContent = `Entregando para: ${localCity}/${localState}`;
+        } else {
+          // Se não temos cidade/estado mas temos CEP, mostra "Buscando informações..."
+          cepValue.textContent = 'Buscando informações...';
+        }
+        
+        // Exibe o display do CEP
+        cepInputContainer.style.display = 'none';
+        cepForm.style.display = 'none';
+        cepDisplay.style.display = 'flex';
+        
+        // Busca informações do CEP apenas se não tivermos cidade/estado
+        if (!localCity || !localState) {
+          window.globalCep.fetchCepDetails(savedCep.replace(/\D/g, ''), false);
+          
+          // Timeout de segurança para remover o estado de "Buscando informações..." caso a API falhe
+          setTimeout(() => {
+            if (cepValue.textContent === 'Buscando informações...') {
+              cepValue.textContent = 'Entregando para: CEP informado';
+            }
+          }, 3000);
+        }
+        
+        // Sincroniza com cart.attributes apenas se necessário
+        const cartCep = "{{ cart.attributes.customer_cep }}";
+        const cartCity = "{{ cart.attributes.customer_city }}";
+        const cartState = "{{ cart.attributes.customer_state }}";
+        
+        if (cartCep !== savedCep || cartCity !== localCity || cartState !== localState) {
+          window.updateCartAttribute(savedCep, localCity || '', localState || '');
+        }
+      } else {
+        // Se não temos CEP, mostra o container inicial
+        cepInputContainer.style.display = 'flex';
+        cepForm.style.display = 'none';
+        cepDisplay.style.display = 'none';
+      }
+    }
+    
+    // Função para mostrar erro
+    function showError(message) {
+      cepErrorMessage.textContent = message;
+      cepError.classList.add('active');
+      
+      // Foca no input para correção
+      cepInput.focus();
+      
+      setTimeout(() => {
+        cepError.classList.remove('active');
+      }, 5000);
+    }
+    
+    // Inicializa o componente
+    init();
+    
+    // Máscara para o CEP
+    cepInput.addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length > 5) {
+        value = value.substring(0, 5) + '-' + value.substring(5);
+      }
+      e.target.value = value;
+      
+      // Adiciona efeito de pulso ao botão quando temos um CEP válido
+      if (value.replace(/\D/g, '').length === 8) {
+        cepButton.classList.add('pulse');
+      } else {
+        cepButton.classList.remove('pulse');
+      }
+    });
+    
+    // Mostra o formulário de CEP quando o placeholder é clicado (toda a área)
+    cepInputContainer.addEventListener('click', function() {
+      showCepInput();
+    });
+    
+    // Também mostra o formulário quando o botão de adicionar é clicado
+    cepAddButton.addEventListener('click', function(e) {
+      e.stopPropagation();
+      showCepInput();
+    });
+    
+    // Permite clicar no botão de editar para editar o CEP
+    cepEdit.addEventListener('click', function(e) {
+      e.stopPropagation();
+      showCepInput();
+    });
+    
+    // Permite clicar em qualquer lugar do display para editar o CEP
+    cepDisplay.addEventListener('click', function() {
+      showCepInput();
+    });
+    
+    // Fechar mensagem de erro
+    cepErrorClose.addEventListener('click', function() {
+      cepError.classList.remove('active');
+    });
+    
+    // Botão de cancelar no formulário
+    cepCancel.addEventListener('click', function() {
+      cancelCepInput();
+    });
+    
+    // Salva o CEP quando o botão é clicado
+    cepButton.addEventListener('click', function() {
+      saveCep();
+    });
+    
+    // Remove o CEP quando o botão de limpar é clicado
+    cepClear.addEventListener('click', function(e) {
+      e.stopPropagation(); // Impede que o evento de clique chegue ao cepForm
+      window.globalCep.clear();
+      
+      cepInput.value = '';
+      cepDisplay.style.display = 'none';
+      cepForm.style.display = 'none';
+      cepInputContainer.style.display = 'flex';
+      
+      // Feedback para o usuário
+      showNotification('CEP removido com sucesso');
+    });
+    
+    // Permite enviar o formulário com Enter
+    cepInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const cepValue = cepInput.value.replace(/\D/g, '');
+        if (cepValue.length === 8) {
+          saveCep();
+        } else if (cepValue.length > 0) {
+          showError('CEP inválido. Digite os 8 números do CEP.');
+        }
+      } else if (e.key === 'Escape') {
+        cancelCepInput();
+      }
+    });
+    
+    // Função para mostrar notificação
+    function showNotification(message, type = 'success', duration = 3000) {
+      // Verifica se já existe uma notificação
+      let notification = document.getElementById('cep-notification');
+      
+      if (notification) {
+        document.body.removeChild(notification);
+      }
+      
+      notification = document.createElement('div');
+      notification.id = 'cep-notification';
+      notification.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(34, 34, 34, 0.9);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 9999;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        max-width: 90%;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      `;
+      
+      // Determina o ícone com base no tipo
+      let icon;
+      if (type === 'success') {
+        icon = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" fill="white"/></svg>';
+      } else if (type === 'error') {
+        icon = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" fill="white"/></svg>';
+      }
+      
+      notification.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 10px;">
+          ${icon}
+          <span>${message}</span>
+        </div>
+      `;
+      
+      document.body.appendChild(notification);
+      
+      // Anima a notificação
+      setTimeout(() => {
+        notification.style.opacity = '1';
+      }, 10);
+      
+      // Remove a notificação após o tempo especificado
+      setTimeout(() => {
+        notification.style.opacity = '0';
+        setTimeout(() => {
+          if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+          }
+        }, 300);
+      }, duration);
+    }
+    
+    // Função para mostrar o campo de input com foco automático
+    function showCepInput() {
+      cepInputContainer.style.display = 'none';
+      cepDisplay.style.display = 'none';
+      cepForm.style.display = 'flex';
+      
+      // Preenche com o CEP atual se existir
+      const currentCep = localStorage.getItem('shopify_customer_cep');
+      cepInput.value = currentCep;
+      
+      // Posiciona o cursor no final do texto
+      cepInput.focus();
+      if (currentCep) {
+        cepInput.setSelectionRange(currentCep.length, currentCep.length);
+        
+        // Adiciona efeito de pulso se o CEP for válido
+        if (currentCep.replace(/\D/g, '').length === 8) {
+          cepButton.classList.add('pulse');
+        }
+      }
+    }
+    
+    // Função para cancelar a entrada de CEP
+    function cancelCepInput() {
+      cepForm.style.display = 'none';
+      
+      // Se já tiver um CEP salvo, mostra o display
+      if (localStorage.getItem('shopify_customer_cep')) {
+        cepDisplay.style.display = 'flex';
+      } else {
+        cepInputContainer.style.display = 'flex';
+      }
+      
+      // Remove o efeito de pulso
+      cepButton.classList.remove('pulse');
+    }
+    
+    // Função para salvar o CEP com feedback visual
+    function saveCep() {
+      const cep = cepInput.value.replace(/\D/g, '');
+      if (cep.length === 8) {
+        // Feedback visual - desabilita o botão temporariamente
+        cepButton.disabled = true;
+        cepButton.classList.remove('pulse');
+        cepButton.classList.add('saving');
+        
+        // Evita múltiplas requisições
+        if (window.globalCepCache.isLoading) return;
+        
+        const formattedCep = cep.replace(/(\d{5})(\d{3})/, '$1-$2');
+        
+        // Verifica se o CEP mudou
+        const previousCep = localStorage.getItem('shopify_customer_cep');
+        const cepChanged = previousCep !== formattedCep;
+        
+        // Se o CEP mudou, limpa os dados antigos de cidade/estado
+        if (cepChanged) {
+          localStorage.removeItem('shopify_customer_city');
+          localStorage.removeItem('shopify_customer_state');
+        } else {
+          // Se o CEP não mudou, não precisamos buscar novamente
+          // Apenas atualizamos a interface
+          cepNumber.textContent = formattedCep;
+          cepInputContainer.style.display = 'none';
+          cepForm.style.display = 'none';
+          cepDisplay.style.display = 'flex';
+          
+          // Reativa o botão
+          setTimeout(() => {
+            cepButton.disabled = false;
+            cepButton.classList.remove('saving');
+          }, 300);
+          
+          // Mostra notificação de sucesso
+          showNotification('CEP atualizado com sucesso');
+          
+          return;
+        }
+        
+        // Salva no localStorage
+        localStorage.setItem('shopify_customer_cep', formattedCep);
+        
+        // Atualiza a exibição
+        cepNumber.textContent = formattedCep;
+        cepValue.textContent = 'Buscando informações...';
+        cepInputContainer.style.display = 'none';
+        cepForm.style.display = 'none';
+        cepDisplay.style.display = 'flex';
+        
+        // Busca informações adicionais do CEP de forma assíncrona
+        window.globalCep.fetchCepDetails(cep, cepChanged)
+          .finally(() => {
+            // Reativa o botão após a conclusão
+            setTimeout(() => {
+              cepButton.disabled = false;
+              cepButton.classList.remove('saving');
+            }, 300);
+            
+            // Mostra notificação de sucesso
+            showNotification('CEP atualizado com sucesso');
+            
+            // Timeout de segurança para remover o estado de "Buscando informações..." caso a API falhe
+            setTimeout(() => {
+              if (cepValue.textContent === 'Buscando informações...') {
+                cepValue.textContent = 'Entregando para: CEP informado';
+              }
+            }, 3000);
+          });
+      } else {
+        showError('CEP inválido. Digite os 8 números do CEP.');
+      }
+    }
+    
+    // Atualiza a interface quando os dados do CEP mudarem
+    document.addEventListener('cep_updated', function(event) {
+      // Só atualiza se o componente estiver presente na página e tiver novos dados
+      if (cepDisplay && cepValue && cepNumber && event.detail.city && event.detail.state) {
+        cepValue.textContent = `Entregando para: ${event.detail.city}/${event.detail.state}`;
+        
+        // Garante que os dados locais estejam atualizados
+        localStorage.setItem('shopify_customer_city', event.detail.city);
+        localStorage.setItem('shopify_customer_state', event.detail.state);
+      }
+    });
+    
+    // Adiciona detecção de gestos para mobile
+    if ('ontouchstart' in window) {
+      let touchStartX = 0;
+      let touchEndX = 0;
+      
+      cepDisplay.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+      }, false);
+      
+      cepDisplay.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }, false);
+      
+      function handleSwipe() {
+        // Detecta swipe para a esquerda (para editar)
+        if (touchStartX - touchEndX > 50) {
+          showCepInput();
+        }
+      }
+    }
+    
+    // Adiciona suporte para Escape para fechar o formulário
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        // Fecha o formulário se estiver aberto
+        if (cepForm.style.display === 'flex') {
+          cancelCepInput();
+        }
+      }
+    });
+  });
+</script>

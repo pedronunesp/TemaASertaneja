@@ -1,0 +1,331 @@
+{% schema %}
+  {
+    "name": "Calculadora Frenet",
+    "settings": []
+  }
+{% endschema %}
+
+{% if product.metafields.custom.drop == 'true' or product.metafields.custom.drop == true %}
+<style>
+  .frete-container {
+    background-color: #ffffff;
+    border-left: 4px solid #FF7A00;
+    border-radius: 6px;
+    padding: 14px 20px;
+    margin: 20px auto;
+    box-shadow: 0 2px 10px rgba(255, 122, 0, 0.08);
+    text-align: center;
+    max-width: 90%;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .frete-container:hover {
+    box-shadow: 0 4px 15px rgba(255, 122, 0, 0.15);
+  }
+
+  .frete-icon {
+    font-size: 22px;
+    margin-right: 12px;
+    color: #FF7A00;
+  }
+
+  .frete-mensagem {
+    color: #333333;
+    font-weight: 500;
+    font-size: 16px;
+    margin: 0;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: 0.2px;
+  }
+
+  .frete-destaque {
+    font-weight: 600;
+    color: #FF7A00;
+    position: relative;
+    padding-bottom: 2px;
+  }
+  
+  .frete-destaque:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: rgba(255, 122, 0, 0.3);
+    border-radius: 10px;
+  }
+
+  @media (max-width: 768px) {
+    .frete-container {
+      padding: 12px 15px;
+    }
+    
+    .frete-mensagem {
+      font-size: 15px;
+    }
+  }
+</style>
+
+<div class="frete-container">
+  <span class="frete-icon">🚚</span>
+  <p id="frete-mensagem" class="frete-mensagem">Verificando disponibilidade de frete...</p>
+</div>
+
+<script>
+  function obterCidade() {
+    return fetch('https://ipapi.co/json/')
+      .then(response => response.json())
+      .then(data => {
+        if (data.city) {
+          return data.city;
+        } else {
+          return "sua cidade";
+        }
+      })
+      .catch(() => "sua cidade");
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    obterCidade().then(cidade => {
+      const mensagem = `Frete Grátis para <span class="frete-destaque">${cidade}</span>`;
+      document.getElementById("frete-mensagem").innerHTML = mensagem;
+    });
+  });
+</script>
+
+
+
+
+{% else %}
+  <div class="freight-calculator">
+    <label for="cep-input" class="label">Calcular Frete</label>
+    <div class="input-container">
+      <input type="text" id="cep-input" class="input" placeholder="Digite seu CEP" />
+      <button id="calculate-freight-btn" class="freight-button">Calcular</button>
+    </div>
+    
+    <div id="freight-results" class="results">
+      <div class="loading-spinner" style="display: none;"></div>
+      <div class="results-header">
+        <h3>Opções de Entrega</h3>
+        <p class="cep-info">CEP: <span id="cep-display"></span></p>
+      </div>
+      <div class="results-grid"></div>
+      <p class="disclaimer">* Prazos calculados a partir da confirmação do pagamento</p>
+    </div>
+  </div>
+
+  <script>
+    window.productData = {
+      height: {{ product.metafields.custom.altura | default: 10 }},
+      length: {{ product.metafields.custom.comprimento | default: 20 }},
+      width: {{ product.metafields.custom.largura | default: 15 }},
+      weight: {{ product.metafields.custom.peso | default: 1.0 }},
+      price: {{ product.price | divided_by: 100.0 }},
+      sellercep: {{ product.metafields.custom.sellercep | default: 35500006 }},
+    };
+    console.log('Dados do produto:', window.productData);
+  </script>
+
+  <script src="{{ 'frenet-calculadora.js' | asset_url }}" defer></script>
+
+  <style>
+    .freight-calculator {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 30px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .label {
+      font-size: 1.4em;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #333;
+      display: block;
+      text-align: center;
+    }
+
+    .input-container {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .input {
+      flex: 1;
+      padding: 12px 16px;
+      font-size: 1.1em;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+
+    .input:focus {
+      border-color: #0073e6;
+      box-shadow: 0 0 8px rgba(0, 115, 230, 0.3);
+    }
+
+    .freight-button {
+      padding: 12px 25px;
+      font-size: 1.1em;
+      background-color: #0073e6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .freight-button:hover {
+      background-color: #005bb5;
+    }
+
+    .results {
+      margin-top: 25px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      border: 1px solid #e3e8ee;
+      display: none;
+    }
+
+    .results-header h3 {
+      color: #1a1d1f;
+      margin: 0 0 8px 0;
+      font-size: 1.3em;
+      text-align: center;
+    }
+
+    .cep-info {
+      color: #6b7280;
+      font-size: 0.9em;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .results-grid {
+      display: grid;
+      gap: 15px;
+    }
+
+    .shipping-option {
+      display: flex;
+      align-items: center;
+      padding: 18px;
+      background: white;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .shipping-icon {
+      width: 40px;
+      height: 40px;
+      margin-right: 15px;
+      background: #e8f4ff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .shipping-method {
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 4px;
+    }
+
+    .shipping-info {
+      display: flex;
+      gap: 15px;
+      color: #6b7280;
+      font-size: 0.9em;
+    }
+
+    .shipping-price {
+      font-size: 1.2em;
+      font-weight: 700;
+      color: #0073e6;
+      margin-left: auto;
+    }
+
+    .recommended {
+      border: 2px solid #0073e6;
+      background: #f5faff;
+    }
+
+    .disclaimer {
+      text-align: center;
+      font-size: 0.8em;
+      color: #6b7280;
+      margin: 20px 0 0 0;
+    }
+
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #0073e6;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+    }
+
+    .shipping-error {
+      padding: 20px;
+      background: #ffe6e6;
+      border: 1px solid #ff4d4d;
+      border-radius: 8px;
+      color: #cc0000;
+      text-align: center;
+    }
+
+    .shipping-icon[data-carrier="Correios"] { background: #f5e6f7; }
+    .shipping-icon[data-carrier="Azul"] { background: #e6f4ff; }
+    .shipping-icon[data-carrier="Jadlog"] { background: #fff3e6; }
+
+    .cep-info-highlight {
+      font-weight: bold;
+      color: #005bb5;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .cep-highlight {
+      color: #005bb5;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 600px) {
+      .freight-calculator {
+        padding: 20px;
+      }
+
+      .input-container {
+        flex-direction: column;
+      }
+
+      .input, .freight-button {
+        width: 100%;
+      }
+
+      .shipping-info {
+        flex-direction: column;
+        gap: 5px;
+      }
+    }
+
+    
+  </style>
+{% endif %}
