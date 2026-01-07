@@ -310,48 +310,31 @@
             resultsContent.innerHTML = '';
           }
           
-          // Fazer a requisição de pesquisa
-          fetch(`/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product&resources[limit]=4&resources[options][unavailable_products]=${form.querySelector('input[name="options[unavailable_products]"]').value}`)
-            .then(response => response.json())
-            .then(data => {
+          // Fazer a requisição de pesquisa usando Section Rendering API
+          // Isso busca o HTML renderizado pela section 'predictive-search'
+          // Use window.themeVariables.routes if available, otherwise fallback or checking generic routes
+          const predictiveSearchUrl = (window.themeVariables && window.themeVariables.routes && window.themeVariables.routes.predictiveSearchUrl) || '/search/suggest';
+          
+          fetch(`${predictiveSearchUrl}?q=${encodeURIComponent(query)}&section_id=predictive-search`)
+            .then(response => {
+              if (!response.ok) {
+                var error = new Error(response.statusText);
+                error.code = response.status;
+                throw error;
+              }
+              return response.text();
+            })
+            .then(text => {
               if (loadingIndicator) {
                 loadingIndicator.style.display = 'none';
               }
               
-              const products = data.resources.results.products;
+              // Parse the HTML string into a document
+              const resultsMarkup = new DOMParser().parseFromString(text, 'text/html').querySelector('#shopify-section-predictive-search').innerHTML;
+              resultsContent.innerHTML = resultsMarkup;
               
-              if (products.length > 0) {
-                // Mostrar resultados
-                products.forEach(product => {
-                  const resultItem = document.createElement('a');
-                  resultItem.href = product.url;
-                  resultItem.className = 'simple-search-result-item';
-                  
-                  let imageHtml = '';
-                  if (product.image) {
-                    imageHtml = `<img class="simple-search-result-image" src="${product.image}" alt="${product.title}">`;
-                  }
-                  
-                  resultItem.innerHTML = `
-                    ${imageHtml}
-                    <div class="simple-search-result-info">
-                      <h4 class="simple-search-result-title">${product.title}</h4>
-                      <div class="simple-search-result-price">${product.price}</div>
-                    </div>
-                  `;
-                  
-                  resultsContent.appendChild(resultItem);
-                });
-                
-                // Adicionar link "Ver todos"
-                const viewAllLink = document.createElement('a');
-                viewAllLink.href = `/search?q=${encodeURIComponent(query)}&type=product`;
-                viewAllLink.className = 'simple-search-view-all';
-                viewAllLink.textContent = 'Ver todos os resultados';
-                resultsContent.appendChild(viewAllLink);
-              } else {
-                // Nenhum resultado
-                resultsContent.innerHTML = `
+              if (!resultsMarkup || resultsMarkup.trim() === '') {
+                 resultsContent.innerHTML = `
                   <div class="simple-search-no-results">
                     Nenhum resultado encontrado
                   </div>
