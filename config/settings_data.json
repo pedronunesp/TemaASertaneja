@@ -1,1 +1,964 @@
-{"current":{"anuncio_fontem":14,"anuncio_alturam":38,"anuncio_fonted":15,"anuncio_alturad":30,"logo_ps_m":0,"logo_pi_m":0,"logo_ps_d":0,"logo_pi_d":0,"logo_correcao_m":-12,"logo_correcao_d":-9,"colecao_fonte1m":24,"colecao_fonte1d":30,"show_caminho":true,"exlusividade_label":"EXCLUSIVIDADE","fonte_exclusividade":"#e2a696","exlusividade_label2":"FRETE GRÁTIS","show_pix_envio":true,"pix_envio_percent":"3% OFF","pix_envio_envio":"","pix_envio_fundo":"#f1f1f1","pix_envio_simb":"#36b376","pix_envio_enviofundo":"#36b376","boxes_primaria":"#ffffff","boxes_titulo":"#101010","preco_size":27,"preco_sizem":29,"parcel_prod":"#000000","fonte_descont_pr":12,"borda_descont_pr":4,"labeldesconto_color":"#e2a696","alt_botao_quantidade":55,"borda_botao_quantidade":7,"fonte_t_bandeiras":10,"bandeiras_w_mobile":13,"bandeiras_w_desktop":10,"show_whats_compra":false,"whats_compra_text":"COMPRAR PELO WHATSAPP","fonte_whatscompra":15,"spc_whatscompra":0.2,"whatscompra_cor1":"#36b376","whatscompra_cor2":"#ffffff","whatscompra_cor3":"#36b376","whatscompra_cor4":"#ffffff","whatscompra_cor5":"#36b376","arredonda_boxes":2,"colorp_whats":"#36b376","colors_whats":"#ffffff","colort_whats":"#fefefe","bandeiras1_foot":true,"selito-largura":40,"selito-larguram":42,"bandeiras2_foot":false,"show_diners_fv":true,"show_hiper_fv":true,"show_Aura_fv":true,"show_elo_fv":true,"show_discover_fv":true,"show_boleto_fv":true,"reclameaqui":true,"norton":false,"radius-social":4,"margind-social":2,"margini-social":2,"cor-borda-social":"#dedede","cor-icon-social":"#0e0e0e","background-icon-social":"#ffffff","show_sticky_whats":false,"show_frete1_antes":false,"show_frete1_depois":false,"frete1_caminhao":true,"frete1_correios":false,"product_truck_background":"#000000","fretechamada":"Calcule o prazo de entrega","buscar_frete_btn":"#000000","frete1_nome":"Padrão","frete1_preco":"Grátis","opcao_frete3":true,"frete3_preco":"R$ 19,79","hide_popup_size":true,"popup_button-text":"VER MEDIDAS","popup_size-color":"#2b3948","popup_text_medidas-color":"#ffffff","popup_border":7,"popup_show-color":"#ffffff","popup_text-color":"#000","size-product":"ESCOLHA SEU ANEL","sizeproduct_pc":"shopify:\/\/shop_images\/icons-aneis-mm.png","sizeproduct_celular":"shopify:\/\/shop_images\/icons-aneis-mm.png","size-product3":"","size-product10":"Escolha sua pulseira","sizeproduct_pc10":"shopify:\/\/shop_images\/Hf6c777286fa94cfa8fdf2b55af5d01edm.jpg","sizeproduct_celular10":"shopify:\/\/shop_images\/Hf6c777286fa94cfa8fdf2b55af5d01edm.jpg","botao_direito_enable":false,"atalho_f12_enable":false,"selecionar_conteudo_enable":true,"juros_parcelamento":"21.61","parcelamento_enable":true,"taxa_segunda_parcela":"7.64","taxa_terceira_parcela":"9.23","taxa_quarta_parcela":"10.86","taxa_quinta_parcela":"12.31","taxa_sexta_parcela":"13.65","taxa_setima_parcela":"14.72","taxa_oitava_parcela":"16.23","taxa_nona_parcela":"17.69","taxa_decima_parcela":"18.65","taxa_decima_primeira_parcela":"20.12","taxa_decima_segunda_parcela":"21.61","color_primary_parcelamento":"#1d1d1d","color_quart_parcelamento":"#ffffff","color_quint_parcelamento":"#000000","borda_atv_parcelamento2":"#dfdfdf","borda_atv_parcelamento":4,"desconto_pix":"5.0","icon_stroke_width":2,"button_border_radius":12,"block_border_radius":"large","bolinha_sacola":"#e66d00","bolinha_sacola_fonte":"#ffffff","heading_color":"#000","text_color":"#5E5E5E","background":"#f1f1f1","secondary_background":"#f5f5f5","success_color":"#2e9e7b","error_color":"#de2a2a","header_background":"#000","header_text_color":"#ffffff","footer_background":"#ffffff","footer_text_color":"#262424","primary_button_background":"#2e9e7b","primary_button_text_color":"#FFF","secondary_button_background":"#000000","secondary_button_text_color":"#ffffff","product_on_sale_accent":"#000","product_custom_label_background":"#131313","product_custom_label_2_background":"#f3ff34","product_in_stock_text_color":"#2e9e7b","product_low_stock_text_color":"#de2a2a","heading_font":"archivo_n6","heading_font_size":"large","heading_text_transform":"normal","text_font":"helvetica_n4","text_font_size":17,"colorp_progress":"#f1f1f1","colors_progress":"#e2a696","alt_progress":8,"font_progress":12,"currency_code_enabled":false,"show_image_zoom":true,"stagger_products_apparition":true,"reveal_product_media":true,"round_color_swatches":true,"color_swatch_config":"Preto: #000000\nBranco: #fff\nVerde: #008000\nAmarelo: #FFFF00\nAzul: #0000FF\nVermelho: #FF0000\nRoxo: #A020F0\nMarrom: #CD853F\nRosa: #FFC0CB\nCinza: #808080\nAzul Marinho: #000080\nLaranja: #FFA500\nCaqui: #F0E68C\nDourado: #daa520\nVerde Militar: #78866b\nBege: #f5f5dc\nChumbo: #5b5b58\nVinho: #5e2129\nCinza Escuro: #a9a9a9\nBranco com laranja: #FFA500\nBranco com azul: #0000FF\nPreto\/Vermelho: #FF0000\nPreto\/Amarelo: #FFFF00\nPreto\/Branco: #fff\nPreto\/Dourado: #daa520\nBranco\/Cinza: #808080\nBranco\/Vermelho\/Azul: #FF0000\nAzul Cruzado: #0000FF\nPreto\/Rosa: #FFC0CB\nPreto\/Azul: #0000FF\nAzul\/Laranja: #FFA500\nCinza\/Azul: #0000FF\nPreto\/Branco: #000000\nPreto\/Preto: #000000\nVerde Neon: #008000\nPreta: #000000\nNude: #CD853F\nPreto com cinza: #808080\nPreto\/Branco: #000000\nAreia: #f5f5dc\nCastanha: #CD853F\nPrateado: #f7eee1\nAzul Claro: #98b2d4\nAzul Escuro: #3d4267\nVinho: #ad2e44\nVermelho escuro: #ad2e44\nCreme: #e3c799\nPrata: #e4e4e4\nPrata e Rosa: #f8dcc3\nOff White: #5847\nAzul marinho:","show_vendor":false,"show_secondary_image":true,"product_add_to_cart":true,"show_product_rating":false,"show_discount":true,"discount_mode":"percentage","product_color_display":"swatch","product_image_size":"natural","cart_type":"drawer","continuar-compra-fundo":"#ffffff","continuar-compra-texto":"#000000","bandeiras_w_mobilec":14,"bandeiras_w_desktopc":14,"cart_icon":"shopping_cart","cart_show_free_shipping_threshold":true,"cart_free_shipping_threshold":"249","social_facebook":"https:\/\/www.youtube.com","social_twitter":"","social_pinterest":"https:\/\/www.instagram.com","social_instagram":"https:\/\/www.instagram.com","social_vimeo":"","social_tumblr":"","social_youtube":"https:\/\/www.youtube.com","social_tiktok":"https:\/\/www.youtube.com","social_linkedin":"","social_snapchat":"","social_fancy":"","social_wechat":"","social_reddit":"","social_line":"","social_spotify":"","favicon":"shopify:\/\/shop_images\/Favicon_Logo_A_Sertaneja.png","checkout_sidebar_background_color":"#f5f5f5","checkout_accent_color":"#282828","checkout_button_color":"#405de6","checkout_error_color":"#de2a2a","show_installments_text":true,"colecao_fonte2m":26,"colecao_fonte2d":30,"show_boleto_f":true,"accent_color":"#405de6","sections":{"announcement-bar":{"type":"announcement-bar","blocks":{"message-1":{"type":"message","disabled":true,"settings":{"text":"FRETE GRÁTIS ACIMA DE R$249","learn_more_text":"","title":"","content":"","button_text":"","button_link":""}},"message_zpd8kK":{"type":"message","disabled":true,"settings":{"text":"Anuncie algo aqui","learn_more_text":"Saiba mais","title":"","content":"","button_text":"","button_link":""}},"message_wHHiJH":{"type":"message","disabled":true,"settings":{"text":"3% DE DESCONTO NO PIX","learn_more_text":"Saiba mais","title":"","content":"","button_text":"","button_link":""}}},"block_order":["message-1","message_zpd8kK","message_wHHiJH"],"custom_css":[],"settings":{"announcement_bar_position":"non_sticky","announcement_text_size":"large","autoplay":true,"cycle_speed":5,"background":"#e66d00","text_color":"#ffffff","button_background":"#000000","button_text_color":"#010101"}},"header":{"type":"header","blocks":{"58d8a07a-6d59-4c81-a859-73a47c895645":{"type":"mega_menu","disabled":true,"settings":{"menu_item":"","images_position":"right","image_1_heading":"","image_1_text":"","image_1_link":"","image_2_heading":"","image_2_text":"","image_2_link":"","image_3_heading":"","image_3_text":"","image_3_link":"","image_4_heading":"","image_4_text":"","image_4_link":"","image_5_heading":"","image_5_text":"","image_5_link":"shopify:\/\/collections\/aneis","image_6_heading":"","image_6_text":"","image_6_link":"shopify:\/\/collections\/carteiras"}},"11a2e47b-70f3-423b-b67f-e264cf182c49":{"type":"mega_menu","disabled":true,"settings":{"menu_item":"","images_position":"right","image_1_heading":"","image_1_text":"","image_1_link":"","image_2_heading":"","image_2_text":"","image_2_link":"","image_3_heading":"","image_3_text":"","image_3_link":"","image_4_heading":"","image_4_text":"","image_4_link":"","image_5_heading":"","image_5_text":"","image_5_link":"","image_6_heading":"","image_6_text":"","image_6_link":""}}},"block_order":["58d8a07a-6d59-4c81-a859-73a47c895645","11a2e47b-70f3-423b-b67f-e264cf182c49"],"custom_css":[],"settings":{"enable_custom_search":true,"search_bar_max_width":800,"search_bar_height":40,"search_bar_side_margin":10,"search_bar_mobile_side_margin":0,"pesquisabackgroud":"#ffffff","pesquisatexto":"#585858","enable_sticky_header":false,"logo":"shopify:\/\/shop_images\/branca.png","logo_max_width":165,"mobile_logo_max_width":85,"logo_position_x":0,"logo_position_y":10,"navigation_menu":"menu-da-barra-lateral","sidebar_navigation_menu":"","header_layout":"logo_center_search_open","show_icons":true,"reduce_desktop_padding":true,"show_locale_selector":false,"show_country_selector":false,"enable_transparent_header":false,"transparent_header_text_color":"#ffffff","search_menu":"menu-da-barra-lateral"}},"footer":{"type":"footer","blocks":{"37a4a494-9f3c-439b-88be-94f3f11e4077":{"type":"Atendimento-Vision","settings":{"atendimento_vision":"Atendimento ao cliente","horario_loja":"seg. à sáb. 10 às 19h","email_loja":"contato@asertanejaoficial.com.br","contato_loja":"(37) 99985-6160","botaowhats_rodape":true,"num_whats":"37999856160"}},"c481ffca-02fc-4105-b955-96dd22c8b41c":{"type":"links","settings":{"menu":"footer"}},"newsletter":{"type":"newsletter","settings":{"title":"Saiba de nossas Novidades!","content":"<p>Fique sabendo em primeira mão de nossas novidades! E ainda ganhe cupons para sua próxima compra!<\/p>"}},"29b6ff39-5293-4635-a65f-836929e8f694":{"type":"social_media","settings":{"title":"Acesse nossas novidades:","content":""}},"4d4f2dc9-cdca-48d2-b191-7ad758344dc6":{"type":"Pagamento-Seguranca","settings":{}}},"block_order":["37a4a494-9f3c-439b-88be-94f3f11e4077","c481ffca-02fc-4105-b955-96dd22c8b41c","newsletter","29b6ff39-5293-4635-a65f-836929e8f694","4d4f2dc9-cdca-48d2-b191-7ad758344dc6"],"settings":{"roda-padrao-b":false,"forma_envio":true,"seg_qua":true,"Nome_loja":"A Sertaneja","CNPJ_loja":"49.652.014\/0001-89","endereco_loja":"R BUENO DO PRADO, 488 SLJ, JOAO PINHEIRO, Belo Horizonte - MG, CEP: 30.530-430","quebra_CNPJ":true,"show_country_selector":false,"show_locale_selector":false,"show_cookie_bar":false,"show_cookie_bar_per":false,"cookie_bar_content":"<p>I agree to the processing of my data in accordance with the conditions set out in the policy of Privacy.<\/p>","cookie_aceitar":"Aceitar","cookie_recusar":"Rejeitar"}},"popup":{"type":"popup","settings":{"enable":false,"apparition_delay":5,"show_only_on_index":true,"show_only_for_visitors":true,"show_only_once":true,"image_position":"left","title":"Get 10% off","content":"<p>Promotions, new products and sales. Directly to your inbox.<\/p>"}},"mini-cart":{"type":"mini-cart","settings":{"show_order_note":false,"show_checkout_button":true,"empty_button_link":"shopify:\/\/collections\/all","show_recommendations":true,"recommendations_title":"Produtos que você pode gostar!"}},"static-text-with-icons":{"type":"static-text-with-icons","blocks":{"static-text-with-icons-0":{"type":"item","settings":{"icon":"picto-box","custom_icon_width":50,"title":"Free shipping","content":"<p>Free worldwide shipping and returns - customs and duties taxes included<\/p>"}},"static-text-with-icons-1":{"type":"item","settings":{"icon":"picto-phone","custom_icon_width":50,"title":"Customer service","content":"<p>We are available from monday to friday to answer your questions.<\/p>"}},"static-text-with-icons-2":{"type":"item","settings":{"icon":"picto-lock","custom_icon_width":50,"title":"Secure payment","content":"<p>Your payment information is processed securely.<\/p>"}},"static-text-with-icons-3":{"type":"item","settings":{"icon":"picto-email","custom_icon_width":50,"title":"Contact us","content":"<p>Need to contact us ? Just send us an e-mail at info@yourstore.com<\/p>"}}},"block_order":["static-text-with-icons-0","static-text-with-icons-1","static-text-with-icons-2","static-text-with-icons-3"],"settings":{"show_section":false,"background":"rgba(0,0,0,0)","text_color":"rgba(0,0,0,0)"}},"static-newsletter":{"type":"static-newsletter","settings":{"show_section":false,"reveal_on_scroll":true,"subheading":"Subscribe to our newsletter","content":"<p>Promotions, new products and sales. Directly to your inbox.<\/p>","text_position":"right","text_alignment":"left","text_background":"rgba(0,0,0,0)","text_color":"rgba(0,0,0,0)","button_background":"rgba(0,0,0,0)","button_text_color":"rgba(0,0,0,0)"}}},"content_for_index":[],"blocks":{"14060646107696862457":{"type":"shopify:\/\/apps\/judge-me-reviews\/blocks\/judgeme_core\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8","disabled":false,"settings":{}},"13768625480086291342":{"type":"shopify:\/\/apps\/forms\/blocks\/forms\/8744a304-fcb1-4347-b211-bb6b4759a76a","disabled":false,"settings":{}},"12948015482042402483":{"type":"shopify:\/\/apps\/mercado-pago-antifraud-plus\/blocks\/embed-block\/b19ea721-f94a-4308-bee5-0057c043bac5","disabled":false,"settings":{}}}},"presets":{"Carbon":{"button_border_radius":0,"block_border_radius":"none","heading_color":"#282828","text_color":"#282828","secondary_background":"#f5f5f5","success_color":"#2e9e7b","error_color":"#de2a2a","header_background":"#282828","footer_background":"#282828","footer_text_color":"#ffffff","primary_button_background":"#405de6","secondary_button_background":"#f3ff34","secondary_button_text_color":"#282828","product_on_sale_accent":"#de2a2a","product_custom_label_background":"#405de6","product_custom_label_2_background":"#f3ff34","product_in_stock_text_color":"#2e9e7b","product_low_stock_text_color":"#de2a2a","heading_font":"zurich_extended_n8","heading_font_size":"medium","heading_text_transform":"uppercase","text_font":"zurich_n4","text_font_size":15,"currency_code_enabled":false,"stagger_products_apparition":true,"round_color_swatches":false,"show_vendor":false,"show_secondary_image":true,"product_color_display":"count","product_image_size":"natural","show_product_rating":false,"cart_type":"message","cart_show_free_shipping_threshold":true,"accent_color":"#405de6","checkout_sidebar_background_color":"#f5f5f5","checkout_accent_color":"#282828","checkout_button_color":"#405de6","checkout_error_color":"#de2a2a","sections":{"announcement-bar":{"type":"announcement-bar","blocks":{"message-1":{"type":"message","settings":{}}},"block_order":["message-1"],"settings":{"announcement_bar_position":"non_sticky","announcement_text_size":"normal","autoplay":true,"cycle_speed":5,"background":"#f3ff34","text_color":"#282828","button_background":"#282828","button_text_color":"#ffffff"}},"header":{"type":"header","settings":{"pesquisabackgroud":"#ffffff","pesquisatexto":"#ffffff","enable_sticky_header":true,"navigation_menu":"main-menu","header_layout":"logo_left_navigation_center","show_icons":false,"reduce_desktop_padding":false,"enable_transparent_header":false,"transparent_header_text_color":"#ffffff"}},"footer":{"type":"footer","blocks":{"text":{"type":"text","settings":{}},"links":{"type":"links","settings":{"menu":"footer"}},"newsletter":{"type":"newsletter","settings":{}},"social_media":{"type":"social_media","settings":{}}},"block_order":["text","links","newsletter","social_media"],"settings":{}}}},"Ivory":{"button_border_radius":4,"block_border_radius":"small","heading_color":"#1a1a1a","text_color":"#1a1a1a","secondary_background":"#f5f1ec","success_color":"#2e9e7b","error_color":"#de2a2a","header_background":"#56112a","header_text_color":"#ffffff","footer_background":"#56112a","footer_text_color":"#ffffff","primary_button_background":"#56112a","primary_button_text_color":"#ffffff","secondary_button_background":"#f7aea6","secondary_button_text_color":"#56112a","product_on_sale_accent":"#913b59","product_custom_label_background":"#405de6","product_custom_label_2_background":"#f3e5b6","product_in_stock_text_color":"#2e9e7b","product_low_stock_text_color":"#de2a2a","heading_font":"itc_caslon_no_224_n5","heading_font_size":"medium","heading_text_transform":"normal","text_font":"avenir_next_n4","text_font_size":15,"stagger_products_apparition":true,"round_color_swatches":true,"show_vendor":false,"show_secondary_image":true,"product_color_display":"count","product_image_size":"natural","cart_type":"drawer","accent_color":"#405de6","checkout_sidebar_background_color":"#f6f3ed","checkout_accent_color":"#353535","checkout_button_color":"#353535","checkout_error_color":"#de2a2a","sections":{"announcement-bar":{"type":"announcement-bar","blocks":{"message-1":{"type":"message","settings":{}}},"block_order":["message-1"],"settings":{"announcement_bar_position":"non_sticky","announcement_text_size":"small","autoplay":true,"cycle_speed":5,"background":"#f7aea6","text_color":"#56112a","button_background":"#56112a","button_text_color":"#ffffff"}},"header":{"type":"header","settings":{"pesquisabackgroud":"#ffffff","pesquisatexto":"#ffffff","enable_sticky_header":true,"navigation_menu":"main-menu","header_layout":"logo_center_navigation_inline","show_icons":false,"reduce_desktop_padding":false,"enable_transparent_header":false,"transparent_header_text_color":"#ffffff"}},"footer":{"type":"footer","blocks":{"text":{"type":"text","settings":{}},"links":{"type":"links","settings":{"menu":"footer"}},"newsletter":{"type":"newsletter","settings":{}},"social_media":{"type":"social_media","settings":{}}},"block_order":["text","links","newsletter","social_media"],"settings":{}}}},"Quartz":{"icon_stroke_width":1.3,"button_border_radius":0,"block_border_radius":"none","vertical_spacing":"medium","heading_color":"#0d0d0d","text_color":"#2e2e2e","background":"#ffffff","secondary_background":"#f5f5f5","success_color":"#3c6e71","error_color":"#de2a2a","header_background":"#ffffff","header_text_color":"#2e2e2e","footer_background":"#ffffff","footer_text_color":"#2e2e2e","primary_button_background":"#051e38","primary_button_text_color":"#ffffff","secondary_button_background":"#dfdfdf","secondary_button_text_color":"#2e2e2e","product_on_sale_accent":"#de2b2b","product_sold_out_accent":"#5b5b5b","product_custom_label_background":"#051e38","product_custom_label_2_background":"#2e9e7b","product_in_stock_text_color":"#2e9e7b","product_low_stock_text_color":"#de2b2b","heading_font":"futura_n3","heading_font_size":"medium","heading_text_transform":"uppercase","text_font":"din_next_n4","text_font_size":15,"stagger_products_apparition":true,"round_color_swatches":false,"show_vendor":false,"show_secondary_image":true,"product_color_display":"hide","product_image_size":"natural","cart_type":"drawer","cart_icon":"tote_bag","checkout_sidebar_background_color":"#f5f5f5","checkout_accent_color":"#051e38","checkout_button_color":"#051e38","checkout_error_color":"#de2a2a","accent_color":"#405de6","sections":{"announcement-bar":{"type":"announcement-bar","blocks":{"message-1":{"type":"message","settings":{}}},"block_order":["message-1"],"settings":{"announcement_bar_position":"non_sticky","announcement_text_size":"small","autoplay":true,"cycle_speed":5,"background":"#051e38","text_color":"#ffffff","button_background":"#ffffff","button_text_color":"#051e38"}},"header":{"type":"header","settings":{"pesquisabackgroud":"#ffffff","pesquisatexto":"#ffffff","enable_sticky_header":true,"navigation_menu":"main-menu","header_layout":"logo_center_navigation_inline","show_icons":true,"reduce_desktop_padding":false,"enable_transparent_header":true,"transparent_header_text_color":"#ffffff"}},"footer":{"type":"footer","blocks":{"text":{"type":"text","settings":{}},"links":{"type":"links","settings":{"menu":"footer"}},"newsletter":{"type":"newsletter","settings":{}},"social_media":{"type":"social_media","settings":{}}},"block_order":["text","links","newsletter","social_media"],"settings":{}}}},"Sapphire":{"icon_stroke_width":1.2,"button_border_radius":0,"block_border_radius":"none","heading_color":"#0c1b54","text_color":"#0c1b54","background":"#ffffff","secondary_background":"#f7f7f7","success_color":"#708a7d","error_color":"#d2545a","header_background":"#0c1b54","footer_background":"#0c1b54","footer_text_color":"#ffffff","primary_button_background":"#0c1b54","secondary_button_background":"#f7f7f7","secondary_button_text_color":"#0c1b54","product_rating_color":"#a48156","product_on_sale_accent":"#d2545a","product_custom_label_background":"#405de6","product_custom_label_2_background":"#f3ff34","product_in_stock_text_color":"#2e9e7b","product_low_stock_text_color":"#d2545a","heading_font":"chong_modern_n4","heading_font_size":"large","heading_text_transform":"normal","text_font":"trade_gothic_n4","text_font_size":15,"stagger_products_apparition":true,"round_color_swatches":true,"show_vendor":true,"show_secondary_image":true,"show_product_rating":true,"product_color_display":"hide","product_image_size":"natural","cart_type":"message","checkout_sidebar_background_color":"#f5f5f5","checkout_accent_color":"#282828","checkout_button_color":"#405de6","checkout_error_color":"#de2a2a","accent_color":"#405de6","sections":{"announcement-bar":{"type":"announcement-bar","blocks":{"message-1":{"type":"message","settings":{}}},"block_order":["message-1"],"settings":{"announcement_bar_position":"non_sticky","announcement_text_size":"small","autoplay":true,"cycle_speed":5,"background":"#ffe5db","text_color":"#0c1b54","button_background":"#0c1b54","button_text_color":"#ffffff"}},"header":{"type":"header","settings":{"pesquisabackgroud":"#ffffff","pesquisatexto":"#ffffff","enable_sticky_header":true,"navigation_menu":"main-menu","header_layout":"logo_center_navigation_inline","show_icons":true,"reduce_desktop_padding":false,"enable_transparent_header":true,"transparent_header_text_color":"#ffffff"}},"footer":{"type":"footer","blocks":{"text":{"type":"text","settings":{}},"links":{"type":"links","settings":{"menu":"footer"}},"newsletter":{"type":"newsletter","settings":{}},"social_media":{"type":"social_media","settings":{}}},"block_order":["text","links","newsletter","social_media"],"settings":{}}}}}}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "anuncio_fontem": 14,
+    "anuncio_alturam": 38,
+    "anuncio_fonted": 15,
+    "anuncio_alturad": 30,
+    "logo_ps_m": 0,
+    "logo_pi_m": 0,
+    "logo_ps_d": 0,
+    "logo_pi_d": 0,
+    "logo_correcao_m": -12,
+    "logo_correcao_d": -9,
+    "colecao_fonte1m": 24,
+    "colecao_fonte1d": 30,
+    "show_caminho": true,
+    "exlusividade_label": "EXCLUSIVIDADE",
+    "fonte_exclusividade": "#e2a696",
+    "exlusividade_label2": "FRETE GRÁTIS",
+    "show_pix_envio": true,
+    "pix_envio_percent": "3% OFF",
+    "pix_envio_envio": "",
+    "pix_envio_fundo": "#f1f1f1",
+    "pix_envio_simb": "#36b376",
+    "pix_envio_enviofundo": "#36b376",
+    "boxes_primaria": "#ffffff",
+    "boxes_titulo": "#101010",
+    "preco_size": 27,
+    "preco_sizem": 29,
+    "parcel_prod": "#000000",
+    "fonte_descont_pr": 12,
+    "borda_descont_pr": 4,
+    "labeldesconto_color": "#e2a696",
+    "alt_botao_quantidade": 55,
+    "borda_botao_quantidade": 7,
+    "fonte_t_bandeiras": 10,
+    "bandeiras_w_mobile": 13,
+    "bandeiras_w_desktop": 10,
+    "show_whats_compra": false,
+    "whats_compra_text": "COMPRAR PELO WHATSAPP",
+    "fonte_whatscompra": 15,
+    "spc_whatscompra": 0.2,
+    "whatscompra_cor1": "#36b376",
+    "whatscompra_cor2": "#ffffff",
+    "whatscompra_cor3": "#36b376",
+    "whatscompra_cor4": "#ffffff",
+    "whatscompra_cor5": "#36b376",
+    "arredonda_boxes": 2,
+    "colorp_whats": "#36b376",
+    "colors_whats": "#ffffff",
+    "colort_whats": "#fefefe",
+    "bandeiras1_foot": true,
+    "selito-largura": 40,
+    "selito-larguram": 42,
+    "bandeiras2_foot": false,
+    "show_diners_fv": true,
+    "show_hiper_fv": true,
+    "show_Aura_fv": true,
+    "show_elo_fv": true,
+    "show_discover_fv": true,
+    "show_boleto_fv": true,
+    "reclameaqui": true,
+    "norton": false,
+    "radius-social": 4,
+    "margind-social": 2,
+    "margini-social": 2,
+    "cor-borda-social": "#dedede",
+    "cor-icon-social": "#0e0e0e",
+    "background-icon-social": "#ffffff",
+    "show_sticky_whats": false,
+    "show_frete1_antes": false,
+    "show_frete1_depois": false,
+    "frete1_caminhao": true,
+    "frete1_correios": false,
+    "product_truck_background": "#000000",
+    "fretechamada": "Calcule o prazo de entrega",
+    "buscar_frete_btn": "#000000",
+    "frete1_nome": "Padrão",
+    "frete1_preco": "Grátis",
+    "opcao_frete3": true,
+    "frete3_preco": "R$ 19,79",
+    "hide_popup_size": true,
+    "popup_button-text": "VER MEDIDAS",
+    "popup_size-color": "#2b3948",
+    "popup_text_medidas-color": "#ffffff",
+    "popup_border": 7,
+    "popup_show-color": "#ffffff",
+    "popup_text-color": "#000",
+    "size-product": "ESCOLHA SEU ANEL",
+    "sizeproduct_pc": "shopify://shop_images/icons-aneis-mm.png",
+    "sizeproduct_celular": "shopify://shop_images/icons-aneis-mm.png",
+    "size-product3": "",
+    "size-product10": "Escolha sua pulseira",
+    "sizeproduct_pc10": "shopify://shop_images/Hf6c777286fa94cfa8fdf2b55af5d01edm.jpg",
+    "sizeproduct_celular10": "shopify://shop_images/Hf6c777286fa94cfa8fdf2b55af5d01edm.jpg",
+    "ali_hunter_enable": false,
+    "botao_direito_enable": false,
+    "atalho_f12_enable": false,
+    "selecionar_conteudo_enable": false,
+    "juros_parcelamento": "21.61",
+    "parcelamento_enable": true,
+    "taxa_segunda_parcela": "7.64",
+    "taxa_terceira_parcela": "9.23",
+    "taxa_quarta_parcela": "10.86",
+    "taxa_quinta_parcela": "12.31",
+    "taxa_sexta_parcela": "13.65",
+    "taxa_setima_parcela": "14.72",
+    "taxa_oitava_parcela": "16.23",
+    "taxa_nona_parcela": "17.69",
+    "taxa_decima_parcela": "18.65",
+    "taxa_decima_primeira_parcela": "20.12",
+    "taxa_decima_segunda_parcela": "21.61",
+    "color_primary_parcelamento": "#1d1d1d",
+    "color_quart_parcelamento": "#ffffff",
+    "color_quint_parcelamento": "#000000",
+    "borda_atv_parcelamento2": "#dfdfdf",
+    "borda_atv_parcelamento": 4,
+    "desconto_pix": "5.0",
+    "icon_stroke_width": 2,
+    "button_border_radius": 12,
+    "block_border_radius": "large",
+    "bolinha_sacola": "#e66d00",
+    "bolinha_sacola_fonte": "#ffffff",
+    "heading_color": "#000",
+    "text_color": "#5E5E5E",
+    "background": "#f1f1f1",
+    "secondary_background": "#f5f5f5",
+    "success_color": "#2e9e7b",
+    "error_color": "#de2a2a",
+    "header_background": "#000",
+    "header_text_color": "#ffffff",
+    "footer_background": "#ffffff",
+    "footer_text_color": "#262424",
+    "primary_button_background": "#2e9e7b",
+    "primary_button_text_color": "#FFF",
+    "secondary_button_background": "#000000",
+    "secondary_button_text_color": "#ffffff",
+    "product_on_sale_accent": "#000",
+    "product_custom_label_background": "#131313",
+    "product_custom_label_2_background": "#f3ff34",
+    "product_in_stock_text_color": "#2e9e7b",
+    "product_low_stock_text_color": "#de2a2a",
+    "heading_font": "archivo_n6",
+    "heading_font_size": "large",
+    "heading_text_transform": "normal",
+    "text_font": "helvetica_n4",
+    "text_font_size": 17,
+    "colorp_progress": "#f1f1f1",
+    "colors_progress": "#e2a696",
+    "alt_progress": 8,
+    "font_progress": 12,
+    "currency_code_enabled": false,
+    "show_image_zoom": true,
+    "stagger_products_apparition": true,
+    "reveal_product_media": true,
+    "round_color_swatches": true,
+    "color_swatch_config": "Preto: #000000\nBranco: #fff\nVerde: #008000\nAmarelo: #FFFF00\nAzul: #0000FF\nVermelho: #FF0000\nRoxo: #A020F0\nMarrom: #CD853F\nRosa: #FFC0CB\nCinza: #808080\nAzul Marinho: #000080\nLaranja: #FFA500\nCaqui: #F0E68C\nDourado: #daa520\nVerde Militar: #78866b\nBege: #f5f5dc\nChumbo: #5b5b58\nVinho: #5e2129\nCinza Escuro: #a9a9a9\nBranco com laranja: #FFA500\nBranco com azul: #0000FF\nPreto/Vermelho: #FF0000\nPreto/Amarelo: #FFFF00\nPreto/Branco: #fff\nPreto/Dourado: #daa520\nBranco/Cinza: #808080\nBranco/Vermelho/Azul: #FF0000\nAzul Cruzado: #0000FF\nPreto/Rosa: #FFC0CB\nPreto/Azul: #0000FF\nAzul/Laranja: #FFA500\nCinza/Azul: #0000FF\nPreto/Branco: #000000\nPreto/Preto: #000000\nVerde Neon: #008000\nPreta: #000000\nNude: #CD853F\nPreto com cinza: #808080\nPreto/Branco: #000000\nAreia: #f5f5dc\nCastanha: #CD853F\nPrateado: #f7eee1\nAzul Claro: #98b2d4\nAzul Escuro: #3d4267\nVinho: #ad2e44\nVermelho escuro: #ad2e44\nCreme: #e3c799\nPrata: #e4e4e4\nPrata e Rosa: #f8dcc3\nOff White: #5847\nAzul marinho:",
+    "show_vendor": false,
+    "show_secondary_image": true,
+    "product_add_to_cart": true,
+    "show_product_rating": false,
+    "show_discount": true,
+    "discount_mode": "percentage",
+    "product_color_display": "swatch",
+    "product_image_size": "natural",
+    "cart_type": "drawer",
+    "continuar-compra-fundo": "#ffffff",
+    "continuar-compra-texto": "#000000",
+    "bandeiras_w_mobilec": 14,
+    "bandeiras_w_desktopc": 14,
+    "cart_icon": "shopping_cart",
+    "cart_show_free_shipping_threshold": true,
+    "cart_free_shipping_threshold": "249",
+    "social_facebook": "https://www.youtube.com",
+    "social_twitter": "",
+    "social_pinterest": "https://www.instagram.com",
+    "social_instagram": "https://www.instagram.com",
+    "social_vimeo": "",
+    "social_tumblr": "",
+    "social_youtube": "https://www.youtube.com",
+    "social_tiktok": "https://www.youtube.com",
+    "social_linkedin": "",
+    "social_snapchat": "",
+    "social_fancy": "",
+    "social_wechat": "",
+    "social_reddit": "",
+    "social_line": "",
+    "social_spotify": "",
+    "favicon": "shopify://shop_images/Favicon_Logo_A_Sertaneja.png",
+    "checkout_sidebar_background_color": "#f5f5f5",
+    "checkout_accent_color": "#282828",
+    "checkout_button_color": "#405de6",
+    "checkout_error_color": "#de2a2a",
+    "show_installments_text": true,
+    "colecao_fonte2m": 26,
+    "colecao_fonte2d": 30,
+    "show_boleto_f": true,
+    "accent_color": "#405de6",
+    "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "blocks": {
+          "message-1": {
+            "type": "message",
+            "disabled": true,
+            "settings": {
+              "text": "FRETE GRÁTIS ACIMA DE R$249",
+              "learn_more_text": "",
+              "title": "",
+              "content": "",
+              "button_text": "",
+              "button_link": ""
+            }
+          },
+          "message_zpd8kK": {
+            "type": "message",
+            "disabled": true,
+            "settings": {
+              "text": "Anuncie algo aqui",
+              "learn_more_text": "Saiba mais",
+              "title": "",
+              "content": "",
+              "button_text": "",
+              "button_link": ""
+            }
+          },
+          "message_wHHiJH": {
+            "type": "message",
+            "disabled": true,
+            "settings": {
+              "text": "3% DE DESCONTO NO PIX",
+              "learn_more_text": "Saiba mais",
+              "title": "",
+              "content": "",
+              "button_text": "",
+              "button_link": ""
+            }
+          }
+        },
+        "block_order": [
+          "message-1",
+          "message_zpd8kK",
+          "message_wHHiJH"
+        ],
+        "custom_css": [],
+        "settings": {
+          "announcement_bar_position": "non_sticky",
+          "announcement_text_size": "large",
+          "autoplay": true,
+          "cycle_speed": 5,
+          "background": "#e66d00",
+          "text_color": "#ffffff",
+          "button_background": "#000000",
+          "button_text_color": "#010101"
+        }
+      },
+      "header": {
+        "type": "header",
+        "blocks": {
+          "58d8a07a-6d59-4c81-a859-73a47c895645": {
+            "type": "mega_menu",
+            "disabled": true,
+            "settings": {
+              "menu_item": "",
+              "images_position": "right",
+              "image_1_heading": "",
+              "image_1_text": "",
+              "image_1_link": "",
+              "image_2_heading": "",
+              "image_2_text": "",
+              "image_2_link": "",
+              "image_3_heading": "",
+              "image_3_text": "",
+              "image_3_link": "",
+              "image_4_heading": "",
+              "image_4_text": "",
+              "image_4_link": "",
+              "image_5_heading": "",
+              "image_5_text": "",
+              "image_5_link": "shopify://collections/aneis",
+              "image_6_heading": "",
+              "image_6_text": "",
+              "image_6_link": "shopify://collections/carteiras"
+            }
+          },
+          "11a2e47b-70f3-423b-b67f-e264cf182c49": {
+            "type": "mega_menu",
+            "disabled": true,
+            "settings": {
+              "menu_item": "",
+              "images_position": "right",
+              "image_1_heading": "",
+              "image_1_text": "",
+              "image_1_link": "",
+              "image_2_heading": "",
+              "image_2_text": "",
+              "image_2_link": "",
+              "image_3_heading": "",
+              "image_3_text": "",
+              "image_3_link": "",
+              "image_4_heading": "",
+              "image_4_text": "",
+              "image_4_link": "",
+              "image_5_heading": "",
+              "image_5_text": "",
+              "image_5_link": "",
+              "image_6_heading": "",
+              "image_6_text": "",
+              "image_6_link": ""
+            }
+          }
+        },
+        "block_order": [
+          "58d8a07a-6d59-4c81-a859-73a47c895645",
+          "11a2e47b-70f3-423b-b67f-e264cf182c49"
+        ],
+        "custom_css": [],
+        "settings": {
+          "enable_custom_search": true,
+          "search_bar_max_width": 800,
+          "search_bar_height": 40,
+          "search_bar_side_margin": 10,
+          "search_bar_mobile_side_margin": 0,
+          "pesquisabackgroud": "#ffffff",
+          "pesquisatexto": "#585858",
+          "enable_sticky_header": false,
+          "logo": "shopify://shop_images/branca.png",
+          "logo_max_width": 165,
+          "mobile_logo_max_width": 85,
+          "logo_position_x": 0,
+          "logo_position_y": 10,
+          "navigation_menu": "menu-da-barra-lateral",
+          "sidebar_navigation_menu": "",
+          "show_mobile_account_icon": false,
+          "header_layout": "logo_center_search_open",
+          "show_icons": true,
+          "reduce_desktop_padding": true,
+          "show_locale_selector": false,
+          "show_country_selector": false,
+          "enable_transparent_header": false,
+          "transparent_header_text_color": "#ffffff",
+          "search_menu": "menu-da-barra-lateral"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "37a4a494-9f3c-439b-88be-94f3f11e4077": {
+            "type": "Atendimento-Vision",
+            "settings": {
+              "atendimento_vision": "Atendimento ao cliente",
+              "horario_loja": "seg. à sáb. 10 às 19h",
+              "email_loja": "contato@asertanejaoficial.com.br",
+              "contato_loja": "(37) 99985-6160",
+              "botaowhats_rodape": true,
+              "num_whats": "37999856160"
+            }
+          },
+          "c481ffca-02fc-4105-b955-96dd22c8b41c": {
+            "type": "links",
+            "settings": {
+              "menu": "footer"
+            }
+          },
+          "newsletter": {
+            "type": "newsletter",
+            "settings": {
+              "title": "Saiba de nossas Novidades!",
+              "content": "<p>Fique sabendo em primeira mão de nossas novidades! E ainda ganhe cupons para sua próxima compra!</p>"
+            }
+          },
+          "29b6ff39-5293-4635-a65f-836929e8f694": {
+            "type": "social_media",
+            "settings": {
+              "title": "Acesse nossas novidades:",
+              "content": ""
+            }
+          },
+          "4d4f2dc9-cdca-48d2-b191-7ad758344dc6": {
+            "type": "Pagamento-Seguranca",
+            "settings": {}
+          }
+        },
+        "block_order": [
+          "37a4a494-9f3c-439b-88be-94f3f11e4077",
+          "c481ffca-02fc-4105-b955-96dd22c8b41c",
+          "newsletter",
+          "29b6ff39-5293-4635-a65f-836929e8f694",
+          "4d4f2dc9-cdca-48d2-b191-7ad758344dc6"
+        ],
+        "settings": {
+          "roda-padrao-b": false,
+          "forma_envio": true,
+          "seg_qua": true,
+          "Nome_loja": "A Sertaneja",
+          "CNPJ_loja": "49.652.014/0001-89",
+          "endereco_loja": "R BUENO DO PRADO, 488 SLJ, JOAO PINHEIRO, Belo Horizonte - MG, CEP: 30.530-430",
+          "quebra_CNPJ": true,
+          "show_country_selector": false,
+          "show_locale_selector": false,
+          "show_cookie_bar": false,
+          "show_cookie_bar_per": false,
+          "cookie_bar_content": "<p>I agree to the processing of my data in accordance with the conditions set out in the policy of Privacy.</p>",
+          "cookie_aceitar": "Aceitar",
+          "cookie_recusar": "Rejeitar"
+        }
+      },
+      "popup": {
+        "type": "popup",
+        "settings": {
+          "enable": false,
+          "apparition_delay": 5,
+          "show_only_on_index": true,
+          "show_only_for_visitors": true,
+          "show_only_once": true,
+          "image_position": "left",
+          "title": "Get 10% off",
+          "content": "<p>Promotions, new products and sales. Directly to your inbox.</p>"
+        }
+      },
+      "mini-cart": {
+        "type": "mini-cart",
+        "settings": {
+          "show_order_note": false,
+          "show_checkout_button": true,
+          "empty_button_link": "shopify://collections/all",
+          "show_recommendations": true,
+          "recommendations_title": "Produtos que você pode gostar!"
+        }
+      },
+      "static-text-with-icons": {
+        "type": "static-text-with-icons",
+        "blocks": {
+          "static-text-with-icons-0": {
+            "type": "item",
+            "settings": {
+              "icon": "picto-box",
+              "custom_icon_width": 50,
+              "title": "Free shipping",
+              "content": "<p>Free worldwide shipping and returns - customs and duties taxes included</p>"
+            }
+          },
+          "static-text-with-icons-1": {
+            "type": "item",
+            "settings": {
+              "icon": "picto-phone",
+              "custom_icon_width": 50,
+              "title": "Customer service",
+              "content": "<p>We are available from monday to friday to answer your questions.</p>"
+            }
+          },
+          "static-text-with-icons-2": {
+            "type": "item",
+            "settings": {
+              "icon": "picto-lock",
+              "custom_icon_width": 50,
+              "title": "Secure payment",
+              "content": "<p>Your payment information is processed securely.</p>"
+            }
+          },
+          "static-text-with-icons-3": {
+            "type": "item",
+            "settings": {
+              "icon": "picto-email",
+              "custom_icon_width": 50,
+              "title": "Contact us",
+              "content": "<p>Need to contact us ? Just send us an e-mail at info@yourstore.com</p>"
+            }
+          }
+        },
+        "block_order": [
+          "static-text-with-icons-0",
+          "static-text-with-icons-1",
+          "static-text-with-icons-2",
+          "static-text-with-icons-3"
+        ],
+        "settings": {
+          "show_section": false,
+          "background": "rgba(0,0,0,0)",
+          "text_color": "rgba(0,0,0,0)"
+        }
+      },
+      "static-newsletter": {
+        "type": "static-newsletter",
+        "settings": {
+          "show_section": false,
+          "reveal_on_scroll": true,
+          "subheading": "Subscribe to our newsletter",
+          "content": "<p>Promotions, new products and sales. Directly to your inbox.</p>",
+          "text_position": "right",
+          "text_alignment": "left",
+          "text_background": "rgba(0,0,0,0)",
+          "text_color": "rgba(0,0,0,0)",
+          "button_background": "rgba(0,0,0,0)",
+          "button_text_color": "rgba(0,0,0,0)"
+        }
+      }
+    },
+    "content_for_index": [],
+    "blocks": {
+      "14060646107696862457": {
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {}
+      },
+      "13768625480086291342": {
+        "type": "shopify://apps/forms/blocks/forms/8744a304-fcb1-4347-b211-bb6b4759a76a",
+        "disabled": false,
+        "settings": {}
+      },
+      "12948015482042402483": {
+        "type": "shopify://apps/mercado-pago-antifraud-plus/blocks/embed-block/b19ea721-f94a-4308-bee5-0057c043bac5",
+        "disabled": false,
+        "settings": {}
+      }
+    }
+  },
+  "presets": {
+    "Carbon": {
+      "button_border_radius": 0,
+      "block_border_radius": "none",
+      "heading_color": "#282828",
+      "text_color": "#282828",
+      "secondary_background": "#f5f5f5",
+      "success_color": "#2e9e7b",
+      "error_color": "#de2a2a",
+      "header_background": "#282828",
+      "footer_background": "#282828",
+      "footer_text_color": "#ffffff",
+      "primary_button_background": "#405de6",
+      "secondary_button_background": "#f3ff34",
+      "secondary_button_text_color": "#282828",
+      "product_on_sale_accent": "#de2a2a",
+      "product_custom_label_background": "#405de6",
+      "product_custom_label_2_background": "#f3ff34",
+      "product_in_stock_text_color": "#2e9e7b",
+      "product_low_stock_text_color": "#de2a2a",
+      "heading_font": "zurich_extended_n8",
+      "heading_font_size": "medium",
+      "heading_text_transform": "uppercase",
+      "text_font": "zurich_n4",
+      "text_font_size": 15,
+      "currency_code_enabled": false,
+      "stagger_products_apparition": true,
+      "round_color_swatches": false,
+      "show_vendor": false,
+      "show_secondary_image": true,
+      "product_color_display": "count",
+      "product_image_size": "natural",
+      "show_product_rating": false,
+      "cart_type": "message",
+      "cart_show_free_shipping_threshold": true,
+      "accent_color": "#405de6",
+      "checkout_sidebar_background_color": "#f5f5f5",
+      "checkout_accent_color": "#282828",
+      "checkout_button_color": "#405de6",
+      "checkout_error_color": "#de2a2a",
+      "sections": {
+        "announcement-bar": {
+          "type": "announcement-bar",
+          "blocks": {
+            "message-1": {
+              "type": "message",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "message-1"
+          ],
+          "settings": {
+            "announcement_bar_position": "non_sticky",
+            "announcement_text_size": "normal",
+            "autoplay": true,
+            "cycle_speed": 5,
+            "background": "#f3ff34",
+            "text_color": "#282828",
+            "button_background": "#282828",
+            "button_text_color": "#ffffff"
+          }
+        },
+        "header": {
+          "type": "header",
+          "settings": {
+            "pesquisabackgroud": "#ffffff",
+            "pesquisatexto": "#ffffff",
+            "enable_sticky_header": true,
+            "navigation_menu": "main-menu",
+            "header_layout": "logo_left_navigation_center",
+            "show_icons": false,
+            "reduce_desktop_padding": false,
+            "enable_transparent_header": false,
+            "transparent_header_text_color": "#ffffff"
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "text": {
+              "type": "text",
+              "settings": {}
+            },
+            "links": {
+              "type": "links",
+              "settings": {
+                "menu": "footer"
+              }
+            },
+            "newsletter": {
+              "type": "newsletter",
+              "settings": {}
+            },
+            "social_media": {
+              "type": "social_media",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "text",
+            "links",
+            "newsletter",
+            "social_media"
+          ],
+          "settings": {}
+        }
+      }
+    },
+    "Ivory": {
+      "button_border_radius": 4,
+      "block_border_radius": "small",
+      "heading_color": "#1a1a1a",
+      "text_color": "#1a1a1a",
+      "secondary_background": "#f5f1ec",
+      "success_color": "#2e9e7b",
+      "error_color": "#de2a2a",
+      "header_background": "#56112a",
+      "header_text_color": "#ffffff",
+      "footer_background": "#56112a",
+      "footer_text_color": "#ffffff",
+      "primary_button_background": "#56112a",
+      "primary_button_text_color": "#ffffff",
+      "secondary_button_background": "#f7aea6",
+      "secondary_button_text_color": "#56112a",
+      "product_on_sale_accent": "#913b59",
+      "product_custom_label_background": "#405de6",
+      "product_custom_label_2_background": "#f3e5b6",
+      "product_in_stock_text_color": "#2e9e7b",
+      "product_low_stock_text_color": "#de2a2a",
+      "heading_font": "itc_caslon_no_224_n5",
+      "heading_font_size": "medium",
+      "heading_text_transform": "normal",
+      "text_font": "avenir_next_n4",
+      "text_font_size": 15,
+      "stagger_products_apparition": true,
+      "round_color_swatches": true,
+      "show_vendor": false,
+      "show_secondary_image": true,
+      "product_color_display": "count",
+      "product_image_size": "natural",
+      "cart_type": "drawer",
+      "accent_color": "#405de6",
+      "checkout_sidebar_background_color": "#f6f3ed",
+      "checkout_accent_color": "#353535",
+      "checkout_button_color": "#353535",
+      "checkout_error_color": "#de2a2a",
+      "sections": {
+        "announcement-bar": {
+          "type": "announcement-bar",
+          "blocks": {
+            "message-1": {
+              "type": "message",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "message-1"
+          ],
+          "settings": {
+            "announcement_bar_position": "non_sticky",
+            "announcement_text_size": "small",
+            "autoplay": true,
+            "cycle_speed": 5,
+            "background": "#f7aea6",
+            "text_color": "#56112a",
+            "button_background": "#56112a",
+            "button_text_color": "#ffffff"
+          }
+        },
+        "header": {
+          "type": "header",
+          "settings": {
+            "pesquisabackgroud": "#ffffff",
+            "pesquisatexto": "#ffffff",
+            "enable_sticky_header": true,
+            "navigation_menu": "main-menu",
+            "header_layout": "logo_center_navigation_inline",
+            "show_icons": false,
+            "reduce_desktop_padding": false,
+            "enable_transparent_header": false,
+            "transparent_header_text_color": "#ffffff"
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "text": {
+              "type": "text",
+              "settings": {}
+            },
+            "links": {
+              "type": "links",
+              "settings": {
+                "menu": "footer"
+              }
+            },
+            "newsletter": {
+              "type": "newsletter",
+              "settings": {}
+            },
+            "social_media": {
+              "type": "social_media",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "text",
+            "links",
+            "newsletter",
+            "social_media"
+          ],
+          "settings": {}
+        }
+      }
+    },
+    "Quartz": {
+      "icon_stroke_width": 1.3,
+      "button_border_radius": 0,
+      "block_border_radius": "none",
+      "vertical_spacing": "medium",
+      "heading_color": "#0d0d0d",
+      "text_color": "#2e2e2e",
+      "background": "#ffffff",
+      "secondary_background": "#f5f5f5",
+      "success_color": "#3c6e71",
+      "error_color": "#de2a2a",
+      "header_background": "#ffffff",
+      "header_text_color": "#2e2e2e",
+      "footer_background": "#ffffff",
+      "footer_text_color": "#2e2e2e",
+      "primary_button_background": "#051e38",
+      "primary_button_text_color": "#ffffff",
+      "secondary_button_background": "#dfdfdf",
+      "secondary_button_text_color": "#2e2e2e",
+      "product_on_sale_accent": "#de2b2b",
+      "product_sold_out_accent": "#5b5b5b",
+      "product_custom_label_background": "#051e38",
+      "product_custom_label_2_background": "#2e9e7b",
+      "product_in_stock_text_color": "#2e9e7b",
+      "product_low_stock_text_color": "#de2b2b",
+      "heading_font": "futura_n3",
+      "heading_font_size": "medium",
+      "heading_text_transform": "uppercase",
+      "text_font": "din_next_n4",
+      "text_font_size": 15,
+      "stagger_products_apparition": true,
+      "round_color_swatches": false,
+      "show_vendor": false,
+      "show_secondary_image": true,
+      "product_color_display": "hide",
+      "product_image_size": "natural",
+      "cart_type": "drawer",
+      "cart_icon": "tote_bag",
+      "checkout_sidebar_background_color": "#f5f5f5",
+      "checkout_accent_color": "#051e38",
+      "checkout_button_color": "#051e38",
+      "checkout_error_color": "#de2a2a",
+      "accent_color": "#405de6",
+      "sections": {
+        "announcement-bar": {
+          "type": "announcement-bar",
+          "blocks": {
+            "message-1": {
+              "type": "message",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "message-1"
+          ],
+          "settings": {
+            "announcement_bar_position": "non_sticky",
+            "announcement_text_size": "small",
+            "autoplay": true,
+            "cycle_speed": 5,
+            "background": "#051e38",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#051e38"
+          }
+        },
+        "header": {
+          "type": "header",
+          "settings": {
+            "pesquisabackgroud": "#ffffff",
+            "pesquisatexto": "#ffffff",
+            "enable_sticky_header": true,
+            "navigation_menu": "main-menu",
+            "header_layout": "logo_center_navigation_inline",
+            "show_icons": true,
+            "reduce_desktop_padding": false,
+            "enable_transparent_header": true,
+            "transparent_header_text_color": "#ffffff"
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "text": {
+              "type": "text",
+              "settings": {}
+            },
+            "links": {
+              "type": "links",
+              "settings": {
+                "menu": "footer"
+              }
+            },
+            "newsletter": {
+              "type": "newsletter",
+              "settings": {}
+            },
+            "social_media": {
+              "type": "social_media",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "text",
+            "links",
+            "newsletter",
+            "social_media"
+          ],
+          "settings": {}
+        }
+      }
+    },
+    "Sapphire": {
+      "icon_stroke_width": 1.2,
+      "button_border_radius": 0,
+      "block_border_radius": "none",
+      "heading_color": "#0c1b54",
+      "text_color": "#0c1b54",
+      "background": "#ffffff",
+      "secondary_background": "#f7f7f7",
+      "success_color": "#708a7d",
+      "error_color": "#d2545a",
+      "header_background": "#0c1b54",
+      "footer_background": "#0c1b54",
+      "footer_text_color": "#ffffff",
+      "primary_button_background": "#0c1b54",
+      "secondary_button_background": "#f7f7f7",
+      "secondary_button_text_color": "#0c1b54",
+      "product_rating_color": "#a48156",
+      "product_on_sale_accent": "#d2545a",
+      "product_custom_label_background": "#405de6",
+      "product_custom_label_2_background": "#f3ff34",
+      "product_in_stock_text_color": "#2e9e7b",
+      "product_low_stock_text_color": "#d2545a",
+      "heading_font": "chong_modern_n4",
+      "heading_font_size": "large",
+      "heading_text_transform": "normal",
+      "text_font": "trade_gothic_n4",
+      "text_font_size": 15,
+      "stagger_products_apparition": true,
+      "round_color_swatches": true,
+      "show_vendor": true,
+      "show_secondary_image": true,
+      "show_product_rating": true,
+      "product_color_display": "hide",
+      "product_image_size": "natural",
+      "cart_type": "message",
+      "checkout_sidebar_background_color": "#f5f5f5",
+      "checkout_accent_color": "#282828",
+      "checkout_button_color": "#405de6",
+      "checkout_error_color": "#de2a2a",
+      "accent_color": "#405de6",
+      "sections": {
+        "announcement-bar": {
+          "type": "announcement-bar",
+          "blocks": {
+            "message-1": {
+              "type": "message",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "message-1"
+          ],
+          "settings": {
+            "announcement_bar_position": "non_sticky",
+            "announcement_text_size": "small",
+            "autoplay": true,
+            "cycle_speed": 5,
+            "background": "#ffe5db",
+            "text_color": "#0c1b54",
+            "button_background": "#0c1b54",
+            "button_text_color": "#ffffff"
+          }
+        },
+        "header": {
+          "type": "header",
+          "settings": {
+            "pesquisabackgroud": "#ffffff",
+            "pesquisatexto": "#ffffff",
+            "enable_sticky_header": true,
+            "navigation_menu": "main-menu",
+            "header_layout": "logo_center_navigation_inline",
+            "show_icons": true,
+            "reduce_desktop_padding": false,
+            "enable_transparent_header": true,
+            "transparent_header_text_color": "#ffffff"
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "text": {
+              "type": "text",
+              "settings": {}
+            },
+            "links": {
+              "type": "links",
+              "settings": {
+                "menu": "footer"
+              }
+            },
+            "newsletter": {
+              "type": "newsletter",
+              "settings": {}
+            },
+            "social_media": {
+              "type": "social_media",
+              "settings": {}
+            }
+          },
+          "block_order": [
+            "text",
+            "links",
+            "newsletter",
+            "social_media"
+          ],
+          "settings": {}
+        }
+      }
+    }
+  }
+}
