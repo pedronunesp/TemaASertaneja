@@ -204,6 +204,11 @@ Modificações devem ser feitas com EXTREMO CUIDADO para evitar efeitos colatera
       {%- render 'icon' with 'header-search' -%}
     </a>
   {%- endunless -%}
+  {%- if section.settings.show_mobile_account_icon and shop.customer_accounts_enabled -%}
+    <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="header__icon-wrapper tap-area hidden-desk" aria-label="{% if customer %}{{ 'header.general.account' | t | escape }}{% else %}{{ 'header.general.login' | t | escape }}{% endif %}">
+      {%- render 'icon' with 'header-customer' -%}
+    </a>
+  {%- endif -%}
 </div>
 
         <!-- Barra de pesquisa para layout específico -->
@@ -619,6 +624,12 @@ Modificações devem ser feitas com EXTREMO CUIDADO para evitar efeitos colatera
       "id": "sidebar_navigation_menu",
       "label": "Menu móvel",
       "info": "Selecione um menu diferente para a barra lateral móvel. Se nenhum for selecionado, o menu principal será usado."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile_account_icon",
+      "label": "Mostrar ícone de conta no mobile",
+      "default": false
     },
     {
       "type": "header",
