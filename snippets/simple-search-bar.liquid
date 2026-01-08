@@ -132,7 +132,7 @@
     top: calc(100% + 5px);
     left: 0;
     right: 0;
-    background-color: #ffffff;
+    background-color: {{ section.settings.pesquisabackgroud }};
     border-radius: 10px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -248,6 +248,24 @@
       justify-content: center;
     }
   }
+
+  /* Force dynamic colors on the content injected from predictive-search section */
+  .simple-search-results .product-item-meta__title,
+  .simple-search-results .product-item-meta__vendor,
+  .simple-search-results .price,
+  .simple-search-results .heading,
+  .simple-search-results a,
+  .simple-search-results p,
+  .simple-search-results span,
+  .simple-search-results .predictive-search__article-title,
+  .simple-search-results .predictive-search__linklist-link {
+    color: {{ section.settings.pesquisatexto }} !important;
+  }
+
+  .simple-search-results .price--compare {
+    opacity: 0.7;
+  }
+
 </style>
 
 <script>
