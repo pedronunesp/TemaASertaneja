@@ -339,7 +339,7 @@
           "logo_position_y": 10,
           "navigation_menu": "menu-da-barra-lateral",
           "sidebar_navigation_menu": "",
-          "show_mobile_account_icon": false,
+          "show_mobile_account_icon": true,
           "header_layout": "logo_center_search_open",
           "show_icons": true,
           "reduce_desktop_padding": true,
