@@ -9,10 +9,7 @@
 <html class="no-js" lang="{{ request.locale.iso_code }}" dir="{{ direction }}">
   <head>
 
-    <!-- INICIO ADICIONE SEUS PIXELS AQUI -->
-    
-
-    <!-- FIM DO ADICIONE SEUS PIXELS AQUI -->
+    {% render 'marketing-pixels' %}
     
   {% render 'sizechartsrelentless' %}
     <meta charset="utf-8">
@@ -43,9 +40,9 @@
     {%- endunless -%}
 
     {%- comment -%}Preload important resources{%- endcomment -%}
-    <link rel="preload" as="style" href="{{ 'theme.min.css' | asset_url }}">
+    <link rel="preload" as="style" href="{{ 'theme.css' | asset_url }}">
     <link rel="preload" as="script" href="{{ 'vendor.js' | asset_url }}" defer>
-    <link rel="preload" as="script" href="{{ 'theme.min.js' | asset_url }}" defer>
+    <link rel="preload" as="script" href="{{ 'theme.js' | asset_url }}" defer>
 
     {%- comment -%}
       IMPLEMENTATION NOTE: for improving performance, Focal tries to preload images on known pages (such as blog page,
@@ -71,12 +68,12 @@
     {% render 'css-variables', direction: direction %}
     {% render 'js-variables', direction: direction %}
 
-    <link rel="stylesheet" href="{{ 'theme.min.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
      
     <script src="{{ 'vendor.js' | asset_url }}" defer></script>
-    <script src="{{ 'theme.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
     <script src="{{ 'custom.js' | asset_url }}" defer></script>
 
     {{ content_for_header }}      
@@ -85,68 +82,7 @@
      {% render 'visionlcp' %}
 
 
-<!-- INICIO DOS BLOQUEADORES -->
-  
-    {% if settings.ali_hunter_enable %}
-      {% render 'blockalihtr' %}
-    {% endif %}
-    
-    {% if settings.botao_direito_enable %}
-        <script type="text/javascript">
-            var message="Desculpe, o clique com o botão direito foi desativado.";
-            function clickIE() {if (document.all) {(message);return false;}}
-            function clickNS(e) {if
-            (document.layers||(document.getElementById&&!document.all)) {
-                if (e.which==2||e.which==3) {(message);return false;}}}
-            if (document.layers)
-            {document.captureEvents(Event.MOUSEDOWN);document.onmousedown=clickNS;}
-            else{document.onmouseup=clickNS;document.oncontextmenu=clickIE;}
-            document.oncontextmenu=new Function("return false")
-        </script>
-    {% endif %}
-
-    {% if settings.atalho_f12_enable %}
-        <script>
-            document.onkeydown = function(e) {
-                if(event.keyCode == 123) {
-                    return false;
-                }
-                if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)){
-                    return false;
-                }
-                if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)){
-                    return false;
-                }
-                if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)){
-                    return false;
-                }
-            }
-        </script>
-    {% endif %}
-
-    {% if settings.selecionar_conteudo_enable %}
-        <script>
-            function disableselect(e) {
-                return false;
-            }
-
-            function reEnable() {
-                return true;
-            }
-
-            document.onselectstart = new Function("return false");
-
-            if (window.sidebar) {
-                document.onmousedown = disableselect;
-                document.onclick = reEnable;
-            }
-        </script>
-    {% endif %}    
-
-
-<!-- CASO TENHA MAIS BLOQUEADORES, INSIRA ABAIXO DESSA LINHA -->
-
-<!-- FIM DOS BLOQUEADORES -->
+{% render 'security-blockers' %}
 
 
     <!-- Areviews coleção -->
@@ -264,7 +200,6 @@
 }
 </style>  
          
- <!-- Não remova. Checkout Yampi. -->
-{% capture yampi_snippet_content %}{% include 'YampiSnippet' %}{% endcapture %} {% unless yampi_snippet_content contains 'Liquid error' %} {% include 'YampiSnippet' %} {% endunless %}
-<!-- Não remova. Checkout Yampi. --> </body>
+{% render 'yampi-checkout' %}
+</body>
 </html>
