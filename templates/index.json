@@ -192,7 +192,7 @@
       "name": "Produtos vistos recentemente",
       "settings": {
         "subheading": "",
-        "title": "Visualizados recentemente",
+        "title": "Visto recentemente",
         "products_count": 12,
         "background": "rgba(0,0,0,0)",
         "text_color": "rgba(0,0,0,0)"
