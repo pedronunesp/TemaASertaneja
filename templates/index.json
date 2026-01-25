@@ -12,6 +12,24 @@
     "slideshow": {
       "type": "slideshow",
       "blocks": {
+        "image_ajkMJD": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_uvfs08uvfs08uvfs.png",
+            "text_position": "middle_center",
+            "subheading": "",
+            "title": "",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": "",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 30
+          }
+        },
         "image_7qgdL6": {
           "type": "image",
           "settings": {
@@ -92,6 +110,7 @@
         }
       },
       "block_order": [
+        "image_ajkMJD",
         "image_7qgdL6",
         "image_NVkpEp",
         "image_kWQLUj",
