@@ -222,22 +222,6 @@
     },
     "176929914101d9f93b": {
       "type": "apps",
-      "blocks": {
-        "navi_menu_builder_app_block_hUTYqA": {
-          "type": "shopify://apps/navi-menu-builder/blocks/app-block/723b0c57-cf35-4406-ba93-95040b25b37c",
-          "settings": {
-            "embed_id": "SF-0123456789",
-            "embed_title": "",
-            "embed_is_full": false,
-            "embed_margin": "0 0 0 0",
-            "not_sticky": true,
-            "enable_cdn_fallback": false
-          }
-        }
-      },
-      "block_order": [
-        "navi_menu_builder_app_block_hUTYqA"
-      ],
       "settings": {
         "include_horizontal_margins": true,
         "include_vertical_margins": true
