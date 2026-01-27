@@ -523,7 +523,7 @@
       },
       "11921513738595253157": {
         "type": "shopify://apps/navi-menu-builder/blocks/app-embed/723b0c57-cf35-4406-ba93-95040b25b37c",
-        "disabled": false,
+        "disabled": true,
         "settings": {
           "optimize_beclicked_CSSSelector": "",
           "optimize_replacement_CSSSelector": "",
