@@ -795,7 +795,7 @@
         "height": 60,
         "icon_size": 24,
         "font_size": 10,
-        "background": "#000",
+        "background": "#181818",
         "border_color": "#000000",
         "show_shadow": true,
         "text_color": "#ffffff",
