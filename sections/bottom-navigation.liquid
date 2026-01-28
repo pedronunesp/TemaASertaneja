@@ -6,8 +6,8 @@
     left: 0;
     width: 100%;
     z-index: 9999;
-    background-color: {{ section.settings.background }};
-    border-top: 1px solid {{ section.settings.border_color }};
+    background-color: {{ section.settings.background }} !important;
+    border-top: 1px solid {{ section.settings.border_color }} !important;
     padding-bottom: env(safe-area-inset-bottom);
     display: none;
     {% if section.settings.show_shadow %}
@@ -19,7 +19,6 @@
     #shopify-section-{{ section.id }} {
       display: {% if section.settings.enable %}block{% else %}none{% endif %};
     }
-    /* Add padding to body to prevent content from being hidden behind the bottom bar */
     {% if section.settings.enable %}
     body {
       padding-bottom: calc({{ section.settings.height }}px + env(safe-area-inset-bottom));
@@ -27,7 +26,7 @@
     {% endif %}
   }
 
-  .bottom-nav {
+  #shopify-section-{{ section.id }} .bottom-nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -35,13 +34,13 @@
     padding: 0 10px;
   }
 
-  .bottom-nav__item {
+  #shopify-section-{{ section.id }} .bottom-nav__item {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    color: {{ section.settings.text_color }};
+    color: {{ section.settings.text_color }} !important;
     font-size: {{ section.settings.font_size }}px;
     background: none;
     border: none;
@@ -53,33 +52,40 @@
     transition: color 0.2s ease;
   }
 
-  .bottom-nav__item:hover,
-  .bottom-nav__item.active {
-    color: {{ section.settings.active_color }};
+  #shopify-section-{{ section.id }} .bottom-nav__item:hover,
+  #shopify-section-{{ section.id }} .bottom-nav__item.active {
+    color: {{ section.settings.active_color }} !important;
   }
 
-  .bottom-nav__item .icon {
+  /* Force svg to inherit color from parent */
+  #shopify-section-{{ section.id }} .bottom-nav__item .icon,
+  #shopify-section-{{ section.id }} .bottom-nav__item svg {
     width: {{ section.settings.icon_size }}px;
     height: {{ section.settings.icon_size }}px;
-    color: {{ section.settings.icon_color }};
+    color: {{ section.settings.icon_color }} !important;
+    fill: currentColor;
+    stroke: currentColor;
     transition: color 0.2s ease;
   }
-
-  .bottom-nav__item:hover .icon,
-  .bottom-nav__item.active .icon {
-    color: {{ section.settings.active_color }};
+  
+  /* Ensure active/hover state also applies to icon */
+  #shopify-section-{{ section.id }} .bottom-nav__item:hover .icon,
+  #shopify-section-{{ section.id }} .bottom-nav__item.active .icon,
+  #shopify-section-{{ section.id }} .bottom-nav__item:hover svg,
+  #shopify-section-{{ section.id }} .bottom-nav__item.active svg {
+    color: {{ section.settings.active_color }} !important;
   }
   
-  .bottom-nav__item span {
+  #shopify-section-{{ section.id }} .bottom-nav__item span {
     margin-top: 2px;
   }
 
-  .bottom-nav__cart-count {
+  #shopify-section-{{ section.id }} .bottom-nav__cart-count {
     position: absolute;
     top: -5px;
     right: -5px;
-    background-color: {{ section.settings.badge_bg_color }};
-    color: {{ section.settings.badge_text_color }};
+    background-color: {{ section.settings.badge_bg_color }} !important;
+    color: {{ section.settings.badge_text_color }} !important;
     border-radius: 50%;
     width: 16px;
     height: 16px;
@@ -89,7 +95,7 @@
     justify-content: center;
   }
   
-  .bottom-nav__icon-wrapper {
+  #shopify-section-{{ section.id }} .bottom-nav__icon-wrapper {
       position: relative;
       display: flex;
       align-items: center;
@@ -271,6 +277,7 @@
           "label": "Icon",
           "default": "picto-store",
           "options": [
+            { "value": "home", "label": "Home" },
             { "value": "picto-store", "label": "Store" },
             { "value": "picto-box", "label": "Box" },
             { "value": "picto-like", "label": "Heart" },
@@ -389,7 +396,7 @@
           "settings": {
             "label": "Início",
             "url": "/",
-            "icon": "picto-store"
+            "icon": "home"
           }
         },
         {
