@@ -796,7 +796,7 @@
         "icon_size": 24,
         "font_size": 10,
         "background": "#000",
-        "border_color": "#e5e5e5",
+        "border_color": "#000000",
         "show_shadow": true,
         "text_color": "#ffffff",
         "icon_color": "#ffffff",
