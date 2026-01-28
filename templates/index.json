@@ -761,6 +761,13 @@
             "icon": "home"
           }
         },
+        "cart_drawer_AgCizH": {
+          "type": "cart_drawer",
+          "settings": {
+            "label": "Carrinho",
+            "icon": "header-cart"
+          }
+        },
         "menu_drawer_rA6Fgn": {
           "type": "menu_drawer",
           "settings": {
@@ -774,20 +781,13 @@
             "label": "Conta",
             "icon": "header-customer"
           }
-        },
-        "cart_drawer_AgCizH": {
-          "type": "cart_drawer",
-          "settings": {
-            "label": "Carrinho",
-            "icon": "header-cart"
-          }
         }
       },
       "block_order": [
         "link_XVbnWz",
+        "cart_drawer_AgCizH",
         "menu_drawer_rA6Fgn",
-        "account_VAyL6m",
-        "cart_drawer_AgCizH"
+        "account_VAyL6m"
       ],
       "name": "Bottom Navigation",
       "settings": {
