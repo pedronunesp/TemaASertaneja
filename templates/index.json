@@ -799,7 +799,7 @@
         "border_color": "#e5e5e5",
         "show_shadow": true,
         "text_color": "#333333",
-        "icon_color": "#333333",
+        "icon_color": "#000000",
         "active_color": "#000000",
         "badge_bg_color": "#000000",
         "badge_text_color": "#ffffff"
