@@ -520,6 +520,15 @@
         "type": "shopify://apps/mercado-pago-antifraud-plus/blocks/embed-block/b19ea721-f94a-4308-bee5-0057c043bac5",
         "disabled": false,
         "settings": {}
+      },
+      "11921513738595253157": {
+        "type": "shopify://apps/navi-menu-builder/blocks/app-embed/723b0c57-cf35-4406-ba93-95040b25b37c",
+        "disabled": true,
+        "settings": {
+          "optimize_beclicked_CSSSelector": "",
+          "optimize_replacement_CSSSelector": "",
+          "enable_cdn_fallback": false
+        }
       }
     }
   },

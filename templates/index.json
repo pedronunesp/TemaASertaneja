@@ -1,1 +1,773 @@
-{"sections":{"slideshow":{"type":"slideshow","blocks":{"image_NVkpEp":{"type":"image","disabled":true,"settings":{"image":"shopify:\/\/shop_images\/Banners_Desktop.png","mobile_image":"shopify:\/\/shop_images\/Banners_Mobile.png","text_position":"middle_center","subheading":"","title":"","button_1_text":"","button_1_link":"","button_2_text":"","button_2_link":"","text_color":"#ffffff","button_background":"#ffffff","button_text_color":"#000000","overlay_color":"#000000","overlay_opacity":30}},"image_kWQLUj":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/Banner_Formatura_Remota_Rustico_Artesanal_Azul_e_Dourado_1800_x_600_px.png","mobile_image":"shopify:\/\/shop_images\/Banner_Formatura_Remota_Rustico_Artesanal_Azul_e_Dourado_3.png","text_position":"middle_center","subheading":"","title":"","button_1_text":"","button_1_link":"shopify:\/\/pages\/quem-somos","button_2_text":"","button_2_link":"","text_color":"#ffffff","button_background":"#ffffff","button_text_color":"#000000","overlay_color":"#000000","overlay_opacity":0}},"slide-1":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/Stories_Instagram_show_sertanejo_evento_rustico_moderno_marrom_1800_x_600_px.png","mobile_image":"shopify:\/\/shop_images\/Stories_Instagram_show_sertanejo_evento_rustico_moderno_marrom_4.png","text_position":"middle_center","subheading":"","title":"","button_1_text":"","button_1_link":"shopify:\/\/collections\/trio-parada-dura","button_2_text":"","button_2_link":"","text_color":"#ffffff","button_background":"#ffffff","button_text_color":"#000000","overlay_color":"#000000","overlay_opacity":0}}},"block_order":["image_NVkpEp","image_kWQLUj","slide-1"],"settings":{"section_height":"auto","transition_type":"fade","autoplay":true,"cycle_speed":6,"background":"rgba(0,0,0,0)"}},"926c7098-4397-4da1-9c97-16935ea7ebc3":{"type":"collection-list","blocks":{"collection_wxqdDk":{"type":"collection","settings":{"collection":"chapeus","subheading":"","title":"Chapéus","link_text":"","link_url":"","text_color":"rgba(0,0,0,0)","overlay_color":"#000000","overlay_opacity":30}},"collection_V8xrpE":{"type":"collection","settings":{"collection":"trio-parada-dura","subheading":"","title":"Trio Parada Dura","link_text":"","link_url":"","text_color":"rgba(0,0,0,0)","overlay_color":"#000000","overlay_opacity":30}},"collection_wGA7CR":{"type":"collection","settings":{"collection":"botas","subheading":"","title":"Botas e Botinas","link_text":"","link_url":"","text_color":"rgba(0,0,0,0)","overlay_color":"#000000","overlay_opacity":30}},"collection_tXj3EU":{"type":"collection","settings":{"collection":"cintos-e-acessorios","image":"shopify:\/\/shop_images\/sample_0_4.jpg","subheading":"","title":"Cintos","link_text":"","link_url":"","text_color":"rgba(0,0,0,0)","overlay_color":"#000000","overlay_opacity":30}},"collection_4DypgJ":{"type":"collection","settings":{"collection":"churrasco-e-outros","subheading":"","title":"Churrasco","link_text":"","link_url":"","text_color":"rgba(0,0,0,0)","overlay_color":"#000000","overlay_opacity":30}},"collection_njbdfD":{"type":"collection","disabled":true,"settings":{"collection":"decoracoes","image":"shopify:\/\/shop_images\/sample_0_3.jpg","subheading":"","title":"Decorações","link_text":"","link_url":"","text_color":"rgba(0,0,0,0)","overlay_color":"#000000","overlay_opacity":30}}},"block_order":["collection_wxqdDk","collection_V8xrpE","collection_wGA7CR","collection_tXj3EU","collection_4DypgJ","collection_njbdfD"],"custom_css":[],"settings":{"reveal_on_scroll":true,"layout":"carousel","subheading":"","title":"","background":"rgba(0,0,0,0)","text_color":"rgba(0,0,0,0)"}},"f03689a1-a342-4154-a5fc-376e90c0838c":{"type":"featured-collections","blocks":{"collection_PTLrFf":{"type":"collection","settings":{"collection":"exclusivos-a-sertaneja","label":"","button_text":"Todos produtos exclusivos","button_url":"shopify:\/\/collections\/trio-parada-dura"}}},"block_order":["collection_PTLrFf"],"custom_css":[],"settings":{"title":"Exclusivos A Sertaneja","content":"<p>Produtos exclusivos que você só encontra aqui, na A Sertaneja Comércio.<\/p>","products_count":7,"products_per_row":5,"stack_products":false,"show_cta":false,"background":"rgba(0,0,0,0)","text_color":"rgba(0,0,0,0)","button_background":"#e66d00","button_text_color":"#ffffff"}},"4b6d90fe-3a65-4df4-a75c-5974a4f6dee7":{"type":"featured-collections","blocks":{"collection_wezx8D":{"type":"collection","settings":{"collection":"botas","label":"","button_text":"","button_url":""}}},"block_order":["collection_wezx8D"],"settings":{"title":"Botas e Botinas","content":"","products_count":6,"products_per_row":5,"stack_products":true,"show_cta":false,"background":"rgba(0,0,0,0)","text_color":"#000000","button_background":"#000000","button_text_color":"#ffffff"}},"featured_collections_h68zQb":{"type":"featured-collections","blocks":{"collection_YLdbN6":{"type":"collection","settings":{"collection":"chapeus","label":"","button_text":"","button_url":""}}},"block_order":["collection_YLdbN6"],"settings":{"title":"Chapéus","content":"","products_count":8,"products_per_row":4,"stack_products":true,"show_cta":false,"background":"rgba(0,0,0,0)","text_color":"rgba(0,0,0,0)","button_background":"rgba(0,0,0,0)","button_text_color":"rgba(0,0,0,0)"}},"text-with-icons":{"type":"text-with-icons","blocks":{"item-1":{"type":"item","settings":{"icon":"picto-fast-delivery","custom_icon_width":50,"title":"Frete Grátis","content":"<p>Entrega gratuita para todo Brasil acima de R$249,00<\/p>"}},"item-4":{"type":"item","settings":{"icon":"picto-customer-support","custom_icon_width":50,"title":"Suporte ao Cliente","content":"<p>Eficiência e confiabilidade garantidas.<\/p>"}},"item-2":{"type":"item","settings":{"icon":"picto-gift","custom_icon_width":50,"title":"PRIMEIRA COMPRA","content":"<p>Utiliza o cupom \"sertaneja10\"<\/p>"}},"item-3":{"type":"item","settings":{"icon":"picto-warranty","custom_icon_width":60,"title":"Compra Segura","content":"<p>Ambiente 100% seguro<\/p>"}}},"block_order":["item-1","item-4","item-2","item-3"],"settings":{"background":"#f9f9f9","text_color":"#3a3a3a"}},"shop_the_look_UP96h6":{"type":"shop-the-look","blocks":{"look_X6mVrU":{"type":"look","settings":{"image":"shopify:\/\/shop_images\/Stories_Instagram_show_sertanejo_evento_rustico_moderno_marrom_1800_x_600_px.png","mobile_image":"shopify:\/\/shop_images\/front-and-back-view-mockup-of-a-man-and-a-woman-wearing-blinkstore-t-shirts-in-a-studio-m37638.png","dot_type":"normal","product_1":"camiseta-original-personalizada-trio-parada-dura-edicao-limitada-50-anos","product_1_horizontal_position":37,"product_1_vertical_position":50,"product_1_horizontal_position_mobile":28,"product_1_vertical_position_mobile":32,"product_2":"","product_2_horizontal_position":46,"product_2_vertical_position":64,"product_2_horizontal_position_mobile":50,"product_2_vertical_position_mobile":50,"product_3":"camiseta-original-personalizada-trio-parada-dura-edicao-limitada-50-anos","product_3_horizontal_position":52,"product_3_vertical_position":50,"product_3_horizontal_position_mobile":71,"product_3_vertical_position_mobile":70}}},"block_order":["look_X6mVrU"],"settings":{"reveal_on_scroll":true,"label":"Compre os looks"}},"rich_text_qM9KQL":{"type":"rich-text","settings":{"subheading":"Quem somos nós","title":"Assista o vídeo abaixo","content":"","button_text":"","button_link":"shopify:\/\/pages\/quem-somos","background_type":"full_width","text_width":"medium","text_position":"center","text_alignment":"center","background":"rgba(0,0,0,0)","text_color":"rgba(0,0,0,0)","button_background":"rgba(0,0,0,0)","button_text_color":"rgba(0,0,0,0)"}},"video_KEQT6K":{"type":"video","settings":{"subheading":"","title":"","video_url":"https:\/\/youtu.be\/NeWbqWb8330","image":"shopify:\/\/shop_images\/Dark_Modern_Travel_Channel_Youtube_Banner_1.png","background_type":"full_width","video_size":"auto","autoplay":false,"background":"rgba(0,0,0,0)","text_color":"rgba(0,0,0,0)","play_button_color":"#ffffff"}},"rich_text_zhg8Ez":{"type":"rich-text","settings":{"subheading":"","title":"Somos apaixonados pela cultura sertaneja e por isso trazemos produtos que levam o espirito e a personalidade única que só o sertão tem.","content":"","button_text":"","button_link":"","background_type":"full_width","text_width":"medium","text_position":"center","text_alignment":"center","background":"rgba(0,0,0,0)","text_color":"rgba(0,0,0,0)","button_background":"rgba(0,0,0,0)","button_text_color":"rgba(0,0,0,0)"}},"image_with_text_block_q9Daky":{"type":"image-with-text-block","settings":{"reveal_on_scroll":true,"image":"shopify:\/\/shop_images\/um_pano_preto_em_formato_de_uma_garrafa_jogado_por_cima_fundo_preto_e_pano_preto_sem_a_tampa_aparente_1_e273f23c-6bcd-47c4-a1e9-cb06174cadd9.jpg","mobile_image":"shopify:\/\/shop_images\/um_pano_preto_em_formato_de_uma_garrafa_jogado_por_cima_fundo_preto_e_pano_preto_sem_a_tampa_aparente_1_e273f23c-6bcd-47c4-a1e9-cb06174cadd9.jpg","subheading":"Lançamento Cachaça","title":"","content":"<p>Existe um segredo guardado por debaixo dos panos.<\/p><p>Uma bebida que carrega tradição, personalidade e um sabor que só quem entende de verdade vai reconhecer. <br\/><br\/>Está preparado para algo diferente? Então, deixe seu nome e receba quando lançarmos.<\/p>","button_text":"Cadastre-se agora","button_link":"shopify:\/\/pages\/cachacas","background_type":"full_width","text_position":"left","text_alignment":"center","text_background":"#000000","text_color":"#ffffff","button_background":"#e66d00","button_text_color":"#ffffff"}},"026aeb10-b4f0-4329-b658-aadbf9681f96":{"type":"multi-column","blocks":{"template--19753647243582__026aeb10-b4f0-4329-b658-aadbf9681f96-16886859797e9d5ba1-0":{"type":"item","settings":{"image_width":100,"image_border":"rgba(0,0,0,0)","title":"@telefone_mudo","content":"","link_text":"","link_url":"","link_style":"link","text_alignment":"center","vertical_alignment":"start"}},"template--19753647243582__026aeb10-b4f0-4329-b658-aadbf9681f96-16886859797e9d5ba1-1":{"type":"item","settings":{"image_width":100,"image_border":"rgba(0,0,0,0)","title":"@xonadaotrioparadadura","content":"","link_text":"","link_url":"","link_style":"link","text_alignment":"center","vertical_alignment":"start"}},"template--19753647243582__026aeb10-b4f0-4329-b658-aadbf9681f96-16886859797e9d5ba1-2":{"type":"item","settings":{"image_width":100,"image_border":"rgba(0,0,0,0)","title":"@trioparadadura","content":"","link_text":"","link_url":"","link_style":"link","text_alignment":"center","vertical_alignment":"start"}}},"block_order":["template--19753647243582__026aeb10-b4f0-4329-b658-aadbf9681f96-16886859797e9d5ba1-0","template--19753647243582__026aeb10-b4f0-4329-b658-aadbf9681f96-16886859797e9d5ba1-1","template--19753647243582__026aeb10-b4f0-4329-b658-aadbf9681f96-16886859797e9d5ba1-2"],"settings":{"reveal_on_scroll":true,"stack_items":false,"subheading":"Instagrams Parceiros","title":"Arraste para o lado","content":"","column_alignment":"center","mobile_item_size":"large","desktop_item_size":"medium","spacing":"normal","background":"rgba(0,0,0,0)","text_color":"#000000"}},"logo_list_M6qzFH":{"type":"logo-list","blocks":{"logo_cNqMfN":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/logo_telefone_mudo_2.png","link":"https:\/\/instagram.com\/telefone_mudo"}},"logo_Yfaiit":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/logo_xonadao_curvas_2.png","link":"https:\/\/instagram.com\/xonadaotrioparadadura"}},"logo_BzMWxN":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/logo_chama.png","link":"https:\/\/instagram.com\/chamachuva"}},"logo_dHVBmb":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/logo_trio_parede_2_2.png","link":"https:\/\/instagram.com\/trioparadadura"}},"logo_bwWVxC":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/Design_sem_nome_13.png","link":"https:\/\/instagram.com\/marcelinhodelimaoficial"}},"logo_dfEHm6":{"type":"logo","settings":{"logo":"shopify:\/\/shop_images\/Design_sem_nome_12.png","link":"https:\/\/instagram.com\/churrascocervejaeviola"}}},"block_order":["logo_cNqMfN","logo_Yfaiit","logo_BzMWxN","logo_dHVBmb","logo_bwWVxC","logo_dfEHm6"],"settings":{"reveal_on_scroll":true,"subheading":"","title":"NOSSAS MARCAS","button_text":"","button_link":"","stack_logos":true,"background":"rgba(0,0,0,0)","text_color":"rgba(0,0,0,0)","button_background":"rgba(0,0,0,0)","button_text_color":"rgba(0,0,0,0)","logo_background":"rgba(0,0,0,0)"}},"slideshow_rA88cH":{"type":"slideshow","blocks":{"image_YLd8Ap":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/Design_sem_nome_10.png","mobile_image":"shopify:\/\/shop_images\/churrasco.png","text_position":"middle_center","subheading":"","title":"","button_1_text":"","button_1_link":"","button_2_text":"","button_2_link":"","text_color":"#ffffff","button_background":"#ffffff","button_text_color":"#000000","overlay_color":"#000000","overlay_opacity":0}},"image_FV8zgt":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/Design_sem_nome_10.png","mobile_image":"shopify:\/\/shop_images\/trio_parada_dura.png","text_position":"middle_center","subheading":"","title":"","button_1_text":"","button_1_link":"","button_2_text":"","button_2_link":"","text_color":"#ffffff","button_background":"#ffffff","button_text_color":"#000000","overlay_color":"#000000","overlay_opacity":0}},"image_UcJtf7":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/Design_sem_nome_10.png","mobile_image":"shopify:\/\/shop_images\/xonadao.png","text_position":"middle_center","subheading":"","title":"","button_1_text":"","button_1_link":"","button_2_text":"","button_2_link":"","text_color":"#ffffff","button_background":"#ffffff","button_text_color":"#000000","overlay_color":"#000000","overlay_opacity":0}},"image_6fFG9R":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/Design_sem_nome_10.png","mobile_image":"shopify:\/\/shop_images\/ML_Site.png","text_position":"middle_center","subheading":"","title":"","button_1_text":"","button_1_link":"","button_2_text":"","button_2_link":"","text_color":"#ffffff","button_background":"#ffffff","button_text_color":"#000000","overlay_color":"#000000","overlay_opacity":0}},"image_LCXjUN":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/Design_sem_nome_10.png","mobile_image":"shopify:\/\/shop_images\/telefone_mudo.png","text_position":"middle_center","subheading":"","title":"","button_1_text":"","button_1_link":"","button_2_text":"","button_2_link":"","text_color":"#ffffff","button_background":"#ffffff","button_text_color":"#000000","overlay_color":"#000000","overlay_opacity":0}}},"block_order":["image_YLd8Ap","image_FV8zgt","image_UcJtf7","image_6fFG9R","image_LCXjUN"],"disabled":true,"settings":{"section_height":"auto","transition_type":"sweep","autoplay":true,"cycle_speed":5,"background":"#ffffff"}}},"order":["slideshow","926c7098-4397-4da1-9c97-16935ea7ebc3","f03689a1-a342-4154-a5fc-376e90c0838c","4b6d90fe-3a65-4df4-a75c-5974a4f6dee7","featured_collections_h68zQb","text-with-icons","shop_the_look_UP96h6","rich_text_qM9KQL","video_KEQT6K","rich_text_zhg8Ez","image_with_text_block_q9Daky","026aeb10-b4f0-4329-b658-aadbf9681f96","logo_list_M6qzFH","slideshow_rA88cH"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "slideshow": {
+      "type": "slideshow",
+      "blocks": {
+        "image_ajkMJD": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_g7j3lmg7j3lmg7j3.png",
+            "mobile_image": "shopify://shop_images/Gemini_Generated_Image_g7j3lmg7j3lmg7j3.png",
+            "text_position": "middle_center",
+            "subheading": "",
+            "title": "",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": "",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_NVkpEp": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Banners_Desktop.png",
+            "mobile_image": "shopify://shop_images/Banners_Mobile.png",
+            "text_position": "middle_center",
+            "subheading": "",
+            "title": "",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": "",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 30
+          }
+        },
+        "image_kWQLUj": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Banner_Formatura_Remota_Rustico_Artesanal_Azul_e_Dourado_1800_x_600_px.png",
+            "mobile_image": "shopify://shop_images/Banner_Formatura_Remota_Rustico_Artesanal_Azul_e_Dourado_3.png",
+            "text_position": "middle_center",
+            "subheading": "",
+            "title": "",
+            "button_1_text": "",
+            "button_1_link": "shopify://pages/quem-somos",
+            "button_2_text": "",
+            "button_2_link": "",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "slide-1": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Stories_Instagram_show_sertanejo_evento_rustico_moderno_marrom_1800_x_600_px.png",
+            "mobile_image": "shopify://shop_images/Stories_Instagram_show_sertanejo_evento_rustico_moderno_marrom_4.png",
+            "text_position": "middle_center",
+            "subheading": "",
+            "title": "",
+            "button_1_text": "",
+            "button_1_link": "shopify://collections/trio-parada-dura",
+            "button_2_text": "",
+            "button_2_link": "",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "image_ajkMJD",
+        "image_NVkpEp",
+        "image_kWQLUj",
+        "slide-1"
+      ],
+      "settings": {
+        "section_height": "auto",
+        "transition_type": "fade",
+        "autoplay": true,
+        "cycle_speed": 6,
+        "background": "rgba(0,0,0,0)"
+      }
+    },
+    "926c7098-4397-4da1-9c97-16935ea7ebc3": {
+      "type": "collection-list",
+      "blocks": {
+        "collection_wxqdDk": {
+          "type": "collection",
+          "settings": {
+            "collection": "chapeus",
+            "subheading": "",
+            "title": "Chapéus",
+            "link_text": "",
+            "link_url": "",
+            "text_color": "rgba(0,0,0,0)",
+            "overlay_color": "#000000",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_V8xrpE": {
+          "type": "collection",
+          "settings": {
+            "collection": "trio-parada-dura",
+            "subheading": "",
+            "title": "Trio Parada Dura",
+            "link_text": "",
+            "link_url": "",
+            "text_color": "rgba(0,0,0,0)",
+            "overlay_color": "#000000",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_wGA7CR": {
+          "type": "collection",
+          "settings": {
+            "collection": "botas",
+            "subheading": "",
+            "title": "Botas e Botinas",
+            "link_text": "",
+            "link_url": "",
+            "text_color": "rgba(0,0,0,0)",
+            "overlay_color": "#000000",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_tXj3EU": {
+          "type": "collection",
+          "settings": {
+            "collection": "cintos-e-acessorios",
+            "image": "shopify://shop_images/sample_0_4.jpg",
+            "subheading": "",
+            "title": "Cintos",
+            "link_text": "",
+            "link_url": "",
+            "text_color": "rgba(0,0,0,0)",
+            "overlay_color": "#000000",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_4DypgJ": {
+          "type": "collection",
+          "settings": {
+            "collection": "churrasco-e-outros",
+            "subheading": "",
+            "title": "Churrasco",
+            "link_text": "",
+            "link_url": "",
+            "text_color": "rgba(0,0,0,0)",
+            "overlay_color": "#000000",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_njbdfD": {
+          "type": "collection",
+          "disabled": true,
+          "settings": {
+            "collection": "decoracoes",
+            "image": "shopify://shop_images/sample_0_3.jpg",
+            "subheading": "",
+            "title": "Decorações",
+            "link_text": "",
+            "link_url": "",
+            "text_color": "rgba(0,0,0,0)",
+            "overlay_color": "#000000",
+            "overlay_opacity": 30
+          }
+        }
+      },
+      "block_order": [
+        "collection_wxqdDk",
+        "collection_V8xrpE",
+        "collection_wGA7CR",
+        "collection_tXj3EU",
+        "collection_4DypgJ",
+        "collection_njbdfD"
+      ],
+      "custom_css": [],
+      "settings": {
+        "reveal_on_scroll": true,
+        "layout": "carousel",
+        "subheading": "",
+        "title": "",
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)"
+      }
+    },
+    "recently_viewed_products_LyqniK": {
+      "type": "recently-viewed-products",
+      "name": "Produtos vistos recentemente",
+      "settings": {
+        "subheading": "",
+        "title": "Visto recentemente",
+        "products_count": 12,
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)"
+      }
+    },
+    "176929914101d9f93b": {
+      "type": "apps",
+      "settings": {
+        "include_horizontal_margins": true,
+        "include_vertical_margins": true
+      }
+    },
+    "featured_collections_aBmCr8": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_JCLJBT": {
+          "type": "collection",
+          "settings": {
+            "collection": "todos",
+            "label": "",
+            "button_text": "",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_JCLJBT"
+      ],
+      "name": "Coleções em Destaque",
+      "settings": {
+        "title": "Coleção",
+        "content": "",
+        "products_count": 8,
+        "products_per_row": 4,
+        "stack_products": true,
+        "show_cta": false,
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background": "rgba(0,0,0,0)",
+        "button_text_color": "rgba(0,0,0,0)"
+      }
+    },
+    "f03689a1-a342-4154-a5fc-376e90c0838c": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_PTLrFf": {
+          "type": "collection",
+          "settings": {
+            "collection": "exclusivos-a-sertaneja",
+            "label": "",
+            "button_text": "Todos produtos exclusivos",
+            "button_url": "shopify://collections/trio-parada-dura"
+          }
+        }
+      },
+      "block_order": [
+        "collection_PTLrFf"
+      ],
+      "custom_css": [],
+      "settings": {
+        "title": "Exclusivos A Sertaneja",
+        "content": "<p>Produtos exclusivos que você só encontra aqui, na A Sertaneja Comércio.</p>",
+        "products_count": 7,
+        "products_per_row": 5,
+        "stack_products": false,
+        "show_cta": false,
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background": "#e66d00",
+        "button_text_color": "#ffffff"
+      }
+    },
+    "4b6d90fe-3a65-4df4-a75c-5974a4f6dee7": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_wezx8D": {
+          "type": "collection",
+          "settings": {
+            "collection": "botas",
+            "label": "",
+            "button_text": "",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_wezx8D"
+      ],
+      "settings": {
+        "title": "Botas e Botinas",
+        "content": "",
+        "products_count": 6,
+        "products_per_row": 5,
+        "stack_products": true,
+        "show_cta": false,
+        "background": "rgba(0,0,0,0)",
+        "text_color": "#000000",
+        "button_background": "#000000",
+        "button_text_color": "#ffffff"
+      }
+    },
+    "featured_collections_h68zQb": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_YLdbN6": {
+          "type": "collection",
+          "settings": {
+            "collection": "chapeus",
+            "label": "",
+            "button_text": "",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_YLdbN6"
+      ],
+      "settings": {
+        "title": "Chapéus",
+        "content": "",
+        "products_count": 8,
+        "products_per_row": 4,
+        "stack_products": true,
+        "show_cta": false,
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background": "rgba(0,0,0,0)",
+        "button_text_color": "rgba(0,0,0,0)"
+      }
+    },
+    "text-with-icons": {
+      "type": "text-with-icons",
+      "blocks": {
+        "item-1": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-fast-delivery",
+            "custom_icon_width": 50,
+            "title": "Frete Grátis",
+            "content": "<p>Entrega gratuita para todo Brasil acima de R$249,00</p>"
+          }
+        },
+        "item-4": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-customer-support",
+            "custom_icon_width": 50,
+            "title": "Suporte ao Cliente",
+            "content": "<p>Eficiência e confiabilidade garantidas.</p>"
+          }
+        },
+        "item-2": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-gift",
+            "custom_icon_width": 50,
+            "title": "PRIMEIRA COMPRA",
+            "content": "<p>Utiliza o cupom \"sertaneja10\"</p>"
+          }
+        },
+        "item-3": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-warranty",
+            "custom_icon_width": 60,
+            "title": "Compra Segura",
+            "content": "<p>Ambiente 100% seguro</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item-1",
+        "item-4",
+        "item-2",
+        "item-3"
+      ],
+      "settings": {
+        "background": "#f9f9f9",
+        "text_color": "#3a3a3a"
+      }
+    },
+    "shop_the_look_UP96h6": {
+      "type": "shop-the-look",
+      "blocks": {
+        "look_X6mVrU": {
+          "type": "look",
+          "settings": {
+            "image": "shopify://shop_images/Stories_Instagram_show_sertanejo_evento_rustico_moderno_marrom_1800_x_600_px.png",
+            "mobile_image": "shopify://shop_images/front-and-back-view-mockup-of-a-man-and-a-woman-wearing-blinkstore-t-shirts-in-a-studio-m37638.png",
+            "dot_type": "normal",
+            "product_1": "camiseta-original-personalizada-trio-parada-dura-edicao-limitada-50-anos",
+            "product_1_horizontal_position": 37,
+            "product_1_vertical_position": 50,
+            "product_1_horizontal_position_mobile": 28,
+            "product_1_vertical_position_mobile": 32,
+            "product_2": "",
+            "product_2_horizontal_position": 46,
+            "product_2_vertical_position": 64,
+            "product_2_horizontal_position_mobile": 50,
+            "product_2_vertical_position_mobile": 50,
+            "product_3": "camiseta-original-personalizada-trio-parada-dura-edicao-limitada-50-anos",
+            "product_3_horizontal_position": 52,
+            "product_3_vertical_position": 50,
+            "product_3_horizontal_position_mobile": 71,
+            "product_3_vertical_position_mobile": 70
+          }
+        }
+      },
+      "block_order": [
+        "look_X6mVrU"
+      ],
+      "settings": {
+        "reveal_on_scroll": true,
+        "label": "Compre os looks"
+      }
+    },
+    "rich_text_qM9KQL": {
+      "type": "rich-text",
+      "settings": {
+        "subheading": "Quem somos nós",
+        "title": "Assista o vídeo abaixo",
+        "content": "",
+        "button_text": "",
+        "button_link": "shopify://pages/quem-somos",
+        "background_type": "full_width",
+        "text_width": "medium",
+        "text_position": "center",
+        "text_alignment": "center",
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background": "rgba(0,0,0,0)",
+        "button_text_color": "rgba(0,0,0,0)"
+      }
+    },
+    "video_KEQT6K": {
+      "type": "video",
+      "settings": {
+        "subheading": "",
+        "title": "",
+        "video_url": "https://youtu.be/NeWbqWb8330",
+        "image": "shopify://shop_images/Dark_Modern_Travel_Channel_Youtube_Banner_1.png",
+        "background_type": "full_width",
+        "video_size": "auto",
+        "autoplay": false,
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "play_button_color": "#ffffff"
+      }
+    },
+    "rich_text_zhg8Ez": {
+      "type": "rich-text",
+      "settings": {
+        "subheading": "",
+        "title": "Somos apaixonados pela cultura sertaneja e por isso trazemos produtos que levam o espirito e a personalidade única que só o sertão tem.",
+        "content": "",
+        "button_text": "",
+        "button_link": "",
+        "background_type": "full_width",
+        "text_width": "medium",
+        "text_position": "center",
+        "text_alignment": "center",
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background": "rgba(0,0,0,0)",
+        "button_text_color": "rgba(0,0,0,0)"
+      }
+    },
+    "image_with_text_block_q9Daky": {
+      "type": "image-with-text-block",
+      "settings": {
+        "reveal_on_scroll": true,
+        "image": "shopify://shop_images/um_pano_preto_em_formato_de_uma_garrafa_jogado_por_cima_fundo_preto_e_pano_preto_sem_a_tampa_aparente_1_e273f23c-6bcd-47c4-a1e9-cb06174cadd9.jpg",
+        "mobile_image": "shopify://shop_images/um_pano_preto_em_formato_de_uma_garrafa_jogado_por_cima_fundo_preto_e_pano_preto_sem_a_tampa_aparente_1_e273f23c-6bcd-47c4-a1e9-cb06174cadd9.jpg",
+        "subheading": "Lançamento Cachaça",
+        "title": "",
+        "content": "<p>Existe um segredo guardado por debaixo dos panos.</p><p>Uma bebida que carrega tradição, personalidade e um sabor que só quem entende de verdade vai reconhecer. <br/><br/>Está preparado para algo diferente? Então, deixe seu nome e receba quando lançarmos.</p>",
+        "button_text": "Cadastre-se agora",
+        "button_link": "shopify://pages/cachacas",
+        "background_type": "full_width",
+        "text_position": "left",
+        "text_alignment": "center",
+        "text_background": "#000000",
+        "text_color": "#ffffff",
+        "button_background": "#e66d00",
+        "button_text_color": "#ffffff"
+      }
+    },
+    "026aeb10-b4f0-4329-b658-aadbf9681f96": {
+      "type": "multi-column",
+      "blocks": {
+        "template--19753647243582__026aeb10-b4f0-4329-b658-aadbf9681f96-16886859797e9d5ba1-0": {
+          "type": "item",
+          "settings": {
+            "image_width": 100,
+            "image_border": "rgba(0,0,0,0)",
+            "title": "@telefone_mudo",
+            "content": "",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_alignment": "center",
+            "vertical_alignment": "start"
+          }
+        },
+        "template--19753647243582__026aeb10-b4f0-4329-b658-aadbf9681f96-16886859797e9d5ba1-1": {
+          "type": "item",
+          "settings": {
+            "image_width": 100,
+            "image_border": "rgba(0,0,0,0)",
+            "title": "@xonadaotrioparadadura",
+            "content": "",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_alignment": "center",
+            "vertical_alignment": "start"
+          }
+        },
+        "template--19753647243582__026aeb10-b4f0-4329-b658-aadbf9681f96-16886859797e9d5ba1-2": {
+          "type": "item",
+          "settings": {
+            "image_width": 100,
+            "image_border": "rgba(0,0,0,0)",
+            "title": "@trioparadadura",
+            "content": "",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_alignment": "center",
+            "vertical_alignment": "start"
+          }
+        }
+      },
+      "block_order": [
+        "template--19753647243582__026aeb10-b4f0-4329-b658-aadbf9681f96-16886859797e9d5ba1-0",
+        "template--19753647243582__026aeb10-b4f0-4329-b658-aadbf9681f96-16886859797e9d5ba1-1",
+        "template--19753647243582__026aeb10-b4f0-4329-b658-aadbf9681f96-16886859797e9d5ba1-2"
+      ],
+      "settings": {
+        "reveal_on_scroll": true,
+        "stack_items": false,
+        "subheading": "Instagrams Parceiros",
+        "title": "Arraste para o lado",
+        "content": "",
+        "column_alignment": "center",
+        "mobile_item_size": "large",
+        "desktop_item_size": "medium",
+        "spacing": "normal",
+        "background": "rgba(0,0,0,0)",
+        "text_color": "#000000"
+      }
+    },
+    "logo_list_M6qzFH": {
+      "type": "logo-list",
+      "blocks": {
+        "logo_cNqMfN": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/logo_telefone_mudo_2.png",
+            "link": "https://instagram.com/telefone_mudo"
+          }
+        },
+        "logo_Yfaiit": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/logo_xonadao_curvas_2.png",
+            "link": "https://instagram.com/xonadaotrioparadadura"
+          }
+        },
+        "logo_BzMWxN": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/logo_chama.png",
+            "link": "https://instagram.com/chamachuva"
+          }
+        },
+        "logo_dHVBmb": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/logo_trio_parede_2_2.png",
+            "link": "https://instagram.com/trioparadadura"
+          }
+        },
+        "logo_bwWVxC": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Design_sem_nome_13.png",
+            "link": "https://instagram.com/marcelinhodelimaoficial"
+          }
+        },
+        "logo_dfEHm6": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Design_sem_nome_12.png",
+            "link": "https://instagram.com/churrascocervejaeviola"
+          }
+        }
+      },
+      "block_order": [
+        "logo_cNqMfN",
+        "logo_Yfaiit",
+        "logo_BzMWxN",
+        "logo_dHVBmb",
+        "logo_bwWVxC",
+        "logo_dfEHm6"
+      ],
+      "settings": {
+        "reveal_on_scroll": true,
+        "subheading": "",
+        "title": "NOSSAS MARCAS",
+        "button_text": "",
+        "button_link": "",
+        "stack_logos": true,
+        "background": "rgba(0,0,0,0)",
+        "text_color": "rgba(0,0,0,0)",
+        "button_background": "rgba(0,0,0,0)",
+        "button_text_color": "rgba(0,0,0,0)",
+        "logo_background": "rgba(0,0,0,0)"
+      }
+    },
+    "slideshow_rA88cH": {
+      "type": "slideshow",
+      "blocks": {
+        "image_YLd8Ap": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Design_sem_nome_10.png",
+            "mobile_image": "shopify://shop_images/churrasco.png",
+            "text_position": "middle_center",
+            "subheading": "",
+            "title": "",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": "",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_FV8zgt": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Design_sem_nome_10.png",
+            "mobile_image": "shopify://shop_images/trio_parada_dura.png",
+            "text_position": "middle_center",
+            "subheading": "",
+            "title": "",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": "",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_UcJtf7": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Design_sem_nome_10.png",
+            "mobile_image": "shopify://shop_images/xonadao.png",
+            "text_position": "middle_center",
+            "subheading": "",
+            "title": "",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": "",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_6fFG9R": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Design_sem_nome_10.png",
+            "mobile_image": "shopify://shop_images/ML_Site.png",
+            "text_position": "middle_center",
+            "subheading": "",
+            "title": "",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": "",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_LCXjUN": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Design_sem_nome_10.png",
+            "mobile_image": "shopify://shop_images/telefone_mudo.png",
+            "text_position": "middle_center",
+            "subheading": "",
+            "title": "",
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_2_text": "",
+            "button_2_link": "",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "image_YLd8Ap",
+        "image_FV8zgt",
+        "image_UcJtf7",
+        "image_6fFG9R",
+        "image_LCXjUN"
+      ],
+      "disabled": true,
+      "settings": {
+        "section_height": "auto",
+        "transition_type": "sweep",
+        "autoplay": true,
+        "cycle_speed": 5,
+        "background": "#ffffff"
+      }
+    }
+  },
+  "order": [
+    "slideshow",
+    "926c7098-4397-4da1-9c97-16935ea7ebc3",
+    "recently_viewed_products_LyqniK",
+    "176929914101d9f93b",
+    "featured_collections_aBmCr8",
+    "f03689a1-a342-4154-a5fc-376e90c0838c",
+    "4b6d90fe-3a65-4df4-a75c-5974a4f6dee7",
+    "featured_collections_h68zQb",
+    "text-with-icons",
+    "shop_the_look_UP96h6",
+    "rich_text_qM9KQL",
+    "video_KEQT6K",
+    "rich_text_zhg8Ez",
+    "image_with_text_block_q9Daky",
+    "026aeb10-b4f0-4329-b658-aadbf9681f96",
+    "logo_list_M6qzFH",
+    "slideshow_rA88cH"
+  ]
+}
