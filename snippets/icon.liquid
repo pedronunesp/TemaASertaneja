@@ -518,4 +518,10 @@
     <svg focusable="false" width="{{ width | default: 24 }}" height="{{ height | default: 24 }}" class="{{ icon_class }}" viewBox="0 0 24 24">
       <path d="M12 5.69L12 3H16V9.29L19.2991 12.0625L20.5849 10.5332L12 3.3125L3.4151 10.5332L4.70086 12.0625L8 9.29V21H11V15H13V21H16V9.29L12 5.92V5.69Z" stroke="currentColor" stroke-width="{{ settings.icon_stroke_width }}" stroke-linejoin="round"></path>
     </svg>
+
+  {%- when 'header-home' -%}
+    <svg focusable="false" width="{{ width | default: 18 }}" height="{{ height | default: 17 }}" class="{{ icon_class }}" viewBox="0 0 17 17">
+      <path d="M1 9V16H6V11H11V16H16V9L8.5 1.5L1 9Z" fill="none" stroke="currentColor" stroke-width="{{ settings.icon_stroke_width }}" stroke-linejoin="round"></path>
+    </svg>
+
 {%- endcase -%}

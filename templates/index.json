@@ -749,61 +749,6 @@
         "cycle_speed": 5,
         "background": "#ffffff"
       }
-    },
-    "bottom_navigation_JXW7JF": {
-      "type": "bottom-navigation",
-      "blocks": {
-        "link_XVbnWz": {
-          "type": "link",
-          "settings": {
-            "label": "Início",
-            "url": "/",
-            "icon": "home"
-          }
-        },
-        "cart_drawer_AgCizH": {
-          "type": "cart_drawer",
-          "settings": {
-            "label": "Carrinho",
-            "icon": "header-cart"
-          }
-        },
-        "menu_drawer_rA6Fgn": {
-          "type": "menu_drawer",
-          "settings": {
-            "label": "Categorias",
-            "icon": "header-hamburger"
-          }
-        },
-        "account_VAyL6m": {
-          "type": "account",
-          "settings": {
-            "label": "Conta",
-            "icon": "header-customer"
-          }
-        }
-      },
-      "block_order": [
-        "link_XVbnWz",
-        "cart_drawer_AgCizH",
-        "menu_drawer_rA6Fgn",
-        "account_VAyL6m"
-      ],
-      "name": "Bottom Navigation",
-      "settings": {
-        "enable": true,
-        "height": 60,
-        "icon_size": 24,
-        "font_size": 10,
-        "background": "#000000",
-        "border_color": "#000000",
-        "show_shadow": true,
-        "text_color": "#ffffff",
-        "icon_color": "#ffffff",
-        "active_color": "#c5c5c5",
-        "badge_bg_color": "#e2a696",
-        "badge_text_color": "#ffffff"
-      }
     }
   },
   "order": [
@@ -823,7 +768,6 @@
     "image_with_text_block_q9Daky",
     "026aeb10-b4f0-4329-b658-aadbf9681f96",
     "logo_list_M6qzFH",
-    "slideshow_rA88cH",
-    "bottom_navigation_JXW7JF"
+    "slideshow_rA88cH"
   ]
 }
