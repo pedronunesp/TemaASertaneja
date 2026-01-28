@@ -1,0 +1,160 @@
+
+<style>
+  #shopify-section-{{ section.id }} {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    background-color: {{ section.settings.background }};
+    border-top: 1px solid {{ section.settings.border_color }};
+    padding-bottom: env(safe-area-inset-bottom);
+    display: none;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+  }
+
+  @media screen and (max-width: 768px) {
+    #shopify-section-{{ section.id }} {
+      display: block;
+    }
+    /* Add padding to body to prevent content from being hidden behind the bottom bar */
+    body {
+      padding-bottom: calc(60px + env(safe-area-inset-bottom));
+    }
+  }
+
+  .bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px;
+    padding: 0 10px;
+  }
+
+  .bottom-nav__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: {{ section.settings.text_color }};
+    font-size: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex: 1;
+    padding: 5px 0;
+    gap: 4px;
+    line-height: 1.2;
+  }
+
+  .bottom-nav__item .icon {
+    width: 24px;
+    height: 24px;
+    color: {{ section.settings.icon_color }};
+  }
+  
+  .bottom-nav__item span {
+    margin-top: 2px;
+  }
+
+  .bottom-nav__cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: {{ settings.header_text_color | default: '#000' }};
+    color: {{ settings.header_background | default: '#fff' }};
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .bottom-nav__icon-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+</style>
+
+<div class="bottom-nav">
+  
+  <!-- Home -->
+  <a href="{{ routes.root_url }}" class="bottom-nav__item">
+    <div class="bottom-nav__icon-wrapper">
+        <svg class="icon icon--picto-store" viewBox="0 0 24 24" fill="none" class="icon-picto-store" stroke="currentColor" stroke-width="1.5">
+            <path d="M21.125 6L20 3H4L2.875 6M21.125 6L21.5 7C21.5 7 21.5 8.75 20.5 9.625C20.3366 9.76798 20.1692 9.88453 20 9.97831M21.125 6H2.875M2.875 6L2.5 7C2.5 7 2.5 8.75 3.5 9.625C3.66341 9.76798 3.83078 9.88453 4 9.97831M4 9.97831C5.66138 10.899 7.5 9.625 7.5 9.625C7.5 9.625 8.5 10.5 9.5 10.5C10.5 10.5 12 9.625 12 9.625C12 9.625 13.5 10.5 14.5 10.5C15.5 10.5 16.5 9.625 16.5 9.625C16.5 9.625 18.3386 10.899 20 9.97831M4 9.97831V21H10M20 9.97831V21H14M10 21V14H14V21M10 21H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+    </div>
+    <span>Início</span>
+  </a>
+
+  <!-- Categories (Drawer Toggle) -->
+  <button is="toggle-button" class="bottom-nav__item" aria-controls="mobile-menu-drawer" aria-expanded="false">
+    <div class="bottom-nav__icon-wrapper">
+        {%- render 'icon' with 'header-hamburger' -%}
+    </div>
+    <span>Categorias</span>
+  </button>
+
+  <!-- Account -->
+  <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="bottom-nav__item">
+    <div class="bottom-nav__icon-wrapper">
+        {%- render 'icon' with 'header-customer' -%}
+    </div>
+    <span>Conta</span>
+  </a>
+
+  <!-- Cart (Drawer Toggle) -->
+  <a href="{{ routes.cart_url }}" {% unless settings.cart_type == 'page' or request.page_type == 'cart' %}is="toggle-link" aria-controls="mini-cart" aria-expanded="false"{% endunless %} class="bottom-nav__item" data-no-instant>
+    <div class="bottom-nav__icon-wrapper">
+        {%- render 'icon' with 'header-cart' -%}
+        {%- if cart.item_count > 0 -%}
+        <div class="bottom-nav__cart-count">{{ cart.item_count }}</div>
+        {%- endif -%}
+    </div>
+    <span>Carrinho</span>
+  </a>
+
+</div>
+
+{% schema %}
+{
+  "name": "Bottom Navigation",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#333333"
+    },
+    {
+        "type": "color",
+        "id": "icon_color",
+        "label": "Icon Color",
+        "default": "#333333"
+      }
+  ],
+  "presets": [
+    {
+      "name": "Bottom Navigation"
+    }
+  ]
+}
+{% endschema %}
