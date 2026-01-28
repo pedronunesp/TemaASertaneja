@@ -10,24 +10,28 @@
     border-top: 1px solid {{ section.settings.border_color }};
     padding-bottom: env(safe-area-inset-bottom);
     display: none;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    {% if section.settings.show_shadow %}
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    {% endif %}
   }
 
   @media screen and (max-width: 768px) {
     #shopify-section-{{ section.id }} {
-      display: block;
+      display: {% if section.settings.enable %}block{% else %}none{% endif %};
     }
     /* Add padding to body to prevent content from being hidden behind the bottom bar */
+    {% if section.settings.enable %}
     body {
-      padding-bottom: calc(60px + env(safe-area-inset-bottom));
+      padding-bottom: calc({{ section.settings.height }}px + env(safe-area-inset-bottom));
     }
+    {% endif %}
   }
 
   .bottom-nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 60px;
+    height: {{ section.settings.height }}px;
     padding: 0 10px;
   }
 
@@ -38,7 +42,7 @@
     justify-content: center;
     text-decoration: none;
     color: {{ section.settings.text_color }};
-    font-size: 10px;
+    font-size: {{ section.settings.font_size }}px;
     background: none;
     border: none;
     cursor: pointer;
@@ -46,12 +50,24 @@
     padding: 5px 0;
     gap: 4px;
     line-height: 1.2;
+    transition: color 0.2s ease;
+  }
+
+  .bottom-nav__item:hover,
+  .bottom-nav__item.active {
+    color: {{ section.settings.active_color }};
   }
 
   .bottom-nav__item .icon {
-    width: 24px;
-    height: 24px;
+    width: {{ section.settings.icon_size }}px;
+    height: {{ section.settings.icon_size }}px;
     color: {{ section.settings.icon_color }};
+    transition: color 0.2s ease;
+  }
+
+  .bottom-nav__item:hover .icon,
+  .bottom-nav__item.active .icon {
+    color: {{ section.settings.active_color }};
   }
   
   .bottom-nav__item span {
@@ -62,8 +78,8 @@
     position: absolute;
     top: -5px;
     right: -5px;
-    background-color: {{ settings.header_text_color | default: '#000' }};
-    color: {{ settings.header_background | default: '#fff' }};
+    background-color: {{ section.settings.badge_bg_color }};
+    color: {{ section.settings.badge_text_color }};
     border-radius: 50%;
     width: 16px;
     height: 16px;
@@ -81,51 +97,109 @@
   }
 </style>
 
+{% if section.blocks.size > 0 %}
 <div class="bottom-nav">
-  
-  <!-- Home -->
-  <a href="{{ routes.root_url }}" class="bottom-nav__item">
-    <div class="bottom-nav__icon-wrapper">
-        <svg class="icon icon--picto-store" viewBox="0 0 24 24" fill="none" class="icon-picto-store" stroke="currentColor" stroke-width="1.5">
-            <path d="M21.125 6L20 3H4L2.875 6M21.125 6L21.5 7C21.5 7 21.5 8.75 20.5 9.625C20.3366 9.76798 20.1692 9.88453 20 9.97831M21.125 6H2.875M2.875 6L2.5 7C2.5 7 2.5 8.75 3.5 9.625C3.66341 9.76798 3.83078 9.88453 4 9.97831M4 9.97831C5.66138 10.899 7.5 9.625 7.5 9.625C7.5 9.625 8.5 10.5 9.5 10.5C10.5 10.5 12 9.625 12 9.625C12 9.625 13.5 10.5 14.5 10.5C15.5 10.5 16.5 9.625 16.5 9.625C16.5 9.625 18.3386 10.899 20 9.97831M4 9.97831V21H10M20 9.97831V21H14M10 21V14H14V21M10 21H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
-    </div>
-    <span>Início</span>
-  </a>
+  {% for block in section.blocks %}
+    {% case block.type %}
+      
+      {% when 'link' %}
+        <a href="{{ block.settings.url }}" class="bottom-nav__item {% if request.path == block.settings.url %}active{% endif %}" {{ block.shopify_attributes }}>
+          <div class="bottom-nav__icon-wrapper">
+            {% render 'icon', icon: block.settings.icon %}
+          </div>
+          <span>{{ block.settings.label }}</span>
+        </a>
 
-  <!-- Categories (Drawer Toggle) -->
-  <button is="toggle-button" class="bottom-nav__item" aria-controls="mobile-menu-drawer" aria-expanded="false">
-    <div class="bottom-nav__icon-wrapper">
-        {%- render 'icon' with 'header-hamburger' -%}
-    </div>
-    <span>Categorias</span>
-  </button>
+      {% when 'menu_drawer' %}
+        <button is="toggle-button" class="bottom-nav__item" aria-controls="mobile-menu-drawer" aria-expanded="false" {{ block.shopify_attributes }}>
+          <div class="bottom-nav__icon-wrapper">
+             {% render 'icon', icon: block.settings.icon %}
+          </div>
+          <span>{{ block.settings.label }}</span>
+        </button>
 
-  <!-- Account -->
-  <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="bottom-nav__item">
-    <div class="bottom-nav__icon-wrapper">
-        {%- render 'icon' with 'header-customer' -%}
-    </div>
-    <span>Conta</span>
-  </a>
+      {% when 'cart_drawer' %}
+        <a href="{{ routes.cart_url }}" {% unless settings.cart_type == 'page' or request.page_type == 'cart' %}is="toggle-link" aria-controls="mini-cart" aria-expanded="false"{% endunless %} class="bottom-nav__item" data-no-instant {{ block.shopify_attributes }}>
+          <div class="bottom-nav__icon-wrapper">
+              {% render 'icon', icon: block.settings.icon %}
+              {%- if cart.item_count > 0 -%}
+              <div class="bottom-nav__cart-count">{{ cart.item_count }}</div>
+              {%- endif -%}
+          </div>
+          <span>{{ block.settings.label }}</span>
+        </a>
 
-  <!-- Cart (Drawer Toggle) -->
-  <a href="{{ routes.cart_url }}" {% unless settings.cart_type == 'page' or request.page_type == 'cart' %}is="toggle-link" aria-controls="mini-cart" aria-expanded="false"{% endunless %} class="bottom-nav__item" data-no-instant>
-    <div class="bottom-nav__icon-wrapper">
-        {%- render 'icon' with 'header-cart' -%}
-        {%- if cart.item_count > 0 -%}
-        <div class="bottom-nav__cart-count">{{ cart.item_count }}</div>
-        {%- endif -%}
-    </div>
-    <span>Carrinho</span>
-  </a>
+      {% when 'account' %}
+        <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="bottom-nav__item {% if request.path contains routes.account_url %}active{% endif %}" {{ block.shopify_attributes }}>
+          <div class="bottom-nav__icon-wrapper">
+              {% render 'icon', icon: block.settings.icon %}
+          </div>
+          <span>{{ block.settings.label }}</span>
+        </a>
+        
+      {% when 'search_drawer' %}
+         {%- unless section.settings.enable_custom_search -%}
+            <a href="{{ routes.search_url }}" is="toggle-link" class="bottom-nav__item" aria-controls="search-drawer" aria-expanded="false" aria-label="{{ 'search.general.title' | t | escape }}" {{ block.shopify_attributes }}>
+              <div class="bottom-nav__icon-wrapper">
+                  {% render 'icon', icon: block.settings.icon %}
+              </div>
+              <span>{{ block.settings.label }}</span>
+            </a>
+          {%- endunless -%}
 
+    {% endcase %}
+  {% endfor %}
 </div>
+{% endif %}
 
 {% schema %}
 {
   "name": "Bottom Navigation",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "Enable Bottom Navigation",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Layout & Sizing"
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "min": 40,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "label": "Bar Height",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 16,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Icon Size",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 8,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
     {
       "type": "color",
       "id": "background",
@@ -139,6 +213,12 @@
       "default": "#e5e5e5"
     },
     {
+      "type": "checkbox",
+      "id": "show_shadow",
+      "label": "Show Shadow",
+      "default": true
+    },
+    {
       "type": "color",
       "id": "text_color",
       "label": "Text Color",
@@ -149,11 +229,191 @@
         "id": "icon_color",
         "label": "Icon Color",
         "default": "#333333"
-      }
+      },
+    {
+      "type": "color",
+      "id": "active_color",
+      "label": "Active/Hover Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "badge_bg_color",
+      "label": "Cart Badge Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Cart Badge Text",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Custom Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Link"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link URL"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "picto-store",
+          "options": [
+            { "value": "picto-store", "label": "Store" },
+            { "value": "picto-box", "label": "Box" },
+            { "value": "picto-like", "label": "Heart" },
+            { "value": "picto-gift", "label": "Gift" },
+            { "value": "picto-coupon", "label": "Coupon" },
+            { "value": "picto-chat", "label": "Chat" },
+            { "value": "picto-mobile", "label": "Mobile" },
+            { "value": "picto-email", "label": "Email" },
+            { "value": "picto-plane", "label": "Plane" },
+            { "value": "picto-return-box", "label": "Return Box" },
+            { "value": "picto-customer-support", "label": "Support" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "menu_drawer",
+      "name": "Menu Drawer",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Menu"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "header-hamburger",
+          "options": [
+            { "value": "header-hamburger", "label": "Hamburger" },
+            { "value": "filters", "label": "Filters" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "cart_drawer",
+      "name": "Cart Drawer",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Cart"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "header-cart",
+          "options": [
+            { "value": "header-cart", "label": "Cart" },
+            { "value": "header-shopping-cart", "label": "Shopping Cart" },
+            { "value": "header-tote-bag", "label": "Tote Bag" },
+            { "value": "quick-buy-shopping-bag", "label": "Shopping Bag" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "account",
+      "name": "Account Link",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Account"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "header-customer",
+          "options": [
+            { "value": "header-customer", "label": "Customer" },
+            { "value": "picto-operator", "label": "Operator" }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "search_drawer",
+      "name": "Search Drawer",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Search"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "header-search",
+          "options": [
+            { "value": "header-search", "label": "Magnifying Glass" }
+          ]
+        }
+      ]
+    }
   ],
   "presets": [
     {
-      "name": "Bottom Navigation"
+      "name": "Bottom Navigation",
+      "blocks": [
+        {
+          "type": "link",
+          "settings": {
+            "label": "Início",
+            "url": "/",
+            "icon": "picto-store"
+          }
+        },
+        {
+          "type": "menu_drawer",
+          "settings": {
+            "label": "Categorias",
+            "icon": "header-hamburger"
+          }
+        },
+        {
+          "type": "account",
+          "settings": {
+            "label": "Conta",
+            "icon": "header-customer"
+          }
+        },
+        {
+          "type": "cart_drawer",
+          "settings": {
+            "label": "Carrinho",
+            "icon": "header-cart"
+          }
+        }
+      ]
     }
   ]
 }
