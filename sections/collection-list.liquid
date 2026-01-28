@@ -29,7 +29,13 @@
 
     {%- if section.settings.layout == 'collage' -%}
       --section-collage-column: {{ section.blocks.size | at_most: 2 }};
-    {%- endif -%}
+    {%- endif -%} 
+
+    /* Configurable Grid Columns */
+    --desktop-columns: {{ section.settings.desktop_columns | default: 3 }};
+    --mobile-columns: {{ section.settings.mobile_columns | default: 1 }};
+
+    --heading-color: {{ heading_color.red }}, {{ heading_color.green }}, {{ heading_color.blue }};
   }
 
   {%- for block in section.blocks -%}
@@ -45,7 +51,21 @@
       --section-block-overlay: {{ block.settings.overlay_color.red }}, {{ block.settings.overlay_color.green }}, {{ block.settings.overlay_color.blue }};
       --section-block-overlay-opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};
     }
+    }
   {%- endfor -%}
+
+  /* Override grid layout based on settings */
+  #shopify-section-{{ section.id }} .list-collections--grid .list-collections__item-list {
+    display: grid;
+    grid-template-columns: repeat(var(--mobile-columns), minmax(0, 1fr));
+    gap: var(--grid-gap, 24px);
+  }
+
+  @media screen and (min-width: 1000px) {
+    #shopify-section-{{ section.id }} .list-collections--grid .list-collections__item-list {
+      grid-template-columns: repeat(var(--desktop-columns), minmax(0, 1fr));
+    }
+  }
 </style>
 
 <section class="section {% unless blends_with_background %}section--flush{% endunless %}">
@@ -145,7 +165,7 @@
                       {%- capture image_sizes -%}(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px{%- endcapture -%}
 
                     {%- when 'collage' -%}
-                      {%- capture image_sizes -%}(max-width: 740px) calc(100vw - 24px * 2), 660px{%- endcapture -%}
+                      {%- capture image_sizes -%}(max-width: 740px) calc(100vw / {{ section.settings.mobile_columns }} - 24px), (max-width: 999px) calc(50vw - 60px), calc(100vw / {{ section.settings.desktop_columns }} - 40px){%- endcapture -%}
                   {%- endcase -%}
 
                   {%- if section.settings.layout == 'grid' and collection_image.aspect_ratio > 2.5 -%}
@@ -302,6 +322,25 @@
         }
       ],
       "default": "grid"
+    },
+    {
+      "type": "range",
+      "id": "desktop_columns",
+      "min": 3,
+      "max": 6,
+      "step": 1,
+      "label": "Colunas no Desktop",
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "mobile_columns",
+      "label": "Colunas no Mobile",
+      "options": [
+        { "value": "1", "label": "1 Coluna" },
+        { "value": "2", "label": "2 Colunas" }
+      ],
+      "default": "1"
     },
     {
       "type": "text",
