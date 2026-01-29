@@ -546,6 +546,13 @@
           "optimize_replacement_CSSSelector": "",
           "enable_cdn_fallback": false
         }
+      },
+      "12342438634123318931": {
+        "type": "shopify://apps/xb-wishlist/blocks/xo-wishlist/cc07f1e9-907b-431d-99f8-4fce3efa75f1",
+        "disabled": false,
+        "settings": {
+          "selector_collection": ""
+        }
       }
     }
   },
