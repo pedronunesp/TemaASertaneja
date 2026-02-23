@@ -35,7 +35,22 @@
     --desktop-columns: {{ section.settings.desktop_columns | default: 3 }};
     --mobile-columns: {{ section.settings.mobile_columns | default: 1 }};
 
+    /* Dynamic Scaling Variables */
+    --current-columns: var(--mobile-columns);
+    /* Scale Factor: As columns increase, content scales down. */
+    /* Base font size starts around 18px-24px and reduces by column count. */
+    /* Clamp ensures it doesn't get too small (12px) or too big (32px). */
+    /* 200px / columns is a heuristic for available width relative to viewport/grid. */
+    --content-scale: clamp(0.75rem, calc(200% / var(--current-columns) * 0.1 + 0.5rem), 2rem);
+    --content-padding: clamp(8px, calc(24px / (var(--current-columns) * 0.3 + 0.7)), 24px);
+
     --heading-color: {{ heading_color.red }}, {{ heading_color.green }}, {{ heading_color.blue }};
+  }
+
+  @media screen and (min-width: 768px) {
+    #shopify-section-{{ section.id }} {
+      --current-columns: var(--desktop-columns);
+    }
   }
 
   {%- for block in section.blocks -%}
@@ -76,6 +91,64 @@
       grid-auto-columns: calc((100% - (var(--desktop-columns) - 1) * var(--grid-gap, 24px)) / var(--desktop-columns));
     }
   }
+
+  /* Ensure Square Aspect Ratio */
+  #shopify-section-{{ section.id }} .list-collections__item-image-wrapper {
+    position: relative;
+    width: 100%;
+    /* Modern aspect-ratio property */
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+  }
+
+  /* Fallback for older browsers if needed, though aspect-ratio is widely supported */
+  @supports not (aspect-ratio: 1 / 1) {
+    #shopify-section-{{ section.id }} .list-collections__item-image-wrapper::before {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
+    #shopify-section-{{ section.id }} .list-collections__item-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .list-collections__item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Responsive Text Scaling */
+  #shopify-section-{{ section.id }} .list-collections__item-info {
+    padding-left: var(--content-padding);
+    padding-right: var(--content-padding);
+  }
+
+  #shopify-section-{{ section.id }} .list-collections__item-info .heading {
+    font-size: var(--content-scale);
+    line-height: 1.2;
+    /* Ensure text breaks nicely if very long */
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  /* Specific overrides for heading sizes if they use classes like h2, h3 */
+  #shopify-section-{{ section.id }} .list-collections__item-info .h2,
+  #shopify-section-{{ section.id }} .list-collections__item-info .h3,
+  #shopify-section-{{ section.id }} .list-collections__item-info .h4 {
+     font-size: var(--content-scale);
+  }
+
+  /* Smaller scale for subheading/links relative to main heading */
+  #shopify-section-{{ section.id }} .list-collections__item-info .heading--small {
+    font-size: calc(var(--content-scale) * 0.75);
+  }
+
 </style>
 
 <section class="section {% unless blends_with_background %}section--flush{% endunless %}">
