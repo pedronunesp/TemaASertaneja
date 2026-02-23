@@ -51,7 +51,6 @@
       --section-block-overlay: {{ block.settings.overlay_color.red }}, {{ block.settings.overlay_color.green }}, {{ block.settings.overlay_color.blue }};
       --section-block-overlay-opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};
     }
-    }
   {%- endfor -%}
 
   /* Override grid layout based on settings */
@@ -61,9 +60,20 @@
     gap: var(--grid-gap, 24px);
   }
 
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 768px) {
     #shopify-section-{{ section.id }} .list-collections--grid .list-collections__item-list {
       grid-template-columns: repeat(var(--desktop-columns), minmax(0, 1fr));
+    }
+  }
+
+  /* Carousel overrides for dynamic columns */
+  #shopify-section-{{ section.id }} .list-collections--carousel .list-collections__item-list {
+    grid-auto-columns: calc((100% - (var(--mobile-columns) - 1) * var(--grid-gap, 24px)) / var(--mobile-columns));
+  }
+
+  @media screen and (min-width: 768px) {
+    #shopify-section-{{ section.id }} .list-collections--carousel .list-collections__item-list {
+      grid-auto-columns: calc((100% - (var(--desktop-columns) - 1) * var(--grid-gap, 24px)) / var(--desktop-columns));
     }
   }
 </style>
@@ -159,10 +169,10 @@
                 {%- if collection_image != blank -%}
                   {%- case section.settings.layout -%}
                     {%- when 'grid' -%}
-                      {%- capture image_sizes -%}(max-width: 740px) calc(100vw - 48px), (max-width: 999px) calc(50vw - 60px), 480px{%- endcapture -%}
+                      {%- capture image_sizes -%}(max-width: 767px) calc((100vw - 48px) / {{ section.settings.mobile_columns }}), (min-width: 768px) calc((100vw - 48px) / {{ section.settings.desktop_columns }}){%- endcapture -%}
 
                     {%- when 'carousel' -%}
-                      {%- capture image_sizes -%}(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px{%- endcapture -%}
+                      {%- capture image_sizes -%}(max-width: 767px) calc((100vw - 48px) / {{ section.settings.mobile_columns }}), (min-width: 768px) calc((100vw - 48px) / {{ section.settings.desktop_columns }}){%- endcapture -%}
 
                     {%- when 'collage' -%}
                       {%- capture image_sizes -%}(max-width: 740px) calc(100vw / {{ section.settings.mobile_columns }} - 24px), (max-width: 999px) calc(50vw - 60px), calc(100vw / {{ section.settings.desktop_columns }} - 40px){%- endcapture -%}
@@ -326,21 +336,20 @@
     {
       "type": "range",
       "id": "desktop_columns",
-      "min": 3,
-      "max": 6,
+      "min": 2,
+      "max": 12,
       "step": 1,
       "label": "Colunas no Desktop",
       "default": 3
     },
     {
-      "type": "select",
+      "type": "range",
       "id": "mobile_columns",
+      "min": 1,
+      "max": 5,
+      "step": 1,
       "label": "Colunas no Mobile",
-      "options": [
-        { "value": "1", "label": "1 Coluna" },
-        { "value": "2", "label": "2 Colunas" }
-      ],
-      "default": "1"
+      "default": 1
     },
     {
       "type": "text",
