@@ -395,6 +395,7 @@
         "look_X6mVrU": {
           "type": "look",
           "settings": {
+            "image": "shopify://shop_images/front-and-back-view-mockup-of-a-man-and-a-woman-wearing-blinkstore-t-shirts-in-a-studio-m37638.png",
             "dot_type": "normal",
             "product_1": "camiseta-original-personalizada-trio-parada-dura-edicao-limitada-50-anos",
             "product_1_horizontal_position": 37,
@@ -446,6 +447,7 @@
         "subheading": "",
         "title": "",
         "video_url": "https://youtu.be/NeWbqWb8330",
+        "image": "shopify://shop_images/a_sertanejaoficial.com.br_1.png",
         "background_type": "full_width",
         "video_size": "auto",
         "autoplay": false,
@@ -476,6 +478,7 @@
       "type": "image-with-text-block",
       "settings": {
         "reveal_on_scroll": true,
+        "image": "shopify://shop_images/Gemini_Generated_Image_uvfs08uvfs08uvfs.png",
         "subheading": "Lançamento Cachaça",
         "title": "",
         "content": "<p>Existe um segredo guardado por debaixo dos panos.</p><p>Uma bebida que carrega tradição, personalidade e um sabor que só quem entende de verdade vai reconhecer. <br/><br/>Está preparado para algo diferente? Então, deixe seu nome e receba quando lançarmos.</p>",
@@ -561,36 +564,42 @@
         "logo_cNqMfN": {
           "type": "logo",
           "settings": {
+            "logo": "shopify://shop_images/logo_telefone_mudo_2.png",
             "link": "https://instagram.com/telefone_mudo"
           }
         },
         "logo_Yfaiit": {
           "type": "logo",
           "settings": {
+            "logo": "shopify://shop_images/logo_xonadao_curvas_2.png",
             "link": "https://instagram.com/xonadaotrioparadadura"
           }
         },
         "logo_BzMWxN": {
           "type": "logo",
           "settings": {
+            "logo": "shopify://shop_images/logo_chama.png",
             "link": "https://instagram.com/chamachuva"
           }
         },
         "logo_dHVBmb": {
           "type": "logo",
           "settings": {
+            "logo": "shopify://shop_images/logo_trio_parede_2_2.png",
             "link": "https://instagram.com/trioparadadura"
           }
         },
         "logo_bwWVxC": {
           "type": "logo",
           "settings": {
+            "logo": "shopify://shop_images/Design_sem_nome_13.png",
             "link": "https://instagram.com/marcelinhodelimaoficial"
           }
         },
         "logo_dfEHm6": {
           "type": "logo",
           "settings": {
+            "logo": "shopify://shop_images/Design_sem_nome_12.png",
             "link": "https://instagram.com/churrascocervejaeviola"
           }
         }
