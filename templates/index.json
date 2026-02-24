@@ -15,6 +15,7 @@
         "image_ajkMJD": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_g7j3lmg7j3lmg7j3.png",
             "text_position": "middle_center",
             "subheading": "",
             "title": "",
