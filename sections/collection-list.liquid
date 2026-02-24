@@ -255,6 +255,132 @@
 
 </style>
 
+
+<style>
+  /* Container Query Setup */
+  #shopify-section-{{ section.id }} .list-collections__item {
+    container-type: inline-size;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    /* Aspect ratio is handled by the image wrapper mostly, but let's enforce it on the item */
+    aspect-ratio: 1 / 1;
+  }
+
+  /* Reset image wrapper */
+  #shopify-section-{{ section.id }} .list-collections__item-image-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    flex-shrink: 0; /* Prevent shrinking in flex layout */
+  }
+
+  #shopify-section-{{ section.id }} .list-collections__item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Text Container Base Styles */
+  #shopify-section-{{ section.id }} .list-collections__item-info {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    pointer-events: none; /* Let clicks pass through to the link */
+
+    /* Responsive Font Size using Container Query Units */
+    font-size: 8cqw; /* Adjust this value as needed */
+    line-height: 1.1;
+  }
+
+  /* Typography within the info container */
+  #shopify-section-{{ section.id }} .list-collections__item-info .heading,
+  #shopify-section-{{ section.id }} .list-collections__item-info p,
+  #shopify-section-{{ section.id }} .list-collections__item-info span {
+    font-size: 1em; /* Inherit from container */
+    margin: 0;
+    color: inherit;
+  }
+
+  /* --- Layout Variations --- */
+
+  /* Outside Bottom */
+  #shopify-section-{{ section.id }} .list-collections__item.title-position--outside-bottom {
+    flex-direction: column;
+    aspect-ratio: auto; /* Allow height to grow for text */
+    background: transparent;
+  }
+  #shopify-section-{{ section.id }} .list-collections__item.title-position--outside-bottom .list-collections__item-image-wrapper {
+    aspect-ratio: 1 / 1;
+    height: auto;
+  }
+  #shopify-section-{{ section.id }} .list-collections__item.title-position--outside-bottom .list-collections__item-info {
+    position: relative;
+    background: transparent;
+    color: var(--text-color);
+    padding: 8px 0;
+  }
+
+  /* Outside Top */
+  #shopify-section-{{ section.id }} .list-collections__item.title-position--outside-top {
+    flex-direction: column-reverse;
+    aspect-ratio: auto;
+    background: transparent;
+  }
+  #shopify-section-{{ section.id }} .list-collections__item.title-position--outside-top .list-collections__item-image-wrapper {
+    aspect-ratio: 1 / 1;
+    height: auto;
+  }
+  #shopify-section-{{ section.id }} .list-collections__item.title-position--outside-top .list-collections__item-info {
+    position: relative;
+    background: transparent;
+    color: var(--text-color);
+    padding: 8px 0;
+  }
+
+  /* Inside Center */
+  #shopify-section-{{ section.id }} .list-collections__item.title-position--inside-center .list-collections__item-info {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: transparent; /* Transparent as requested */
+    color: #fff; /* Assume white text for overlay, or use settings */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Readability */
+  }
+
+  /* Inside Bottom */
+  #shopify-section-{{ section.id }} .list-collections__item.title-position--inside-bottom .list-collections__item-info {
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+    color: #fff;
+    padding-bottom: 15px;
+  }
+
+  /* Inside Top */
+  #shopify-section-{{ section.id }} .list-collections__item.title-position--inside-top .list-collections__item-info {
+    top: 0;
+    left: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+    color: #fff;
+    padding-top: 15px;
+  }
+
+  /* Grid/Column Logic Override */
+  #shopify-section-{{ section.id }} .list-collections--grid .list-collections__item-list {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.mobile_columns }}, 1fr);
+    gap: 16px;
+  }
+  @media screen and (min-width: 768px) {
+    #shopify-section-{{ section.id }} .list-collections--grid .list-collections__item-list {
+      grid-template-columns: repeat({{ section.settings.desktop_columns }}, 1fr);
+    }
+  }
+</style>
 <section class="section {% unless blends_with_background %}section--flush{% endunless %}">
   <div class="section__color-wrapper">
     <div class="{% unless blends_with_background %}vertical-breather{% endunless %}">
@@ -339,7 +465,7 @@
 
             {%- assign collection = block.settings.collection -%}
 
-            <a id="block-{{ section.id }}-{{ block.id }}" href="{{ block.settings.link_url | default: collection.url }}" class="list-collections__item {% if is_highlighted %}list-collections__item--highlight {% if is_shifted %}list-collections__item--shift{% endif %}{% endif %} {% if collection_content != blank %}has-overlay{% endif %} image-zoom" {{ block.shopify_attributes }}>
+            <a id="block-{{ section.id }}-{{ block.id }}" href="{{ block.settings.link_url | default: collection.url }}" class="list-collections__item title-position--{{ section.settings.title_position | replace: "_", "-" }} {% if is_highlighted %}list-collections__item--highlight {% if is_shifted %}list-collections__item--shift{% endif %}{% endif %} {% if collection_content != blank %}has-overlay{% endif %} image-zoom" {{ block.shopify_attributes }}>
               <div class="list-collections__item-image-wrapper">
                 {%- assign collection_image = block.settings.image | default: collection.featured_image -%}
 
@@ -527,6 +653,19 @@
       "step": 1,
       "label": "Colunas no Mobile",
       "default": 1
+    },
+    {
+      "type": "select",
+      "id": "title_position",
+      "label": "Posição do Título",
+      "options": [
+        { "value": "outside_bottom", "label": "Abaixo da Imagem" },
+        { "value": "outside_top", "label": "Acima da Imagem" },
+        { "value": "inside_center", "label": "Dentro - Centralizado" },
+        { "value": "inside_bottom", "label": "Dentro - Inferior" },
+        { "value": "inside_top", "label": "Dentro - Superior" }
+      ],
+      "default": "outside_bottom"
     },
     {
       "type": "text",
